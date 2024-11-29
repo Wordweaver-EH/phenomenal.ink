@@ -1,0 +1,120 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import ContentWrapper from '../components/ContentWrapper.astro';
+import SidenoteToggle from '../components/SidenoteToggle';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <!-- Font preloads -->
+    <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+    <!-- Tufte CSS -->
+    <link rel="stylesheet" href="/styles/tufte.css" />
+    <script is:inline>
+      // Run this script immediately
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+
+      window.localStorage.setItem('theme', theme);
+    </script>
+  </head>
+  <body>
+    <nav class="nav-header">
+      <div class="nav-content">
+        <a href="/" class="home">phenomenal.ink</a>
+        <div class="nav-links">
+          <a href="/blog">blog</a>
+          <a href="/doc">doc</a>
+          <a href="/exp">exp</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <ContentWrapper>
+        <slot />
+      </ContentWrapper>
+    </main>
+    <SidenoteToggle client:load />
+    <ThemeToggle />
+    <style>
+      .nav-header {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 3rem;
+      }
+
+      .nav-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.1rem;
+      }
+
+      nav a:hover {
+        color: var(--accent-color);
+      }
+
+      .home {
+        font-weight: bold;
+      }
+
+      @media (max-width: 760px) {
+        .nav-content {
+          padding: 1rem;
+        }
+      }
+
+      @font-face {
+        font-family: 'Atkinson';
+        src: url('/fonts/atkinson-regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Atkinson';
+        src: url('/fonts/atkinson-bold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+  </body>
+</html> 
