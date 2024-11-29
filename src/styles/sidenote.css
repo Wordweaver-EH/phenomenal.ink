@@ -1,0 +1,119 @@
+/* Sidenote styles with dark mode support */
+.sidenote-number {
+  counter-increment: sidenote-counter;
+  color: var(--accent-color);
+  font-size: 1rem;
+  vertical-align: super;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidenote-number:hover {
+  color: var(--link-color);
+}
+
+/* Desktop styles (default) */
+.sidenote, .margin-note {
+  float: right;
+  clear: right;
+  margin-right: -60%;
+  width: 50%;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  vertical-align: baseline;
+  color: var(--side-note-color);
+  transition: all 0.2s ease;
+  visibility: visible;
+  position: relative;
+}
+
+.sidenote.highlighted, .margin-note.highlighted {
+  background-color: var(--highlight-color);
+  padding: 0.2em 0.5em;
+  border-radius: 2px;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 760px) {
+  .sidenote, .margin-note {
+    visibility: hidden;
+    position: absolute;
+    float: none;
+    display: block;
+    margin: 1rem 0;
+    width: 95%;
+    padding: 0.5em 1em;
+    border-left: 3px solid var(--accent-color);
+    background-color: var(--background-color);
+  }
+
+  .sidenote.mobile, 
+  .margin-note.mobile,
+  .sidenote.mobile-block,
+  .margin-note.mobile-block {
+    visibility: visible;
+    position: relative;
+  }
+
+  .sidenote.hidden {
+    display: none;
+  }
+
+  .margin-note.mobile-block {
+    display: block;
+    clear: both;
+    float: none;
+    width: 95%;
+    margin: 1rem 0;
+    margin-right: 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid var(--accent-color);
+    background-color: var(--background-color);
+  }
+
+  .sidenote.highlighted, .margin-note.highlighted {
+    background-color: var(--highlight-dark);
+  }
+}
+
+/* Sidenote toggle button */
+.sidenote-toggle {
+  display: none; /* Hidden by default on desktop */
+  position: fixed;
+  bottom: 3.5rem; /* Position above theme toggle */
+  right: 1.25rem; /* Same right alignment as theme toggle */
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  padding: 0.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transform-origin: center;
+}
+
+/* Only show toggle in mobile view */
+@media screen and (max-width: 760px) {
+  .sidenote-toggle {
+    display: flex;
+  }
+}
+
+.sidenote-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--accent-color);
+}
+
+.sidenote-toggle svg {
+  color: var(--text-color);
+  width: 18px;
+  height: 18px;
+} 

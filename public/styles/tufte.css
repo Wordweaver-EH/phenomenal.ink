@@ -1,0 +1,119 @@
+/* Base Tufte CSS with Theme Support */
+:root {
+  /* Light mode variables */
+  --background-color: #faf8f1;
+  --text-color: #222;
+  --accent-color: #a00000;
+  --side-note-color: #666;
+  --link-color: #a00000;
+  --border-color: #ddd;
+  --highlight-color: rgba(160, 0, 0, 0.1);
+  --highlight-dark: rgba(160, 0, 0, 0.15);
+  --code-bg: #f3f1ea;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  --background-color: #1a1a1a;
+  --text-color: #e6e6e6;
+  --accent-color: #ff6b6b;
+  --side-note-color: #a0a0a0;
+  --link-color: #ff6b6b;
+  --border-color: #333;
+  --highlight-color: rgba(255, 107, 107, 0.2);
+  --highlight-dark: rgba(255, 107, 107, 0.25);
+  --code-bg: #252525;
+}
+
+/* System preference fallback */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background-color: #1a1a1a;
+    --text-color: #e6e6e6;
+    --accent-color: #ff6b6b;
+    --side-note-color: #a0a0a0;
+    --link-color: #ff6b6b;
+    --border-color: #333;
+    --highlight-color: rgba(255, 107, 107, 0.2);
+    --highlight-dark: rgba(255, 107, 107, 0.25);
+    --code-bg: #252525;
+  }
+}
+
+html {
+  font-size: 15px;
+  background-color: var(--background-color);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  counter-reset: sidenote-counter;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 2.1rem;
+  margin-bottom: 1.4rem;
+  line-height: 1;
+  color: var(--text-color);
+}
+
+h1 { font-size: 3.2rem; line-height: 1; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.7rem; }
+
+p {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  padding-right: 0;
+  vertical-align: baseline;
+  color: var(--text-color);
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* Code blocks */
+code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  background-color: var(--code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+pre {
+  background-color: var(--code-bg);
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection {
+  background: var(--highlight-color);
+  color: var(--text-color);
+}
+
+/* Transitions for mode switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+} 

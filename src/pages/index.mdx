@@ -1,0 +1,22 @@
+---
+layout: '../layouts/Layout.astro'
+---
+import MarginNote from '../components/MarginNote.astro';
+import Sidenote from '../components/Sidenote.astro';
+import ContentWrapper from '../components/ContentWrapper.astro';
+
+<ContentWrapper>
+
+# phenomenal.ink
+
+Welcome to phenomenal.ink<Sidenote number={1}>A digital garden exploring consciousness, cognition, and computation.</Sidenote>. This is a collection of thoughts, experiments, and documentation about the nature of mind and computation.
+
+The site follows Tufte's design principles<MarginNote>Edward Tufte is a pioneer in information design and data visualization. His books are known for their elegant use of margin notes and sidenotes.</MarginNote>, emphasizing clear typography and thoughtful use of space.
+
+## Sections
+
+- [Blog](/blog) - Essays and reflections<Sidenote number={2}>The blog uses Tufte CSS styling with interactive sidenotes.</Sidenote>
+- [Documentation](/doc) - Technical details and theory
+- [Experiments](/exp) - Interactive demonstrations
+
+</ContentWrapper> 

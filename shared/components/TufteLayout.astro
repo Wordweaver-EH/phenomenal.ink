@@ -1,0 +1,85 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="stylesheet" href="/styles/tufte.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav-header">
+        <div class="nav-grid">
+          <a href="/">phenomenal.ink</a>
+          <a href="/blog">blog</a>
+          <a href="/doc">doc</a>
+          <a href="/exp">exp</a>
+        </div>
+      </nav>
+      <main>
+        <slot />
+      </main>
+      <footer>
+        <p>© {new Date().getFullYear()} phenomenal.ink</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style>
+  .container {
+    max-width: 87.5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12.5%;
+    position: relative;
+  }
+
+  .nav-header {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .nav-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-grid a {
+    color: #111;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+
+  .nav-grid a:hover {
+    color: #a00000;
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid #ddd;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      max-width: 95%;
+      padding-left: 2.5%;
+      padding-right: 2.5%;
+    }
+  }
+</style> 

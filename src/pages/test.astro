@@ -1,0 +1,30 @@
+---
+import MarginNote from '../components/MarginNote.astro';
+---
+
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body>
+    <p>
+      This is a test<MarginNote number={1}>
+        Test margin note
+      </MarginNote>
+    </p>
+  </body>
+</html>
+
+<style>
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+p {
+  font-size: 1.2rem;
+}
+</style> 

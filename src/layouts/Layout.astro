@@ -1,0 +1,86 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+import SidenoteToggle from '../components/SidenoteToggle';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="stylesheet" href="/styles/tufte.css" />
+  </head>
+  <body>
+    <nav class="nav-header">
+      <div class="nav-content">
+        <a href="/" class="home">phenomenal.ink</a>
+        <div class="nav-links">
+          <a href="/blog">blog</a>
+          <a href="/doc">doc</a>
+          <a href="/exp">exp</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <SidenoteToggle client:load />
+    <ThemeToggle />
+  </body>
+</html>
+
+<style>
+  .nav-header {
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 3rem;
+  }
+
+  .nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+
+  nav a:hover {
+    color: var(--accent-color);
+  }
+
+  .home {
+    font-weight: bold;
+  }
+
+  @media (max-width: 760px) {
+    .nav-content {
+      padding: 1rem;
+    }
+  }
+</style> 

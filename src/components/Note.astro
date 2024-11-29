@@ -1,0 +1,8 @@
+import '../styles/sidenote.css';
+import SidenoteReact from './SidenoteReact';
+
+const { number, id } = Astro.props;
+
+<SidenoteReact number={number} id={id} client:load>
+  <slot />
+</SidenoteReact> 

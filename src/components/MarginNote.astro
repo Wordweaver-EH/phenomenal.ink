@@ -1,0 +1,14 @@
+---
+import '../styles/sidenote.css';
+import MarginNoteReact from './MarginNoteReact';
+
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<MarginNoteReact id={id} client:load>
+  <slot />
+</MarginNoteReact> 
