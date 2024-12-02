@@ -123,73 +123,61 @@
   }
 }
 
-/* Mobile layout adjustments */
 @media screen and (max-width: 768px) {
-  /* Reset Starlight's sidebar spacing */
-  :root {
-    --sl-sidebar-width: 0 !important;
-    --sl-content-margin-inline: 0 !important;
-  }
-
-  /* Main container */
-  .main-frame {
-    padding-top: calc(var(--sl-nav-height) + 2rem) !important;
-    margin: 0 !important;
-  }
-
-  .content-panel {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .sl-container {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-  }
-
-  /* Main content */
   .sl-markdown-content {
     width: 100% !important;
-    max-width: 100% !important;
-    padding: 2rem 1rem 1rem 1rem !important;
-    margin: 0 !important;
+    max-width: none !important;
+    font-size: 1rem !important;
   }
 
-  /* Title and metadata */
+  .content-panel .sl-container {
+    padding: 0 2rem !important;
+  }
+
   h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-    margin-top: 0 !important;
-    margin-bottom: 1rem !important;
-    hyphens: auto !important;
+    font-size: 2.2rem !important;
+    margin-top: calc(var(--sl-nav-height) + 2rem) !important;
+    padding: 0 !important;
   }
 
-  /* Mobile sidenote handling */
+  h2 {
+    font-size: 1.8rem !important;
+    padding: 0 !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    padding: 0 !important;
+  }
+  
   .sidenote, .marginnote {
     display: none !important;
-    position: relative !important;
-    width: calc(100% - 2rem) !important;
-    margin: 1rem !important;
-    padding: 1rem !important;
-    background-color: var(--highlight-color) !important;
-    border-radius: 0.5rem !important;
-    font-size: 0.9rem !important;
-    line-height: 1.4 !important;
-    color: var(--text-color) !important;
-    visibility: visible !important;
   }
-
-  .sidenote.mobile-active,
-  .marginnote.mobile-active {
+  .margin-toggle:checked + .sidenote,
+  .margin-toggle:checked + .marginnote {
     display: block !important;
+    float: left !important;
+    left: 1rem !important;
+    clear: both !important;
+    width: 95% !important;
+    margin: 1rem 2.5% !important;
+    padding: 0.5rem !important;
+    background-color: var(--background-color) !important;
+    border: 1px solid var(--border-color) !important;
   }
 
-  .sidenote-number {
-    cursor: pointer !important;
-  }
-
-  .sidenote-number:hover {
-    color: var(--accent-color) !important;
+  [aria-label="Menu"].sl-flex {
+    position: fixed !important;
+    bottom: 1.5rem !important;
+    top: auto !important;
+    right: 1.25rem !important;
+    background: var(--background-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 50% !important;
+    padding: 0.5rem !important;
+    z-index: 100 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   }
 }
 
@@ -249,12 +237,13 @@ p {
 
 /* Links */
 a {
-  color: var(--accent-color) !important;
-  text-decoration: none !important;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  opacity: 0.8 !important;
+  color: var(--accent-color);
 }
 
 /* Code blocks */
@@ -371,29 +360,5 @@ div[data-pagefind-ui="search-box"] {
   .right-group {
     gap: 0.5rem !important;
   }
-}
-
-/* Blog index */
-article {
-  margin-bottom: 2rem !important;
-}
-
-article h2 {
-  margin-bottom: 0.5rem !important;
-}
-
-article p {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.5rem !important;
-}
-
-article span {
-  display: inline-block !important;
-  padding: 0.2rem 0.5rem !important;
-  margin-right: 0.5rem !important;
-  background-color: var(--highlight-color) !important;
-  border-radius: 0.25rem !important;
-  font-size: 0.9rem !important;
-  color: var(--text-color) !important;
 }
   

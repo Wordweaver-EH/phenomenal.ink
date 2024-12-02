@@ -1,6 +1,5 @@
 ---
 import '../styles/sidenote.css';
-import SidenoteReact from './SidenoteReact';
 
 interface Props {
   number: number;
@@ -10,6 +9,49 @@ interface Props {
 const { number, id } = Astro.props;
 ---
 
-<SidenoteReact number={number} id={id} client:load>
+<span class="sidenote-number" data-number={number}>{number}</span>
+<span class="sidenote" data-number={number} id={id}>
   <slot />
-</SidenoteReact> 
+</span>
+
+<script>
+  // Handle sidenote interactions
+  document.addEventListener('DOMContentLoaded', () => {
+    const isMobile = () => window.innerWidth <= 768;
+    
+    document.querySelectorAll('.sidenote-number').forEach(number => {
+      // Highlight behavior
+      number.addEventListener('mouseenter', (e) => {
+        if (isMobile()) return;
+        const num = e.target.getAttribute('data-number');
+        const sidenote = document.querySelector(`.sidenote[data-number="${num}"]`);
+        sidenote?.classList.add('highlighted');
+      });
+
+      number.addEventListener('mouseleave', (e) => {
+        if (isMobile()) return;
+        const num = e.target.getAttribute('data-number');
+        const sidenote = document.querySelector(`.sidenote[data-number="${num}"]`);
+        sidenote?.classList.remove('highlighted');
+      });
+
+      // Mobile click behavior
+      number.addEventListener('click', (e) => {
+        if (!isMobile()) return;
+        
+        const num = e.target.getAttribute('data-number');
+        const sidenote = document.querySelector(`.sidenote[data-number="${num}"]`);
+        
+        // Close any other open sidenotes
+        document.querySelectorAll('.sidenote.mobile-active').forEach(note => {
+          if (note !== sidenote) {
+            note.classList.remove('mobile-active');
+          }
+        });
+        
+        // Toggle this sidenote
+        sidenote?.classList.toggle('mobile-active');
+      });
+    });
+  });
+</script> 

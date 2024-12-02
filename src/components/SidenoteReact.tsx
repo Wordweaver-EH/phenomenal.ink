@@ -1,46 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { subscribeToHighlight, setHighlightedNote, subscribeToVisibility } from './noteState';
+import React, { useState, useEffect } from 'react';
+import { subscribeToHighlight, setHighlightedNote } from './noteState';
 
 interface SidenoteProps {
-  children: React.ReactNode;
   number: number;
   id?: string;
+  children: React.ReactNode;
 }
 
-export default function SidenoteReact({ children, number, id = `sn-${number}` }: SidenoteProps) {
+const SidenoteReact: React.FC<SidenoteProps> = ({ number, id = `sn-${number}`, children }) => {
+  const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isHighlighted, setIsHighlighted] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const noteRef = useRef<HTMLSpanElement>(null);
-  const numberRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const checkMobile = () => {
-      const isMobileView = window.innerWidth < 760;
-      setIsMobile(isMobileView);
-      
-      if (noteRef.current && numberRef.current) {
-        if (isMobileView) {
-          // Find the parent paragraph
-          let parentParagraph = numberRef.current.closest('p');
-          if (!parentParagraph) return;
-
-          // Move the note (but not the number) to the end of the paragraph
-          parentParagraph.appendChild(noteRef.current);
-          
-          noteRef.current.classList.add('mobile-block');
-          noteRef.current.classList.remove('mobile');
-        } else {
-          // In desktop view, move the note right after the number
-          if (numberRef.current.nextSibling !== noteRef.current) {
-            numberRef.current.after(noteRef.current);
-          }
-          noteRef.current.classList.remove('mobile-block');
-          noteRef.current.classList.add('mobile');
-        }
-      }
+      setIsMobile(window.innerWidth <= 760);
     };
-    
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -53,54 +28,54 @@ export default function SidenoteReact({ children, number, id = `sn-${number}` }:
     return unsubscribe;
   }, [id]);
 
-  useEffect(() => {
-    const unsubscribe = subscribeToVisibility((visible) => {
-      setIsVisible(visible);
-    });
-    return unsubscribe;
-  }, []);
-
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (isMobile) {
-      // Mobile behavior
-      if (!isVisible) {
-        // If sidenotes are hidden, clicking shows this specific note
-        setHighlightedNote(id);
-        setIsVisible(true);
-      } else if (isHighlighted) {
-        setHighlightedNote(null);
-      } else {
-        setHighlightedNote(id);
-        const element = document.getElementById(id);
-        element?.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // Desktop behavior - just toggle highlight
-      if (isHighlighted) {
-        setHighlightedNote(null);
-      } else {
-        setHighlightedNote(id);
-      }
+      setIsVisible(!isVisible);
     }
+    
+    // Toggle highlight
+    if (isHighlighted) {
+      setHighlightedNote(null);
+    } else {
+      setHighlightedNote(id);
+    }
+  };
+
+  // Convert children to string if needed and preserve line breaks
+  const processContent = (content: React.ReactNode): React.ReactNode => {
+    if (typeof content === 'string') {
+      return content.split(/\n|<br\s*\/?>/g).map((line, i, arr) => (
+        <React.Fragment key={i}>
+          {line}
+          {i < arr.length - 1 && <br />}
+        </React.Fragment>
+      ));
+    }
+    return content;
   };
 
   return (
     <>
-      <sup
-        ref={numberRef}
+      <label
+        htmlFor={`sidenote-${number}`}
         className="sidenote-number"
         onClick={handleClick}
-        style={{ cursor: 'pointer' }}
       >
         {number}
-      </sup>
+      </label>
       <span
-        ref={noteRef}
         id={id}
-        className={`sidenote ${isHighlighted ? 'highlighted' : ''} ${isMobile ? 'mobile' : ''} ${isMobile && !isVisible && !isHighlighted ? 'hidden' : ''}`}
+        className={`sidenote ${isMobile && isVisible ? 'mobile' : ''} ${
+          isHighlighted ? 'highlighted' : ''
+        }`}
       >
-        {number}. {children}
+        <span className="sidenote-number">{number}</span>
+        {' '}
+        {processContent(children)}
       </span>
     </>
   );
-} 
+};
+
+export default SidenoteReact; 

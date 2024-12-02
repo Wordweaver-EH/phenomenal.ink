@@ -31,14 +31,6 @@
   position: relative;
 }
 
-.sidenote::before {
-  content: attr(data-number);
-  color: var(--accent-color);
-  font-size: 0.9rem;
-  vertical-align: super;
-  margin-right: 0.25rem;
-}
-
 .sidenote.highlighted, .margin-note.highlighted {
   color: var(--accent-color);
   background-color: var(--highlight-color);
@@ -64,11 +56,6 @@
 
 /* Mobile styles */
 @media screen and (max-width: 760px) {
-  .sidenote-number {
-    font-size: 0.8rem;
-    vertical-align: super;
-  }
-
   .sidenote, .margin-note {
     visibility: hidden;
     position: absolute;

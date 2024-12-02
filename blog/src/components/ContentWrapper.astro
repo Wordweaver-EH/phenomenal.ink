@@ -150,16 +150,25 @@
 
   @media (max-width: 760px) {
     .article-wrapper {
-      padding: 0 1rem;
+      padding: 1rem 2rem;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     .article-wrapper :global(h1) {
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
+      margin-top: calc(var(--sl-nav-height) + 1rem);
+      padding: 0;
     }
 
     .article-wrapper :global(h2) {
       font-size: 1.8rem;
+      padding: 0;
+    }
+
+    .article-wrapper :global(p) {
+      padding: 0;
     }
   }
 </style> 

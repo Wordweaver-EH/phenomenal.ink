@@ -3,6 +3,8 @@ import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import starlight from '@astrojs/starlight';
 import astroExpressiveCode from 'astro-expressive-code';
+import starlightBlog from 'starlight-blog';
+import wikiLinkPlugin from 'remark-wiki-link';
 
 export default defineConfig({
   integrations: [
@@ -11,8 +13,18 @@ export default defineConfig({
     mdx({
       smartypants: true,
       gfm: true,
+      remarkPlugins: [
+        [wikiLinkPlugin, {
+          pageResolver: name => [name.replace(/\s+/g, '-').toLowerCase()],
+          hrefTemplate: permalink => `/${permalink}`,
+          aliasDivider: '|'
+        }]
+      ],
     }),
     starlight({
+      plugins: [starlightBlog({
+        rss: false
+      })],
       title: 'Phenomenal Blog',
       defaultLocale: 'en',
       tableOfContents: {
@@ -22,30 +34,15 @@ export default defineConfig({
       social: {
         github: 'https://github.com/yourusername'
       },
-      sidebar: [
-        {
-          label: 'Blog Posts',
-          autogenerate: { directory: '.' }
-        },
-        {
-          label: 'Current Post',
-          collapsed: false,
-          items: [
-            { label: 'Introduction', link: '/ai-alignment#introduction' },
-            { label: 'The Specification Problem', link: '/ai-alignment#the-specification-problem' },
-            { label: 'Current Approaches', link: '/ai-alignment#current-approaches' },
-            { label: 'Looking Forward', link: '/ai-alignment#looking-forward' }
-          ]
-        }
-      ],
+      components: {
+        Head: './src/components/Head.astro',
+        Header: './src/components/CustomHeader.astro',
+        Sidebar: './src/components/CustomSidebar.astro'
+      },
       customCss: [
         './src/styles/tufte.css',
         './src/styles/sidenote.css'
-      ],
-      components: {
-        Head: './src/components/Head.astro',
-        Header: './src/components/CustomHeader.astro'
-      }
+      ]
     })
   ],
   site: 'https://blog.phenomenal.ink',

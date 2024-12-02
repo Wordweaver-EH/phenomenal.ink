@@ -18,6 +18,8 @@
     "astro": "^4.0.0",
     "astro-expressive-code": "^0.38.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "remark-wiki-link": "^2.0.1",
+    "starlight-blog": "^0.15.0"
   }
 }

@@ -1,0 +1,152 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('docs', ({ id }) => {
+  return id.startsWith('blog/') && id !== 'blog/index.mdx';
+});
+
+const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Get unique tags
+const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))];
+---
+
+<nav aria-label="Primary">
+  <div class="sidebar-content">
+    <h2>Table of Contents</h2>
+    <div id="sidebar-toc" class="toc">
+      <!-- Will be populated by JavaScript -->
+    </div>
+
+    <h2>Recent Posts</h2>
+    <ul>
+      {sortedPosts.map(post => (
+        <li>
+          <a href={`/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+
+    <h2>Tags</h2>
+    <ul class="tags">
+      {allTags.map(tag => (
+        <li>
+          <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Function to generate TOC
+  function generateTOC() {
+    // Only select headers from the main content area
+    const headers = document.querySelectorAll('.sl-markdown-content h1, .sl-markdown-content h2, .sl-markdown-content h3');
+    const tocContainer = document.getElementById('sidebar-toc');
+    
+    if (tocContainer && headers.length > 0) {
+      // Clear existing content first
+      tocContainer.innerHTML = '';
+      
+      const toc = document.createElement('ul');
+      toc.className = 'toc-list';
+      
+      headers.forEach(header => {
+        const level = parseInt(header.tagName[1]);
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        // Create or get header ID
+        const id = header.id || header.textContent.toLowerCase().replace(/\s+/g, '-');
+        header.id = id;
+        
+        a.href = `#${id}`;
+        a.textContent = header.textContent;
+        a.className = `toc-level-${level}`;
+        
+        li.appendChild(a);
+        toc.appendChild(li);
+      });
+      
+      tocContainer.appendChild(toc);
+    }
+  }
+
+  // Generate TOC when page loads
+  document.addEventListener('DOMContentLoaded', generateTOC);
+  
+  // Update TOC when route changes (for SPA navigation)
+  document.addEventListener('astro:page-load', generateTOC);
+</script>
+
+<style>
+  .sidebar-content {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--accent-color);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tags a {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--highlight-color);
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  /* TOC styles */
+  .toc {
+    margin-bottom: 2rem;
+  }
+
+  .toc-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .toc-level-1 {
+    font-weight: 600;
+  }
+
+  .toc-level-2 {
+    padding-left: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .toc-level-3 {
+    padding-left: 2rem;
+    font-size: 0.85rem;
+  }
+</style> 

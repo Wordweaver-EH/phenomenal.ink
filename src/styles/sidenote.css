@@ -29,6 +29,8 @@
   transition: all 0.2s ease;
   visibility: visible;
   position: relative;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .sidenote.highlighted, .margin-note.highlighted {

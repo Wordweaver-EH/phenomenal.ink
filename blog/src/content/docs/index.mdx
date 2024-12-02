@@ -1,18 +1,33 @@
 ---
-title: Phenomenal Blog
-description: A blog about AI, technology, and philosophy
-date: 2024-01-01
-author: "Michael Torres"
+title: Weaver's Blog
+description: Essays on Experience and other articles of art, science and acts of opinion.
 template: splash
 hero:
-  tagline: A blog about AI, technology, and philosophy
-  actions:
-    - text: Latest Post
-      link: /ai-alignment
-      icon: right-arrow
-      variant: primary
+  tagline: Essays on Experience and other articles of art, science and acts of opinion.
+  actions: []
 ---
 
-## Recent Posts
+import { getCollection } from 'astro:content';
 
-- [The Challenge of AI Alignment](/ai-alignment) - Exploring the technical and philosophical challenges of AI alignment 
+{/* Get all blog posts that are not the index page */}
+export async function getBlogPosts() {
+  const posts = await getCollection('docs', ({ id }) => {
+    return id.startsWith('blog/') && id !== 'blog/index.mdx';
+  });
+  return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+}
+
+{/* Display blog posts */}
+<div>
+  {(await getBlogPosts()).map(post => (
+    <article>
+      <h2><a href={`/${post.slug}`}>{post.data.title}</a></h2>
+      <p>{post.data.description}</p>
+      <div>
+        {post.data.tags?.map(tag => (
+          <span>{tag}</span>
+        ))}
+      </div>
+    </article>
+  ))}
+</div>

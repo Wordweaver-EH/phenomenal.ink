@@ -25,11 +25,6 @@ import SimpleThemeToggle from './SimpleThemeToggle.astro';
     padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
     background-color: var(--background-color);
     border-bottom: 1px solid var(--border-color);
-    width: 100%;
-    margin: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
   }
   .right-items {
     gap: 1rem;
@@ -41,16 +36,5 @@ import SimpleThemeToggle from './SimpleThemeToggle.astro';
   :global(.pagefind-ui__search-input) {
     background-color: var(--background-color) !important;
     color: var(--text-color) !important;
-  }
-
-  @media (max-width: 50rem) {
-    .header {
-      position: fixed;
-      margin: 0;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      width: 100vw;
-      box-sizing: border-box;
-    }
   }
 </style> 

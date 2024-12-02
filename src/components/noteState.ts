@@ -1,34 +1,16 @@
-// Global state for currently highlighted note and visibility
+type Listener = (highlightedId: string | null) => void;
+const listeners: Listener[] = [];
 let currentHighlightedId: string | null = null;
-let sidenotesVisible = true;
 
-const highlightSubscribers = new Set<(id: string | null) => void>();
-const visibilitySubscribers = new Set<(visible: boolean) => void>();
-
-export const subscribeToHighlight = (callback: (id: string | null) => void): () => void => {
-  highlightSubscribers.add(callback);
-  if (currentHighlightedId !== null) {
-    callback(currentHighlightedId);
-  }
+export const subscribeToHighlight = (listener: Listener) => {
+  listeners.push(listener);
   return () => {
-    highlightSubscribers.delete(callback);
+    const index = listeners.indexOf(listener);
+    if (index > -1) listeners.splice(index, 1);
   };
 };
 
-export const setHighlightedNote = (id: string | null): void => {
+export const setHighlightedNote = (id: string | null) => {
   currentHighlightedId = id;
-  highlightSubscribers.forEach(callback => callback(id));
-};
-
-export const subscribeToVisibility = (callback: (visible: boolean) => void): () => void => {
-  visibilitySubscribers.add(callback);
-  callback(sidenotesVisible);
-  return () => {
-    visibilitySubscribers.delete(callback);
-  };
-};
-
-export const toggleSidenotes = (): void => {
-  sidenotesVisible = !sidenotesVisible;
-  visibilitySubscribers.forEach(callback => callback(sidenotesVisible));
+  listeners.forEach(listener => listener(id));
 }; 
