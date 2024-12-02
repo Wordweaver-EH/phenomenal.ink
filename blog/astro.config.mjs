@@ -5,6 +5,7 @@ import starlight from '@astrojs/starlight';
 import astroExpressiveCode from 'astro-expressive-code';
 import starlightBlog from 'starlight-blog';
 import wikiLinkPlugin from 'remark-wiki-link';
+import remarkSidenotes from './src/plugins/remark-sidenotes.js';
 
 export default defineConfig({
   integrations: [
@@ -14,6 +15,7 @@ export default defineConfig({
       smartypants: true,
       gfm: true,
       remarkPlugins: [
+        remarkSidenotes,
         [wikiLinkPlugin, {
           pageResolver: name => [name.replace(/\s+/g, '-').toLowerCase()],
           hrefTemplate: permalink => `/${permalink}`,
