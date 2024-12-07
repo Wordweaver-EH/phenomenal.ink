@@ -2,6 +2,7 @@
   "name": "phenomenal.ink",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,13 +12,16 @@
   "dependencies": {
     "@astrojs/mdx": "^3.1.9",
     "@astrojs/react": "^3.6.3",
-    "astro": "^4.16.16",
+    "@astrojs/starlight": "^0.15.0",
+    "astro": "^4.0.0",
+    "astro-expressive-code": "^0.32.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rehype-react": "^8.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "remark-wiki-link": "^2.0.1",
+    "starlight-blog": "^0.5.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0"
   },
