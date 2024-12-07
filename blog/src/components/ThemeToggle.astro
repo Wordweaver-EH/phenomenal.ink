@@ -1,32 +1,6 @@
 ---
 ---
 
-<script is:inline>
-  // Run this script immediately
-  function setTheme() {
-    const theme = (() => {
-      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-        return localStorage.getItem('theme');
-      }
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
-      return 'light';
-    })();
-
-    if (theme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-
-    window.localStorage.setItem('theme', theme);
-  }
-
-  // Run immediately
-  setTheme();
-</script>
-
 <button id="theme-toggle" aria-label="Toggle theme">
   <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <circle cx="12" cy="12" r="5"></circle>
@@ -44,18 +18,42 @@
   </svg>
 </button>
 
-<script>
-  // Handle toggle clicks
-  const handleToggleClick = () => {
-    const element = document.documentElement;
-    const currentTheme = element.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    element.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  }
+<script is:inline>
+  (function() {
+    // Get initial theme
+    const getInitialTheme = () => {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) return storedTheme;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
 
-  document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick);
+    // Apply theme
+    const applyTheme = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    };
+
+    // Initialize theme immediately
+    applyTheme(getInitialTheme());
+
+    // Add click handler
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+
+    // Handle theme changes from other tabs
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'theme' && (e.newValue === 'light' || e.newValue === 'dark')) {
+        applyTheme(e.newValue);
+      }
+    });
+
+    // Handle view transitions
+    document.addEventListener('astro:after-swap', () => {
+      applyTheme(localStorage.getItem('theme') || 'light');
+    });
+  })();
 </script>
 
 <style>
@@ -87,12 +85,12 @@
     transition: all 0.3s ease;
   }
 
-  :global([data-theme="dark"]) .sun-icon {
+  [data-theme="dark"] .sun-icon {
     opacity: 0;
     transform: rotate(90deg);
   }
 
-  :global([data-theme="light"]) .moon-icon {
+  [data-theme="light"] .moon-icon {
     opacity: 0;
     transform: rotate(-90deg);
   }

@@ -1,14 +1,13 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Head.astro';
 
-const { title } = Astro.props;
+const props = Astro.props;
 ---
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width" />
-<title>{title}</title>
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
-<!-- Tufte CSS -->
-<link rel="stylesheet" href="/styles/tufte.css" /> 
+<Default {...props}>
+  <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+  <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+  <link rel="stylesheet" href="/styles/tufte.css" />
+  <slot />
+</Default> 
