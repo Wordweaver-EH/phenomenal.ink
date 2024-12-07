@@ -1,14 +1,21 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "baseUrl": ".",
-    "lib": ["ES2015", "DOM"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@styles/*": ["src/styles/*"]
-    }
+      "@/*": ["src/*"]
+    },
+    "types": ["astro/client", "@astrojs/starlight/schema"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"]
+  "include": ["src/**/*", "astro.config.mjs"],
+  "exclude": ["node_modules", "dist"]
 } 
