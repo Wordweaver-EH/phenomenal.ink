@@ -18,7 +18,7 @@ export async function getBlogPosts() {
 }
 
 {/* Display blog posts */}
-<div style={{ marginTop: '-8rem' }}>
+<div style={{ marginTop: '-6rem' }}>
   {(await getBlogPosts()).map(post => (
     <article>
       <h2><a href={`/${post.slug}`}>{post.data.title}</a></h2>
