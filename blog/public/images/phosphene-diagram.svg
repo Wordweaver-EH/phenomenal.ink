@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <!-- Styles -->
+  <style>
+    .axis { stroke: #CD5C5C; stroke-width: 1; }
+    .label { font-family: "Times New Roman", serif; font-size: 14px; fill: #CD5C5C; }
+    .small-label { font-family: "Times New Roman", serif; font-size: 12px; fill: #CD5C5C; }
+    .arrow { stroke: #CD5C5C; stroke-width: 1; fill: none; }
+    .process-box { fill: none; stroke: #CD5C5C; stroke-width: 1; }
+    .annotation { font-family: "Times New Roman", serif; font-size: 11px; font-style: italic; fill: #CD5C5C; }
+  </style>
+  
+  <!-- Main process boxes -->
+  <rect x="100" y="100" width="160" height="60" class="process-box"/>
+  <rect x="320" y="100" width="160" height="60" class="process-box"/>
+  <rect x="540" y="100" width="160" height="60" class="process-box"/>
+  
+  <!-- Connecting arrows -->
+  <path d="M 260 130 L 320 130" class="arrow" marker-end="url(#arrowhead)"/>
+  <path d="M 480 130 L 540 130" class="arrow" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#CD5C5C"/>
+    </marker>
+  </defs>
+  
+  <!-- Labels -->
+  <text x="180" y="133" text-anchor="middle" class="label">Create Light</text>
+  <text x="180" y="148" text-anchor="middle" class="small-label">without light</text>
+  
+  <text x="400" y="133" text-anchor="middle" class="label">Shape Light</text>
+  <text x="400" y="148" text-anchor="middle" class="small-label">into constructs</text>
+  
+  <text x="620" y="133" text-anchor="middle" class="label">Project Light</text>
+  <text x="620" y="148" text-anchor="middle" class="small-label">with eyes open</text>
+  
+  <!-- Methods annotations -->
+  <text x="180" y="200" text-anchor="middle" class="annotation">pressure phosphenes</text>
+  <text x="180" y="215" text-anchor="middle" class="annotation">afterimage illusion</text>
+  <text x="180" y="230" text-anchor="middle" class="annotation">ganzfeld effect</text>
+  <text x="180" y="245" text-anchor="middle" class="annotation">hypnagogic states</text>
+  
+  <text x="400" y="200" text-anchor="middle" class="annotation">expectancy</text>
+  <text x="400" y="215" text-anchor="middle" class="annotation">suggestion</text>
+  <text x="400" y="230" text-anchor="middle" class="annotation">passive observation</text>
+  <text x="400" y="245" text-anchor="middle" class="annotation">attitude of discovery</text>
+  
+  <text x="620" y="200" text-anchor="middle" class="annotation">prophantasia</text>
+  <text x="620" y="215" text-anchor="middle" class="annotation">positive hallucination</text>
+  <text x="620" y="230" text-anchor="middle" class="annotation">visual projection</text>
+
+  <!-- Conceptual framing -->
+  <text x="180" y="50" text-anchor="middle" class="annotation">"spontaneous generation"</text>
+  <text x="400" y="50" text-anchor="middle" class="annotation">"top-down influence"</text>
+  <text x="620" y="50" text-anchor="middle" class="annotation">"external manifestation"</text>
+</svg>

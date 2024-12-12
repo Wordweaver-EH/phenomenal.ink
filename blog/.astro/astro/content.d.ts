@@ -166,6 +166,27 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"blog/science-of-visual-hallucinations.mdx": {
+	id: "blog/science-of-visual-hallucinations.mdx";
+  slug: "blog/science-of-visual-hallucinations";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"blog/something-about-phosphenes.mdx": {
+	id: "blog/something-about-phosphenes.mdx";
+  slug: "blog/something-about-phosphenes";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"blog/states-of-mind.mdx": {
+	id: "blog/states-of-mind.mdx";
+  slug: "blog/states-of-mind";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "index.mdx": {
 	id: "index.mdx";
   slug: "index";
@@ -185,12 +206,7 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"posts": Record<string, {
-  id: string;
-  collection: "posts";
-  data: any;
-}>;
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
