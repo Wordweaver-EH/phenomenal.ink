@@ -5,30 +5,49 @@ import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
 import SimpleThemeToggle from './SimpleThemeToggle.astro';
 ---
 
-<header class="header sl-flex">
+<div class="nested-header sl-flex">
   <div class="sl-flex">
     <SiteTitle {...Astro.props} />
   </div>
   <div class="sl-flex right-items">
-    <SimpleThemeToggle />
     <Search {...Astro.props} />
+    <SocialIcons {...Astro.props} />
+    <SimpleThemeToggle {...Astro.props} />
   </div>
-</header>
+</div>
 
 <style>
-  .header {
+  .nested-header {
     gap: var(--sl-nav-gap);
     justify-content: space-between;
     align-items: center;
-    padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
     background-color: var(--background-color);
     border-bottom: 1px solid var(--border-color);
-    width: 100%;
     margin: 0;
     left: 0;
     right: 0;
     position: fixed;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 0 1rem 1rem 1rem;
   }
+
+  .nested-header > .sl-flex {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding-right: 3rem;
+  }
+
+  @media (min-width: 50rem) {
+    .nested-header > .sl-flex {
+      padding-right: 0;
+    }
+  }
+
   .right-items {
     gap: 1rem;
     align-items: center;
@@ -42,6 +61,7 @@ import SimpleThemeToggle from './SimpleThemeToggle.astro';
     color: var(--text-color) !important;
   }
 
+<<<<<<< HEAD
   /* Move search component to the left */
   :global(.search) {
     margin-right: 4rem;
@@ -64,5 +84,25 @@ import SimpleThemeToggle from './SimpleThemeToggle.astro';
     :global(.search) {
       margin-right: 0;
     }
+=======
+  /* Move search next to social icons */
+  /* I don't think we need this... - v*/
+  /* div[data-pagefind-ui="search-box"] {
+    order: 1 !important;
+    position: static !important;
+    width: auto !important;
+    max-width: 24rem !important;
+    margin: 0 !important;
+>>>>>>> 83b5577 (fix hamburger menu, remove unused font, start refactor sidenote)
   }
+
+  .search.sl-flex {
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+  } */
+
+
 </style> 

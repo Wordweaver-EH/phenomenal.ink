@@ -33,15 +33,18 @@ export default defineConfig({
         minHeadingLevel: 2,
         maxHeadingLevel: 3
       },
+      social: {
+      },
       components: {
         Head: './src/components/Head.astro',
         Header: './src/components/CustomHeader.astro',
         Sidebar: './src/components/CustomSidebar.astro',
-        Footer: './src/components/EmptyFooter.astro'
+        Footer: './src/components/EmptyFooter.astro',
+        PageSidebar: './src/components/DisablePageSidebar.astro',
       },
       customCss: [
+        './src/styles/custom.css',
         './src/styles/tufte.css',
-        './src/styles/sidenote.css'
       ]
     })
   ],

@@ -40,16 +40,8 @@
   --code-bg: #252525;
 }
 
-/* Starlight layout overrides */
-:root {
-  --sl-content-width: 100%;
-  --sl-sidebar-width: 16rem;
-}
-
 /* Starlight content layout */
 .sl-markdown-content {
-  width: 75% !important;
-  max-width: 75% !important;
   margin-left: 0 !important;
   padding: 0 1rem !important;
   text-align: justify !important;
@@ -64,133 +56,6 @@
 .sl-markdown-content h5,
 .sl-markdown-content h6 {
   text-align: left !important;
-}
-
-/* Container adjustments */
-.content-panel {
-  max-width: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.main-frame {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-/* Sidenote positioning */
-.sidenote, .marginnote {
-  float: right !important;
-  clear: right !important;
-  margin-right: -24rem !important;
-  width: 20rem !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  font-size: 0.9rem !important;
-  line-height: 1.4 !important;
-  vertical-align: baseline !important;
-  position: relative !important;
-  color: var(--side-note-color) !important;
-  text-align: justify !important;
-  hyphens: auto !important;
-}
-
-/* Hide right sidebar */
-.right-sidebar {
-  display: none !important;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 1400px) {
-  .sl-markdown-content {
-    width: 75% !important;
-    max-width: 75% !important;
-  }
-  .sidenote, .marginnote {
-    margin-right: -28% !important;
-    width: 23% !important;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .sl-markdown-content {
-    width: 70% !important;
-    max-width: 70% !important;
-  }
-  .sidenote, .marginnote {
-    margin-right: -25% !important;
-    width: 20% !important;
-  }
-}
-
-/* Mobile layout adjustments */
-@media screen and (max-width: 768px) {
-  /* Reset Starlight's sidebar spacing */
-  :root {
-    --sl-sidebar-width: 0 !important;
-    --sl-content-margin-inline: 0 !important;
-  }
-
-  /* Main container */
-  .main-frame {
-    padding-top: calc(var(--sl-nav-height) + 2rem) !important;
-    margin: 0 !important;
-  }
-
-  .content-panel {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .sl-container {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-  }
-
-  /* Main content */
-  .sl-markdown-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 2rem 1rem 1rem 1rem !important;
-    margin: 0 !important;
-  }
-
-  /* Title and metadata */
-  h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-    margin-top: 0 !important;
-    margin-bottom: 1rem !important;
-    hyphens: auto !important;
-  }
-
-  /* Mobile sidenote handling */
-  .sidenote, .marginnote {
-    display: none !important;
-    position: relative !important;
-    width: calc(100% - 2rem) !important;
-    margin: 1rem !important;
-    padding: 1rem !important;
-    background-color: var(--highlight-color) !important;
-    border-radius: 0.5rem !important;
-    font-size: 0.9rem !important;
-    line-height: 1.4 !important;
-    color: var(--text-color) !important;
-    visibility: visible !important;
-  }
-
-  .sidenote.mobile-active,
-  .marginnote.mobile-active {
-    display: block !important;
-  }
-
-  .sidenote-number {
-    cursor: pointer !important;
-  }
-
-  .sidenote-number:hover {
-    color: var(--accent-color) !important;
-  }
 }
 
 /* Base typography */
@@ -280,124 +145,34 @@ pre {
   color: var(--text-color);
 }
 
-/* Left sidebar/TOC styling */
-.sidebar-content {
-  font-size: 0.9rem !important;
-  line-height: 1.4 !important;
-  padding-right: 0 !important;
-}
-
-/* Container adjustments */
-.main-frame {
-  padding-left: 0 !important;
-}
-
-.sl-container {
-  --sl-content-margin: 0 !important;
-  padding-left: var(--sl-sidebar-width) !important;
-}
-
-/* Header layout adjustments */
-.header {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  padding: 1rem !important;
-}
-
-.header > .sl-flex {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-.header-top {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-.site-title {
-  margin-right: auto !important;
-  color: var(--accent-color) !important;
-}
-
-.site-title:hover {
-  opacity: 0.8 !important;
-}
-
-/* Move search next to social icons */
-.right-group {
-  display: flex !important;
-  align-items: center !important;
-  gap: 1rem !important;
-  margin-left: auto !important;
-}
-
-.social-icons {
-  order: 2 !important;
-  margin-left: 0 !important;
-}
-
-div[data-pagefind-ui="search-box"] {
-  order: 1 !important;
-  position: static !important;
-  width: auto !important;
-  max-width: 24rem !important;
-  margin: 0 !important;
-}
-
-.search.sl-flex {
-  position: static !important;
-  transform: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: auto !important;
-}
-
-/* Mobile adjustments */
-@media (max-width: 50rem) {
-  .header {
-    flex-wrap: nowrap !important;
-  }
-  
-  .right-group {
-    gap: 0.5rem !important;
-  }
-}
-
 /* Blog index */
 article {
-  margin-bottom: 2rem !important;
+  margin-bottom: 2rem;
 }
 
 article h2 {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 0.5rem;
 }
 
 article p {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 article span {
-  display: inline-block !important;
-  padding: 0.2rem 0.5rem !important;
-  margin-right: 0.5rem !important;
-  background-color: var(--highlight-color) !important;
-  border-radius: 0.25rem !important;
-  font-size: 0.9rem !important;
-  color: var(--text-color) !important;
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+  background-color: var(--highlight-color);
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
 }
 
-/* Center all images in markdown content */
-.sl-markdown-content img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  height: auto;
+/* Container adjustments */
+.content-panel {
+  max-width: none !important;
+  padding: 0;
+  margin: 0 !important;
+  padding-right: var(--sidenote-gutter);
 }
-  

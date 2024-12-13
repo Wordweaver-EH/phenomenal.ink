@@ -1,6 +1,4 @@
 ---
-import '../styles/sidenote.css';
-
 interface Props {
   number: number;
   id?: string;
@@ -9,14 +7,32 @@ interface Props {
 const { number, id } = Astro.props;
 ---
 
-<span class="sidenote-number" data-number={number}>{number}</span>
-<span class="sidenote" data-number={number} id={id}>
-  <slot />
-</span>
+<!-- This looks jank - the strange tag layout prevents
+     generating bonus whitespace elements -->
+<ww-sidenote><!--
+  --><span class="sidenote__number" data-number={number}>{number}</span><!--
+  --><span class="sidenote__content" data-number={number} id={id}>
+    <slot />
+  </span><!-- 
+--></ww-sidenote>
 
 <script>
-  // Handle sidenote interactions
-  document.addEventListener('DOMContentLoaded', () => {
+  class WwSidenote extends HTMLElement {
+    constructor() {
+      super();
+      console.log('called');
+
+      this.querySelector('.sidenote__number')?.addEventListener('click', (e) => {
+        console.log(e.target);
+      })
+    }
+  }
+
+  customElements.define('ww-sidenote', WwSidenote);
+
+  /*
+    // Handle sidenote interactions
+    document.addEventListener('DOMContentLoaded', () => {
     const isMobile = () => window.innerWidth <= 768;
     
     document.querySelectorAll('.sidenote-number').forEach(number => {
@@ -54,4 +70,185 @@ const { number, id } = Astro.props;
       });
     });
   });
-</script> 
+  */
+</script>
+
+<style is:global>
+  :root {
+    --sidenote-width: 18rem;
+    --sidenote-gutter: calc(var(--sidenote-width) + 4rem);
+  }
+
+  @media screen and (max-width: 72rem) {
+    :root {
+      --sidenote-gutter: 0;
+    }
+  }
+</style>
+
+<style>
+  sidenote {
+  }
+
+  .sidenote__number {
+
+    counter-increment: sidenote-counter;
+    color: var(--accent-color);
+    font-size: 1rem;
+    vertical-align: super;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .sidenote__number:hover {
+    color: var(--link-color);
+  }
+
+  .sidenote__number {
+    cursor: pointer;
+  }
+
+  .sidenote__number:hover {
+    color: var(--accent-color);
+  }
+
+  @media screen and (max-width: 72rem) {
+    .sidenote__number {
+      font-size: 0.8rem;
+      vertical-align: super;
+    }
+  }
+
+  .sidenote__content {
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: calc( ( var(--sidenote-width) + 4rem ) * -1);
+    font-size: 1.1rem;
+    line-height: 1.3;
+    vertical-align: baseline;
+    color: var(--side-note-color);
+    transition: all 0.2s ease;
+    visibility: visible;
+    position: relative;
+
+    background-color: var(--highlight-color);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 0.5rem;
+
+    padding: 1rem;
+  }
+
+  /* Sidenote positioning */
+  .sidenote__content {
+    float: right;
+    clear: right;
+    width: 20rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    vertical-align: baseline;
+    position: relative;
+    color: var(--side-note-color);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .sidenote__content.highlighted {
+    color: var(--accent-color);
+    background-color: var(--highlight-color);
+    padding: 0.2em 0.5em;
+    border-radius: 2px;
+  }
+
+  /* Mobile styles */
+  @media screen and (max-width: 72rem) {
+
+    .sidenote__content {
+      display: block;
+      width: calc(100% - 2rem);
+      margin: 1rem;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      visibility: visible;
+      
+      /* Mobile sidenote handling */
+      position: relative;
+
+      /* background-color: var(--background-color); */
+      /* position: absolute; */
+
+    }
+    
+    .sidenote__content.mobile, 
+    .sidenote__content.mobile-block {
+      visibility: visible;
+      position: relative;
+    }
+
+    .sidenote__content.hidden {
+      display: none;
+    }
+
+    .sidenote__content.highlighted {
+      background-color: var(--highlight-dark);
+    }
+  }
+
+  .sidenote__content.mobile-active {
+    display: block;
+  }
+
+  .sidenote__content::before {
+    content: attr(data-number);
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    vertical-align: super;
+    margin-right: 0.25rem;
+  }
+</style>
+
+<style>
+  /* Sidenote toggle button */
+  .sidenote__content-toggle {
+    display: none; /* Hidden by default on desktop */
+    position: fixed;
+    bottom: 3.5rem; /* Position above theme toggle */
+    right: 1.25rem; /* Same right alignment as theme toggle */
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    padding: 0.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transform-origin: center;
+  }
+
+  .sidenote__content-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+  }
+
+  .sidenote__content-toggle svg {
+    color: var(--text-color);
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Only show toggle in mobile view */
+  @media screen and (max-width: 72rem) {
+    .sidenote__content-toggle {
+      display: flex;
+    }
+  }
+</style>
