@@ -10,70 +10,31 @@ const { number, id } = Astro.props;
 <!-- This looks jank - the strange tag layout prevents
      generating bonus whitespace elements -->
 <ww-sidenote><!--
-  --><span class="sidenote__number" data-number={number}>{number}</span><!--
-  --><span class="sidenote__content" data-number={number} id={id}>
+  --><span class="ww-sidenote__number" data-number={number}>{number}</span><!--
+  --><span class="ww-sidenote__content" data-number={number} id={id}>
     <slot />
   </span><!-- 
---></ww-sidenote>
-
-<script>
+--></ww-sidenote><!--
+--><script>
   class WwSidenote extends HTMLElement {
     constructor() {
       super();
-      console.log('called');
 
-      this.querySelector('.sidenote__number')?.addEventListener('click', (e) => {
-        console.log(e.target);
+      this.querySelector('.ww-sidenote__number')?.addEventListener('click', (e) => {
+
+        document.querySelectorAll('ww-sidenote').forEach(element => {
+          element.classList.remove('is-open');
+        });
+
+        if(e.target instanceof HTMLElement) {
+          e.target.closest('ww-sidenote').classList.add('is-open');
+        }
       })
     }
   }
 
   customElements.define('ww-sidenote', WwSidenote);
-
-  /*
-    // Handle sidenote interactions
-    document.addEventListener('DOMContentLoaded', () => {
-    const isMobile = () => window.innerWidth <= 768;
-    
-    document.querySelectorAll('.sidenote-number').forEach(number => {
-      // Highlight behavior
-      number.addEventListener('mouseenter', (e) => {
-        if (isMobile()) return;
-        const num = e.target.getAttribute('data-number');
-        const sidenote = document.querySelector(`.sidenote[data-number="${num}"]`);
-        sidenote?.classList.add('highlighted');
-      });
-
-      number.addEventListener('mouseleave', (e) => {
-        if (isMobile()) return;
-        const num = e.target.getAttribute('data-number');
-        const sidenote = document.querySelector(`.sidenote[data-number="${num}"]`);
-        sidenote?.classList.remove('highlighted');
-      });
-
-      // Mobile click behavior
-      number.addEventListener('click', (e) => {
-        if (!isMobile()) return;
-        
-        const num = e.target.getAttribute('data-number');
-        const sidenote = document.querySelector(`.sidenote[data-number="${num}"]`);
-        
-        // Close any other open sidenotes
-        document.querySelectorAll('.sidenote.mobile-active').forEach(note => {
-          if (note !== sidenote) {
-            note.classList.remove('mobile-active');
-          }
-        });
-        
-        // Toggle this sidenote
-        sidenote?.classList.toggle('mobile-active');
-      });
-    });
-  });
-  */
-</script>
-
-<style is:global>
+</script><style is:global>
   :root {
     --sidenote-width: 18rem;
     --sidenote-gutter: calc(var(--sidenote-width) + 4rem);
@@ -84,14 +45,8 @@ const { number, id } = Astro.props;
       --sidenote-gutter: 0;
     }
   }
-</style>
-
-<style>
-  sidenote {
-  }
-
-  .sidenote__number {
-
+</style><style>
+  .ww-sidenote__number {
     counter-increment: sidenote-counter;
     color: var(--accent-color);
     font-size: 1rem;
@@ -102,26 +57,30 @@ const { number, id } = Astro.props;
     transition: color 0.2s ease;
   }
 
-  .sidenote__number:hover {
+  .ww-sidenote__number:hover {
     color: var(--link-color);
   }
 
-  .sidenote__number {
+  .ww-sidenote__number {
     cursor: pointer;
   }
 
-  .sidenote__number:hover {
+  .ww-sidenote__number:hover {
     color: var(--accent-color);
   }
 
+  .ww-sidenote__number:hover + span {
+    background-color: var(--highlight-dark);
+  }
+
   @media screen and (max-width: 72rem) {
-    .sidenote__number {
+    .ww-sidenote__number {
       font-size: 0.8rem;
       vertical-align: super;
     }
   }
 
-  .sidenote__content {
+  .ww-sidenote__content {
     float: right;
     clear: right;
     margin-top: 0;
@@ -143,7 +102,7 @@ const { number, id } = Astro.props;
   }
 
   /* Sidenote positioning */
-  .sidenote__content {
+  .ww-sidenote__content {
     float: right;
     clear: right;
     width: 20rem;
@@ -158,18 +117,11 @@ const { number, id } = Astro.props;
     hyphens: auto;
   }
 
-  .sidenote__content.highlighted {
-    color: var(--accent-color);
-    background-color: var(--highlight-color);
-    padding: 0.2em 0.5em;
-    border-radius: 2px;
-  }
-
   /* Mobile styles */
   @media screen and (max-width: 72rem) {
 
-    .sidenote__content {
-      display: block;
+    .ww-sidenote__content {
+      display: none;
       width: calc(100% - 2rem);
       margin: 1rem;
       color: var(--text-color);
@@ -177,45 +129,28 @@ const { number, id } = Astro.props;
       line-height: 1.4;
       visibility: visible;
       
-      /* Mobile sidenote handling */
       position: relative;
-
-      /* background-color: var(--background-color); */
-      /* position: absolute; */
-
     }
     
-    .sidenote__content.mobile, 
-    .sidenote__content.mobile-block {
+    ww-sidenote.is-open .ww-sidenote__content{
       visibility: visible;
-      position: relative;
+      display: block;
     }
 
-    .sidenote__content.hidden {
-      display: none;
-    }
-
-    .sidenote__content.highlighted {
-      background-color: var(--highlight-dark);
+    ww-sidenote:hover .ww-sidenote__content {
     }
   }
 
-  .sidenote__content.mobile-active {
-    display: block;
-  }
-
-  .sidenote__content::before {
+  .ww-sidenote__content::before {
     content: attr(data-number);
     color: var(--accent-color);
     font-size: 0.9rem;
     vertical-align: super;
     margin-right: 0.25rem;
   }
-</style>
-
-<style>
+</style><style>
   /* Sidenote toggle button */
-  .sidenote__content-toggle {
+  .ww-sidenote__content-toggle {
     display: none; /* Hidden by default on desktop */
     position: fixed;
     bottom: 3.5rem; /* Position above theme toggle */
@@ -234,12 +169,12 @@ const { number, id } = Astro.props;
     transform-origin: center;
   }
 
-  .sidenote__content-toggle:hover {
+  .ww-sidenote__content-toggle:hover {
     transform: scale(1.1);
     border-color: var(--accent-color);
   }
 
-  .sidenote__content-toggle svg {
+  .ww-sidenote__content-toggle svg {
     color: var(--text-color);
     width: 18px;
     height: 18px;
@@ -247,7 +182,7 @@ const { number, id } = Astro.props;
 
   /* Only show toggle in mobile view */
   @media screen and (max-width: 72rem) {
-    .sidenote__content-toggle {
+    .ww-sidenote__content-toggle {
       display: flex;
     }
   }

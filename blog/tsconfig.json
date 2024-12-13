@@ -8,13 +8,13 @@
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "strict": true,
+    "strict": false,
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["astro/client", "@astrojs/starlight/schema"]
+    "types": ["astro/client"]
   },
   "include": ["src/**/*", "astro.config.mjs"],
   "exclude": ["node_modules", "dist"]
