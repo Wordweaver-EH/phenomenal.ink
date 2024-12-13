@@ -79,11 +79,20 @@ body {
 h1 {
   font-size: 2.5rem;
   line-height: 1.1;
-  margin-top: 4rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   font-style: italic;
   font-weight: normal;
   color: var(--accent-color) !important;
+  hyphens: auto;
+}
+
+@media screen and (max-width: 50rem) {
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
 }
 
 h2 {
@@ -175,4 +184,22 @@ article span {
   padding: 0;
   margin: 0 !important;
   padding-right: var(--sidenote-gutter);
+}
+
+
+.site-title {
+  margin-right: auto !important;
+  color: var(--accent-color) !important;
+}
+
+.site-title:hover {
+  opacity: 0.8 !important;
+}
+
+/* Left sidebar/TOC styling */
+.sidebar-content {
+  font-size: 0.9rem !important;
+  line-height: 1.4 !important;
+  padding-right: 0 !important;
+  padding: 1rem 0 1rem 1rem !important;
 }

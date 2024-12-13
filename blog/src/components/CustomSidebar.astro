@@ -22,51 +22,46 @@ const currentPage = props.entry;
 ---
 
 <nav aria-label="Primary">
-  <div class="sidebar-content">
-    <div id="toc-section">
-      {currentPage?.data?.description && (
-        <p class="page-description">{currentPage.data.description}</p>
-      )}
-      {props.headings && props.headings.length > 0 && (
-        <>
-          <h2>Table of Contents</h2>
-          <ul class="toc-list">
-            {props.headings.map((heading) => (
-              <li>
-                <a href={`#${heading.slug}`} class={`toc-level-${heading.depth}`}>
-                  {heading.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
-
-    <h2>Recent Posts</h2>
-    <ul>
-      {sortedPosts.map(post => (
-        <li>
-          <a href={`/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))}
-    </ul>
-
-    <h2>Tags</h2>
-    <ul class="tags">
-      {allTags.map(tag => (
-        <li>
-          <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
-        </li>
-      ))}
-    </ul>
+  <div id="toc-section">
+    {currentPage?.data?.description && (
+      <p class="page-description">{currentPage.data.description}</p>
+    )}
+    {props.headings && props.headings.length > 0 && (
+      <>
+        <h2>Table of Contents</h2>
+        <ul class="toc-list">
+          {props.headings.map((heading) => (
+            <li>
+              <a href={`#${heading.slug}`} class={`toc-level-${heading.depth}`}>
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
   </div>
+
+  <h2>Recent Posts</h2>
+  <ul>
+    {sortedPosts.map(post => (
+      <li>
+        <a href={`/${post.slug}`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+
+  <h2>Tags</h2>
+  <ul class="tags">
+    {allTags.map(tag => (
+      <li>
+        <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
+      </li>
+    ))}
+  </ul>
 </nav>
 
 <style>
-  .sidebar-content {
-    padding: 1rem;
-  }
 
   h2 {
     font-size: 1rem;
@@ -141,7 +136,7 @@ const currentPage = props.entry;
     line-height: 1.5;
     color: var(--text-color);
     opacity: 1;
-    margin: -1.5rem 0 2rem 0;
+    margin: 0 0 2rem 0;
     font-style: italic;
   }
 </style> 
