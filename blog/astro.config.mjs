@@ -34,16 +34,16 @@ export default defineConfig({
         maxHeadingLevel: 3
       },
       social: {
-        github: 'https://github.com/yourusername'
       },
       components: {
         Head: './src/components/Head.astro',
         Header: './src/components/CustomHeader.astro',
-        Sidebar: './src/components/CustomSidebar.astro'
+        Sidebar: './src/components/CustomSidebar.astro',
+        PageSidebar: './src/components/DisablePageSidebar.astro',
       },
       customCss: [
+        './src/styles/custom.css',
         './src/styles/tufte.css',
-        './src/styles/sidenote.css'
       ]
     })
   ],
