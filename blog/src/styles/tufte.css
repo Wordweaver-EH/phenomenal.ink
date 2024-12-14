@@ -43,7 +43,6 @@
 /* Starlight content layout */
 .sl-markdown-content {
   margin-left: 0 !important;
-  padding: 0 1rem !important;
   text-align: justify !important;
   hyphens: auto !important;
 }
@@ -181,8 +180,6 @@ article span {
 /* Container adjustments */
 .content-panel {
   max-width: none !important;
-  padding: 0;
-  margin: 0 !important;
   padding-right: var(--sidenote-gutter);
 }
 
@@ -225,4 +222,20 @@ article span {
 [data-starlight-content] p:has(img),
 .content-panel p:has(img) {
   text-align: center;
+}
+
+.home-blogposts {
+  margin-top: 0;
+}
+
+@media (max-width: 50rem) {
+  .home-blogposts {
+    margin-top: -2rem;
+  }
+}
+
+@media (min-width: 50rem) {
+  .hero {
+    padding-block: 1rem;
+  }
 }
