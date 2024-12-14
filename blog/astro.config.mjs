@@ -33,13 +33,11 @@ export default defineConfig({
         minHeadingLevel: 2,
         maxHeadingLevel: 3
       },
-      social: {
-        github: 'https://github.com/yourusername'
-      },
       components: {
         Head: './src/components/Head.astro',
         Header: './src/components/CustomHeader.astro',
-        Sidebar: './src/components/CustomSidebar.astro'
+        Sidebar: './src/components/CustomSidebar.astro',
+        Footer: './src/components/EmptyFooter.astro'
       },
       customCss: [
         './src/styles/tufte.css',

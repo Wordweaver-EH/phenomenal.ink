@@ -12,9 +12,13 @@ import { getCollection } from 'astro:content';
 {/* Get all blog posts that are not the index page */}
 export async function getBlogPosts() {
   const posts = await getCollection('docs', ({ id }) => {
-    return id.startsWith('blog/') && id !== 'blog/index.mdx';
+    return !id.includes('/') && id !== 'index.mdx' && id.endsWith('.mdx');
   });
-  return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return posts.sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date) : new Date(0);
+    const dateB = b.data.date ? new Date(b.data.date) : new Date(0);
+    return dateB.valueOf() - dateA.valueOf();
+  });
 }
 
 {/* Display blog posts */}
