@@ -21,13 +21,20 @@ const { number, id } = Astro.props;
       super();
 
       this.querySelector('.ww-sidenote__number')?.addEventListener('click', (e) => {
-
-        document.querySelectorAll('ww-sidenote').forEach(element => {
-          element.classList.remove('is-open');
-        });
-
         if(e.target instanceof HTMLElement) {
-          e.target.closest('ww-sidenote').classList.add('is-open');
+          const sidenote = e.target.closest('ww-sidenote');
+          
+          // If clicking the currently open sidenote, close it
+          if (sidenote.classList.contains('is-open')) {
+            sidenote.classList.remove('is-open');
+          } else {
+            // Close any other open sidenotes
+            document.querySelectorAll('ww-sidenote').forEach(element => {
+              element.classList.remove('is-open');
+            });
+            // Open this sidenote
+            sidenote.classList.add('is-open');
+          }
         }
       })
     }
@@ -93,12 +100,13 @@ const { number, id } = Astro.props;
     transition: all 0.2s ease;
     visibility: visible;
     position: relative;
-
-    background-color: var(--highlight-color);
-    border-left: 3px solid var(--accent-color);
-    border-radius: 0.5rem;
-
     padding: 1rem;
+  }
+
+  /* Add background only on hover */
+  .ww-sidenote__content:hover,
+  .ww-sidenote.is-open .ww-sidenote__content {
+    background-color: var(--highlight-color);
   }
 
   /* Sidenote positioning */
