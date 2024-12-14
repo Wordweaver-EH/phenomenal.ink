@@ -1,5 +1,6 @@
 > Web of the blog
-> Theme consistency
-> Spacing for the blog post title
-> Position of the TOC toggle button in mobile view
+> bottom pagination
+> figure out where the toc toggle button is coming from??
+> consider an expand all sidenote toggle? Might just be annoying
+
 

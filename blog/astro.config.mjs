@@ -40,6 +40,7 @@ export default defineConfig({
         Header: './src/components/CustomHeader.astro',
         Sidebar: './src/components/CustomSidebar.astro',
         PageSidebar: './src/components/DisablePageSidebar.astro',
+        Footer: './src/components/EmptyFooter.astro',
       },
       customCss: [
         './src/styles/custom.css',

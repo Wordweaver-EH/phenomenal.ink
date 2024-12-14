@@ -1,9 +1,9 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import Search from '@astrojs/starlight/components/Search.astro';
-import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
 import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
 import SimpleThemeToggle from './SimpleThemeToggle.astro';
+import CustomSocialIcons from './CustomSocialIcons.astro';
 ---
 
 <div class="nested-header sl-flex">
@@ -12,7 +12,7 @@ import SimpleThemeToggle from './SimpleThemeToggle.astro';
   </div>
   <div class="sl-flex right-items">
     <Search {...Astro.props} />
-    <SocialIcons {...Astro.props} />
+    <CustomSocialIcons {...Astro.props} />
     <SimpleThemeToggle {...Astro.props} />
   </div>
 </div>
