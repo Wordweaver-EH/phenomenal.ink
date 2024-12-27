@@ -1,1 +1,113 @@
- 
+---
+import { getCollection } from 'astro:content';
+import type { Props } from '@astrojs/starlight/props';
+
+const { entry } = Astro.props;
+
+// Get all posts except index
+const posts = await getCollection('docs', ({ id }) => {
+  return !id.includes('/') && id !== 'index.mdx' && id.endsWith('.mdx');
+});
+
+// Sort posts by date
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = a.data.date ? new Date(a.data.date) : new Date(0);
+  const dateB = b.data.date ? new Date(b.data.date) : new Date(0);
+  return dateB.valueOf() - dateA.valueOf();
+});
+
+// Find current post index
+const currentIndex = sortedPosts.findIndex(post => post.slug === entry.slug);
+
+// Get prev/next
+const prev = currentIndex < sortedPosts.length - 1 ? {
+  href: `/${sortedPosts[currentIndex + 1].slug}`,
+  label: sortedPosts[currentIndex + 1].data.title
+} : null;
+
+const next = currentIndex > 0 ? {
+  href: `/${sortedPosts[currentIndex - 1].slug}`,
+  label: sortedPosts[currentIndex - 1].data.title
+} : null;
+---
+
+<footer class="tufte-footer">
+  <div class="footer-content">
+    <nav class="prev-next">
+      {prev && <a href={prev.href} class="prev">← {prev.label}</a>}
+      {next && <a href={next.href} class="next">{next.label} →</a>}
+    </nav>
+    <div class="footer-text">
+      <p class="copyright">© 2024 wordweaver.eh@gmail.com</p>
+      <p class="license">Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .tufte-footer {
+    margin-top: 6rem;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: var(--side-note-color);
+  }
+
+  .footer-content {
+    width: 75%;
+    margin-left: 0;
+    padding-left: 1rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+  }
+
+  .prev-next {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .prev-next a {
+    color: var(--accent-color) !important;
+    text-decoration: none !important;
+  }
+
+  .prev-next a:hover {
+    opacity: 0.8 !important;
+  }
+
+  .footer-text {
+    text-align: left !important;
+    line-height: 1.6 !important;
+    font-size: 0.8rem !important;
+    opacity: 0.7 !important;
+  }
+
+  .copyright {
+    margin: 0 !important;
+    font-style: italic !important;
+    font-size: 0.8rem !important;
+  }
+
+  .license {
+    margin: 0.25rem 0 0 0 !important;
+    font-size: 0.8rem !important;
+  }
+
+  .license a {
+    color: var(--side-note-color) !important;
+    text-decoration: underline !important;
+    font-size: 0.8rem !important;
+  }
+
+  .license a:hover {
+    color: var(--accent-color) !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    .footer-content {
+      width: 100%;
+      padding-left: 0;
+    }
+  }
+</style> 
