@@ -33,6 +33,26 @@ export default defineConfig({
         minHeadingLevel: 2,
         maxHeadingLevel: 3
       },
+      favicon: '/favicon.svg',
+      head: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            href: '/favicon.ico',
+            sizes: '32x32',
+          },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            href: '/favicon.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+        },
+      ],
       components: {
         Head: './src/components/Head.astro',
         Header: './src/components/CustomHeader.astro',

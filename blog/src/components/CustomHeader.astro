@@ -5,64 +5,81 @@ import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
 import SimpleThemeToggle from './SimpleThemeToggle.astro';
 ---
 
-<header class="header sl-flex">
+<div class="nested-header sl-flex">
   <div class="sl-flex">
-    <SiteTitle {...Astro.props} />
+    <a href="/" class="site-title">
+      <span class="fancy-p">P</span><span class="rest-title">henomenal Blog</span>
+    </a>
   </div>
   <div class="sl-flex right-items">
-    <SimpleThemeToggle />
     <Search {...Astro.props} />
+    <SimpleThemeToggle {...Astro.props} />
   </div>
-</header>
+</div>
 
 <style>
-  .header {
+  @import url('https://fonts.googleapis.com/css2?family=Updock&display=swap');
+
+  .nested-header {
     gap: var(--sl-nav-gap);
     justify-content: space-between;
     align-items: center;
-    padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
     background-color: var(--background-color);
     border-bottom: 1px solid var(--border-color);
-    width: 100%;
     margin: 0;
     left: 0;
     right: 0;
     position: fixed;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 1.2rem 1rem 1rem 1rem;
   }
+
+  .site-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    white-space: nowrap;
+  }
+
+  .fancy-p {
+    font-family: 'Updock', cursive;
+    font-size: 2rem;
+    margin-right: 0.05rem;
+  }
+
+  .rest-title {
+    margin-left: 0.05rem;
+  }
+
+  .nested-header > .sl-flex {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding-right: 3rem;
+  }
+
+  @media (min-width: 50rem) {
+    .nested-header > .sl-flex {
+      padding-right: 0;
+    }
+  }
+
   .right-items {
     gap: 1rem;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 3rem;
   }
 
   /* Ensure search input matches theme */
   :global(.pagefind-ui__search-input) {
     background-color: var(--background-color) !important;
     color: var(--text-color) !important;
-  }
-
-  /* Move search component to the left */
-  :global(.search) {
-    margin-right: 4rem;
-  }
-
-  @media (max-width: 50rem) {
-    .header {
-      position: fixed;
-      margin: 0;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      width: 100vw;
-      box-sizing: border-box;
-    }
-    
-    .right-items {
-      margin-right: 2.5rem;
-    }
-    
-    :global(.search) {
-      margin-right: 0;
-    }
   }
 </style> 
