@@ -91,7 +91,7 @@
 .sidenote, .marginnote {
   float: right !important;
   clear: right !important;
-  margin-right: -24rem !important;
+  margin-right: -22rem !important;
   width: 20rem !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
@@ -115,10 +115,6 @@
     width: 75% !important;
     max-width: 75% !important;
   }
-  .sidenote, .marginnote {
-    margin-right: -28% !important;
-    width: 23% !important;
-  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -126,53 +122,10 @@
     width: 70% !important;
     max-width: 70% !important;
   }
-  .sidenote, .marginnote {
-    margin-right: -25% !important;
-    width: 20% !important;
-  }
 }
 
-/* Mobile layout adjustments */
-@media screen and (max-width: 768px) {
-  /* Reset Starlight's sidebar spacing */
-  :root {
-    --sl-sidebar-width: 0 !important;
-    --sl-content-margin-inline: 0 !important;
-  }
-
-  /* Main container */
-  .main-frame {
-    padding-top: calc(var(--sl-nav-height) + 2rem) !important;
-    margin: 0 !important;
-  }
-
-  .content-panel {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .sl-container {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-  }
-
-  /* Main content */
-  .sl-markdown-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 2rem 1rem 1rem 1rem !important;
-    margin: 0 !important;
-  }
-
-  /* Title and metadata */
-  h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-    margin-top: 0 !important;
-    margin-bottom: 1rem !important;
-    hyphens: auto !important;
-  }
-
+/* Sidenote mobile adjustments */
+@media screen and (max-width: 1279px) {
   /* Mobile sidenote handling */
   .sidenote, .marginnote {
     display: none !important;
@@ -193,12 +146,56 @@
     display: block !important;
   }
 
-  .sidenote-number {
-    cursor: pointer !important;
+  /* Expand content when sidenotes disappear */
+  .sl-markdown-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* Mobile layout adjustments */
+@media screen and (max-width: 50rem) {
+  /* Reset Starlight's sidebar spacing */
+  :root {
+    --sl-sidebar-width: 0 !important;
+    --sl-content-margin-inline: 0 !important;
   }
 
-  .sidenote-number:hover {
-    color: var(--accent-color) !important;
+  /* Main container */
+  .main-frame {
+    padding-top: calc(var(--sl-nav-height) + 2rem) !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .content-panel {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .sl-container {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Main content */
+  .sl-markdown-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 2rem 1rem 1rem 1rem !important;
+    margin: 0 !important;
+  }
+
+  /* Title and metadata */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    hyphens: auto !important;
   }
 }
 
@@ -260,10 +257,38 @@ p {
 a {
   color: var(--accent-color) !important;
   text-decoration: none !important;
+  position: relative !important;
+  display: inline-block !important;
 }
 
 a:hover {
-  opacity: 0.8 !important;
+  opacity: 1 !important;
+}
+
+/* Animated underline for links */
+a::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 1px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  background-color: var(--accent-color) !important;
+  transition: width 0.3s ease !important;
+}
+
+a:hover::after {
+  width: 100% !important;
+}
+
+/* Don't animate underlines in the sidebar */
+.sidebar-content a::after {
+  display: none !important;
+}
+
+/* Don't animate underlines in the header */
+.header a::after {
+  display: none !important;
 }
 
 /* Code blocks */
@@ -335,6 +360,10 @@ pre {
 .site-title {
   margin-right: auto !important;
   color: var(--accent-color) !important;
+  font-size: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
 }
 
 .site-title:hover {
@@ -381,6 +410,77 @@ div[data-pagefind-ui="search-box"] {
   }
 }
 
+/* Extra small screen adjustments */
+@media (max-width: 435px) {
+  .site-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .fancy-p {
+    font-size: 1.7rem !important;
+  }
+
+  .right-group {
+    position: fixed !important;
+    top: 0.5rem !important;
+    right: 3.5rem !important;
+  }
+
+  starlight-menu-button {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+
+  .header {
+    padding: 0.5rem !important;
+  }
+
+  /* Ensure theme toggle and sidenote toggle stay in view */
+  #theme-toggle {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+
+  .sidenote-toggle {
+    bottom: 3rem !important;
+    right: 1rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-title {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .site-title {
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .site-title {
+    font-size: 0.7rem !important;
+  }
+}
+
+@media (max-width: 326px) {
+  .site-title {
+    font-size: 0.6rem !important;
+  }
+}
+
+@media (max-width: 325px) {
+  .rest-title {
+    display: none !important;
+  }
+  
+  .fancy-p {
+    font-size: 1.7rem !important;
+  }
+}
+
 /* Blog index */
 article {
   margin-bottom: 2rem !important;
@@ -412,5 +512,98 @@ article span {
   margin-right: auto;
   max-width: 100%;
   height: auto;
+}
+
+/* Starlight menu button positioning */
+starlight-menu-button {
+  position: fixed !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  z-index: 100 !important;
+  margin: 0 !important;
+}
+
+starlight-menu-button button {
+  background: var(--background-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 50% !important;
+  padding: 0.5rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  color: var(--text-color) !important;
+}
+
+starlight-menu-button button:hover {
+  transform: scale(1.1) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+}
+
+[data-theme="dark"] starlight-menu-button button {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.fancy-p {
+  font-family: 'Updock', cursive !important;
+  font-size: 2rem !important;
+}
+
+.rest-title {
+  margin-left: 0.05rem !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 5px;
+  border: 2px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--side-note-color);
+}
+
+/* Sidebar scrollbar */
+.sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border: 1px solid var(--background-color);
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: var(--side-note-color);
+}
+
+.page-description {
+  font-size: 1.3rem !important;
+  line-height: 1.5 !important;
+  color: var(--text-color) !important;
+  opacity: 1 !important;
+  margin: -1.5rem 0 2rem 0 !important;
+  font-style: italic !important;
+  position: relative !important;
+}
+
+.page-description::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  width: var(--scroll-progress, 0%) !important;
+  height: 1px !important;
+  background-color: var(--accent-color) !important;
+  transition: width 0.1s ease !important;
 }
   

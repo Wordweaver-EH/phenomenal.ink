@@ -63,6 +63,24 @@ const currentPage = props.entry;
   </div>
 </nav>
 
+<script>
+  // Update description underline based on scroll
+  function updateProgressBar() {
+    const description = document.querySelector('.page-description');
+    if (!description) return;
+
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (window.scrollY / scrollHeight) * 100;
+    description.style.setProperty('--scroll-progress', `${scrolled}%`);
+  }
+
+  // Add scroll listener
+  window.addEventListener('scroll', updateProgressBar, { passive: true });
+  
+  // Initial update
+  updateProgressBar();
+</script>
+
 <style>
   .sidebar-content {
     font-size: 0.9rem;

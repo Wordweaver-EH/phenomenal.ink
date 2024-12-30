@@ -7,7 +7,7 @@ export default function SidenoteToggle() {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 760);
+      setIsMobile(window.innerWidth < 1279);
     };
     
     checkMobile();

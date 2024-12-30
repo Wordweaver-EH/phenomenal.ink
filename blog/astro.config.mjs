@@ -6,6 +6,7 @@ import astroExpressiveCode from 'astro-expressive-code';
 import starlightBlog from 'starlight-blog';
 import wikiLinkPlugin from 'remark-wiki-link';
 import remarkSidenotes from './src/plugins/remark-sidenotes.js';
+import rehypeExternalLinks from 'rehype-external-links';
 
 export default defineConfig({
   integrations: [
@@ -21,6 +22,9 @@ export default defineConfig({
           hrefTemplate: permalink => `/${permalink}`,
           aliasDivider: '|'
         }]
+      ],
+      rehypePlugins: [
+        [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
       ],
     }),
     starlight({
