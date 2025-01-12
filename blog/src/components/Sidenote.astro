@@ -17,7 +17,7 @@ const { number, id } = Astro.props;
 <script>
   // Handle sidenote interactions
   document.addEventListener('DOMContentLoaded', () => {
-    const isMobile = () => window.innerWidth <= 768;
+    const isMobile = () => window.innerWidth <= 1279;
     
     document.querySelectorAll('.sidenote-number').forEach(number => {
       // Highlight behavior
