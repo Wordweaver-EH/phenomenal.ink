@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1100" height="650"
+     viewBox="-50 -50 1150 700"
+     xmlns="http://www.w3.org/2000/svg"
+     style="background: none;">
+  <g font-family="Times New Roman"
+     font-size="17.5"
+     text-anchor="middle"
+     dominant-baseline="middle"
+     fill="#ff6b6b"
+     stroke="#ff6b6b">
+    
+    <!-- Draw the 10×10 mood‐meter grid:
+            Each cell is 100px wide × 50px tall,
+            top row at y=0, bottom row at y=450.
+            The "sentence case" labels below match your reference image exactly,
+            except for splitting "thoughtful / peaceful" and "complacent / tranquil,"
+            and omitting "pleasantness" (moved to x‐axis label).
+    -->
+    <!-- Center lines for quadrants -->
+    <line x1="500" y1="0" x2="500" y2="500" stroke="#ff6b6b" stroke-width="2"/>
+    <line x1="0" y1="250" x2="1000" y2="250" stroke="#ff6b6b" stroke-width="2"/>
+    
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="100" height="50" fill="none"/>
+    <text x="50" y="25">Enraged</text>
+
+    <rect x="100" y="0" width="100" height="50" fill="none"/>
+    <text x="150" y="25">Panicked</text>
+
+    <rect x="200" y="0" width="100" height="50" fill="none"/>
+    <text x="250" y="25">Stressed</text>
+
+    <rect x="300" y="0" width="100" height="50" fill="none"/>
+    <text x="350" y="25">Jittery</text>
+
+    <rect x="400" y="0" width="100" height="50" fill="none"/>
+    <text x="450" y="25">Shocked</text>
+
+    <rect x="500" y="0" width="100" height="50" fill="none"/>
+    <text x="550" y="25">Suprised</text>
+
+    <rect x="600" y="0" width="100" height="50" fill="none"/>
+    <text x="650" y="25">Upbeat</text>
+
+    <rect x="700" y="0" width="100" height="50" fill="none"/>
+    <text x="750" y="25">Festive</text>
+
+    <rect x="800" y="0" width="100" height="50" fill="none"/>
+    <text x="850" y="25">Exhilarated</text>
+
+    <rect x="900" y="0" width="100" height="50" fill="none"/>
+    <text x="950" y="25">Ecstatic</text>
+
+    <!-- Row 2 -->
+    <rect x="0" y="50" width="100" height="50" fill="none"/>
+    <text x="50" y="75">Livid</text>
+
+    <rect x="100" y="50" width="100" height="50" fill="none"/>
+    <text x="150" y="75">Furious</text>
+
+    <rect x="200" y="50" width="100" height="50" fill="none"/>
+    <text x="250" y="75">Frustrated</text>
+
+    <rect x="300" y="50" width="100" height="50" fill="none"/>
+    <text x="350" y="75">Tense</text>
+
+    <rect x="400" y="50" width="100" height="50" fill="none"/>
+    <text x="450" y="75">Stunned</text>
+
+    <rect x="500" y="50" width="100" height="50" fill="none"/>
+    <text x="550" y="75">Hyper</text>
+
+    <rect x="600" y="50" width="100" height="50" fill="none"/>
+    <text x="650" y="75">Cheerful</text>
+
+    <rect x="700" y="50" width="100" height="50" fill="none"/>
+    <text x="750" y="75">Motivated</text>
+
+    <rect x="800" y="50" width="100" height="50" fill="none"/>
+    <text x="850" y="75">Inspired</text>
+
+    <rect x="900" y="50" width="100" height="50" fill="none"/>
+    <text x="950" y="75">Elated</text>
+
+    <!-- Row 3 -->
+    <rect x="0" y="100" width="100" height="50" fill="none"/>
+    <text x="50" y="125">Fuming</text>
+
+    <rect x="100" y="100" width="100" height="50" fill="none"/>
+    <text x="150" y="125">Frightened</text>
+
+    <rect x="200" y="100" width="100" height="50" fill="none"/>
+    <text x="250" y="125">Angry</text>
+
+    <rect x="300" y="100" width="100" height="50" fill="none"/>
+    <text x="350" y="125">Nervous</text>
+
+    <rect x="400" y="100" width="100" height="50" fill="none"/>
+    <text x="450" y="125">Restless</text>
+
+    <rect x="500" y="100" width="100" height="50" fill="none"/>
+    <text x="550" y="125">Energized</text>
+
+    <rect x="600" y="100" width="100" height="50" fill="none"/>
+    <text x="650" y="125">Lively</text>
+
+    <rect x="700" y="100" width="100" height="50" fill="none"/>
+    <text x="750" y="125">Enthusiastic</text>
+
+    <rect x="800" y="100" width="100" height="50" fill="none"/>
+    <text x="850" y="125">Optimistic</text>
+
+    <rect x="900" y="100" width="100" height="50" fill="none"/>
+    <text x="950" y="125">Excited</text>
+
+    <!-- Row 4 -->
+    <rect x="0" y="150" width="100" height="50" fill="none"/>
+    <text x="50" y="175">Anxious</text>
+
+    <rect x="100" y="150" width="100" height="50" fill="none"/>
+    <text x="150" y="175">Apprehensive</text>
+
+    <rect x="200" y="150" width="100" height="50" fill="none"/>
+    <text x="250" y="175">Worried</text>
+
+    <rect x="300" y="150" width="100" height="50" fill="none"/>
+    <text x="350" y="175">Irritated</text>
+
+    <rect x="400" y="150" width="100" height="50" fill="none"/>
+    <text x="450" y="175">Annoyed</text>
+
+    <rect x="500" y="150" width="100" height="50" fill="none"/>
+    <text x="550" y="175">Pleased</text>
+
+    <rect x="600" y="150" width="100" height="50" fill="none"/>
+    <text x="650" y="175">Happy</text>
+
+    <rect x="700" y="150" width="100" height="50" fill="none"/>
+    <text x="750" y="175">Focused</text>
+
+    <rect x="800" y="150" width="100" height="50" fill="none"/>
+    <text x="850" y="175">Proud</text>
+
+    <rect x="900" y="150" width="100" height="50" fill="none"/>
+    <text x="950" y="175">Thrilled</text>
+
+    <!-- Row 5 -->
+    <rect x="0" y="200" width="100" height="50" fill="none"/>
+    <text x="50" y="225">Repulsed</text>
+
+    <rect x="100" y="200" width="100" height="50" fill="none"/>
+    <text x="150" y="225">Troubled</text>
+
+    <rect x="200" y="200" width="100" height="50" fill="none"/>
+    <text x="250" y="225">Concerned</text>
+
+    <rect x="300" y="200" width="100" height="50" fill="none"/>
+    <text x="350" y="225">Uneasy</text>
+
+    <rect x="400" y="200" width="100" height="50" fill="none"/>
+    <text x="450" y="225">Peeved</text>
+
+    <rect x="500" y="200" width="100" height="50" fill="none"/>
+    <text x="550" y="225">Pleasant</text>
+
+    <rect x="600" y="200" width="100" height="50" fill="none"/>
+    <text x="650" y="225">Joyful</text>
+
+    <rect x="700" y="200" width="100" height="50" fill="none"/>
+    <text x="750" y="225">Hopeful</text>
+
+    <rect x="800" y="200" width="100" height="50" fill="none"/>
+    <text x="850" y="225">Playful</text>
+
+    <rect x="900" y="200" width="100" height="50" fill="none"/>
+    <text x="950" y="225">Blissful</text>
+
+    <!-- Row 6 -->
+    <rect x="0" y="250" width="100" height="50" fill="none"/>
+    <text x="50" y="275">Disgusted</text>
+
+    <rect x="100" y="250" width="100" height="50" fill="none"/>
+    <text x="150" y="275">Glum</text>
+
+    <rect x="200" y="250" width="100" height="50" fill="none"/>
+    <text x="250" y="275">Disappointed</text>
+
+    <rect x="300" y="250" width="100" height="50" fill="none"/>
+    <text x="350" y="275">Down</text>
+
+    <rect x="400" y="250" width="100" height="50" fill="none"/>
+    <text x="450" y="275">Apathetic</text>
+
+    <rect x="500" y="250" width="100" height="50" fill="none"/>
+    <text x="550" y="275">At ease</text>
+
+    <rect x="600" y="250" width="100" height="50" fill="none"/>
+    <text x="650" y="275">Easygoing</text>
+
+    <rect x="700" y="250" width="100" height="50" fill="none"/>
+    <text x="750" y="275">Content</text>
+
+    <rect x="800" y="250" width="100" height="50" fill="none"/>
+    <text x="850" y="275">Loving</text>
+
+    <rect x="900" y="250" width="100" height="50" fill="none"/>
+    <text x="950" y="275">Fulfilled</text>
+
+    <!-- Row 7 -->
+    <rect x="0" y="300" width="100" height="50" fill="none"/>
+    <text x="50" y="325">Pessimistic</text>
+
+    <rect x="100" y="300" width="100" height="50" fill="none"/>
+    <text x="150" y="325">Morose</text>
+
+    <rect x="200" y="300" width="100" height="50" fill="none"/>
+    <text x="250" y="325">Discouraged</text>
+
+    <rect x="300" y="300" width="100" height="50" fill="none"/>
+    <text x="350" y="325">Sad</text>
+
+    <rect x="400" y="300" width="100" height="50" fill="none"/>
+    <text x="450" y="325">Bored</text>
+
+    <rect x="500" y="300" width="100" height="50" fill="none"/>
+    <text x="550" y="325">Calm</text>
+
+    <rect x="600" y="300" width="100" height="50" fill="none"/>
+    <text x="650" y="325">Secure</text>
+
+    <rect x="700" y="300" width="100" height="50" fill="none"/>
+    <text x="750" y="325">Satisfied</text>
+
+    <rect x="800" y="300" width="100" height="50" fill="none"/>
+    <text x="850" y="325">Grateful</text>
+
+    <rect x="900" y="300" width="100" height="50" fill="none"/>
+    <text x="950" y="325">Touched</text>
+
+    <!-- Row 8 -->
+    <rect x="0" y="350" width="100" height="50" fill="none"/>
+    <text x="50" y="375">Alienated</text>
+
+    <rect x="100" y="350" width="100" height="50" fill="none"/>
+    <text x="150" y="375">Miserable</text>
+
+    <rect x="200" y="350" width="100" height="50" fill="none"/>
+    <text x="250" y="375">Despondent</text>
+
+    <rect x="300" y="350" width="100" height="50" fill="none"/>
+    <text x="350" y="375">Depressed</text>
+
+    <rect x="400" y="350" width="100" height="50" fill="none"/>
+    <text x="450" y="375">Despair</text>
+
+    <rect x="500" y="350" width="100" height="50" fill="none"/>
+    <text x="550" y="375">Lonely</text>
+
+    <rect x="600" y="350" width="100" height="50" fill="none"/>
+    <text x="650" y="375">Disheartened</text>
+
+    <rect x="700" y="350" width="100" height="50" fill="none"/>
+    <text x="750" y="375">Tired</text>
+
+    <rect x="800" y="350" width="100" height="50" fill="none"/>
+    <text x="850" y="375">Relaxed</text>
+
+    <rect x="900" y="350" width="100" height="50" fill="none"/>
+    <text x="950" y="375">Chill</text>
+
+    <!-- Row 9 -->
+    <rect x="0" y="400" width="100" height="50" fill="none"/>
+    <text x="50" y="425">Restful</text>
+
+    <rect x="100" y="400" width="100" height="50" fill="none"/>
+    <text x="150" y="425">Blessed</text>
+
+    <rect x="200" y="400" width="100" height="50" fill="none"/>
+    <text x="250" y="425">Balanced</text>
+
+    <rect x="300" y="400" width="100" height="50" fill="none"/>
+    <text x="350" y="425">Sullen</text>
+
+    <rect x="400" y="400" width="100" height="50" fill="none"/>
+    <text x="450" y="425">Exhausted</text>
+
+    <rect x="500" y="400" width="100" height="50" fill="none"/>
+    <text x="550" y="425">Fatigued</text>
+
+    <rect x="600" y="400" width="100" height="50" fill="none"/>
+    <text x="650" y="425">Mellow</text>
+
+    <rect x="700" y="400" width="100" height="50" fill="none"/>
+    <text x="750" y="425">Thoughtful</text>
+
+    <rect x="800" y="400" width="100" height="50" fill="none"/>
+    <text x="850" y="425">Peaceful</text>
+
+    <rect x="900" y="400" width="100" height="50" fill="none"/>
+    <text x="950" y="425">Comfy</text>
+
+    <!-- Row 10 -->
+    <rect x="0" y="450" width="100" height="50" fill="none"/>
+    <text x="50" y="475">Carefree</text>
+
+    <rect x="100" y="450" width="100" height="50" fill="none"/>
+    <text x="150" y="475">Hopeless</text>
+
+    <rect x="200" y="450" width="100" height="50" fill="none"/>
+    <text x="250" y="475">Desolate</text>
+
+    <rect x="300" y="450" width="100" height="50" fill="none"/>
+    <text x="350" y="475">Spent</text>
+
+    <rect x="400" y="450" width="100" height="50" fill="none"/>
+    <text x="450" y="475">Drained</text>
+
+    <rect x="500" y="450" width="100" height="50" fill="none"/>
+    <text x="550" y="475">Sleepy</text>
+
+    <rect x="600" y="450" width="100" height="50" fill="none"/>
+    <text x="650" y="475">Complacent</text>
+
+    <rect x="700" y="450" width="100" height="50" fill="none"/>
+    <text x="750" y="475">Tranquil</text>
+
+    <rect x="800" y="450" width="100" height="50" fill="none"/>
+    <text x="850" y="475">Cozy</text>
+
+    <rect x="900" y="450" width="100" height="50" fill="none"/>
+    <text x="950" y="475">Serene</text>
+
+    <!-- 4) Axes:
+          - X‑axis (Valence) along bottom at y=500 with arrow to the right
+          - Y‑axis (Arousal) along left at x=0 with arrow up
+    -->
+    <!-- Define arrow markers for axes -->
+    <defs>
+      <marker id="arrowRight" markerWidth="10" markerHeight="10" refX="9" refY="5"
+              orient="auto" markerUnits="strokeWidth">
+        <path d="M0,2 L10,5 L0,8 z" fill="#ff6b6b" />
+      </marker>
+      <marker id="arrowLeft" markerWidth="10" markerHeight="10" refX="1" refY="5"
+              orient="auto" markerUnits="strokeWidth">
+        <path d="M10,2 L0,5 L10,8 z" fill="#ff6b6b" />
+      </marker>
+      <marker id="arrowUp" markerWidth="10" markerHeight="10" refX="5" refY="1"
+              orient="0" markerUnits="strokeWidth">
+        <path d="M2,8 L5,0 L8,8 z" fill="#ff6b6b" />
+      </marker>
+      <marker id="arrowDown" markerWidth="10" markerHeight="10" refX="5" refY="9"
+              orient="0" markerUnits="strokeWidth">
+        <path d="M2,2 L5,10 L8,2 z" fill="#ff6b6b" />
+      </marker>
+    </defs>
+    <!-- X axis -->
+    <line x1="50" y1="525" x2="950" y2="525"
+          stroke-width="2"
+          marker-start="url(#arrowLeft)"
+          marker-end="url(#arrowRight)"/>
+    <text x="500" y="560" text-anchor="middle">Valence</text>
+    <!-- Y axis -->
+    <line x1="-15" y1="475" x2="-15" y2="25"
+          stroke-width="2"
+          marker-start="url(#arrowDown)"
+          marker-end="url(#arrowUp)"/>
+    <!-- Rotate "Arousal" so it reads upward -->
+    <text x="-35" y="250"
+          transform="rotate(-90,-35,250)"
+          text-anchor="middle">Arousal</text>
+    
+  </g>
+</svg>
