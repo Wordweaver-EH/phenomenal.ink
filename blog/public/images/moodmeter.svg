@@ -8,7 +8,7 @@
      text-anchor="middle"
      dominant-baseline="middle"
      fill="#ff6b6b"
-     stroke="rgba(0,0,0,0.03)"
+     stroke="rgba(0,0,0,0.02)"
      stroke-width="3">
     
     <!-- Draw the 10×10 mood‐meter grid:

@@ -2,6 +2,7 @@
 import ThemeToggle from '../components/ThemeToggle.astro';
 import ContentWrapper from '../components/ContentWrapper.astro';
 import SidenoteToggle from '../components/SidenoteToggle';
+import Analytics from '../components/Analytics.astro';
 
 interface Props {
   title: string;
@@ -60,6 +61,7 @@ const { title } = Astro.props;
     </main>
     <SidenoteToggle client:load />
     <ThemeToggle />
+    <Analytics />
     <style>
       .nav-header {
         width: 100%;
