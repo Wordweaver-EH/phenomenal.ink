@@ -29,7 +29,16 @@ export default defineConfig({
     }),
     starlight({
       plugins: [starlightBlog({
-        rss: false
+        rss: {
+          title: 'Phenomenal Blog',
+          description: 'Phenomenal Blogging',
+          customData: `<language>en</language>`,
+          xmlns: {
+            atom: true,
+            dc: true,
+            content: true
+          }
+        }
       })],
       title: 'Phenomenal Blog',
       defaultLocale: 'en',

@@ -1,0 +1,76 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        :root {
+            --text-color: #222;
+            --accent-color: #a00000;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-color: #e6e6e6;
+                --accent-color: #ff6b6b;
+            }
+        }
+        .text { 
+            font-family: 'Times New Roman', serif; 
+            font-size: 16px;
+            fill: var(--text-color);
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+        }
+        .box { 
+            fill: none; 
+            stroke: var(--accent-color); 
+            stroke-width: 2; 
+        }
+        .arrow { 
+            stroke: var(--accent-color); 
+            stroke-width: 2; 
+            marker-end: url(#arrowhead); 
+        }
+    </style>
+    <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7.5" refY="2.5" orient="auto">
+            <polygon points="0 0, 8 2.5, 0 5" fill="var(--accent-color)"/>
+        </marker>
+    </defs>
+
+    <!-- Biological Factors Box -->
+    <rect x="50" y="50" width="300" height="150" class="box"/>
+    <text x="60" y="70" class="text title">Biological factors</text>
+    <text x="60" y="90" class="text">- Activity in frontal cortices +/-</text>
+    <text x="60" y="110" class="text">- Activity in ACC +/-</text>
+    <text x="60" y="130" class="text">- Functional connectivity +/-</text>
+    <text x="60" y="150" class="text">- Structural connectivity +</text>
+    <text x="60" y="170" class="text">- Hemisphere asymmetry +</text>
+    <text x="60" y="190" class="text">- Brain states (theta) +</text>
+
+    <!-- Psychological Factors Box -->
+    <rect x="50" y="220" width="300" height="120" class="box"/>
+    <text x="60" y="240" class="text title">Psychological Factors</text>
+    <text x="60" y="260" class="text">- Expectation +</text>
+    <line x1="69" y1="263" x2="148" y2="263" stroke="var(--accent-color)" stroke-width="1"/>
+    <text x="60" y="280" class="text">- Hypnotizability +</text>
+    <text x="60" y="300" class="text">- Motivation +</text>
+    <line x1="68" y1="303" x2="142" y2="303" stroke="var(--accent-color)" stroke-width="1"/>
+    <text x="60" y="320" class="text">- Absorption +</text>
+    <line x1="68" y1="323" x2="142" y2="323" stroke="var(--accent-color)" stroke-width="1"/>
+
+    <!-- Social Factors Box -->
+    <rect x="50" y="360" width="300" height="80" class="box"/>
+    <text x="60" y="380" class="text title">Social factors</text>
+    <text x="60" y="400" class="text">- Rapport +</text>
+    <line x1="68" y1="403" x2="122" y2="403" stroke="var(--accent-color)" stroke-width="1"/>
+    <text x="60" y="420" class="text">- Hypnotic Context +</text>
+    <line x1="132" y1="423" x2="185" y2="423" stroke="var(--accent-color)" stroke-width="1"/>
+
+    <!-- Hypnotic Responding Box -->
+    <rect x="450" y="220" width="200" height="50" class="box"/>
+    <text x="470" y="250" class="text title">Hypnotic Responding</text>
+
+    <!-- Arrows -->
+    <line x1="350" y1="125" x2="445" y2="230" class="arrow"/>
+    <line x1="350" y1="280" x2="445" y2="245" class="arrow"/>
+    <line x1="350" y1="400" x2="445" y2="255" class="arrow"/>
+</svg>

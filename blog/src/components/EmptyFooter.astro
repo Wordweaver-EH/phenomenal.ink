@@ -37,6 +37,27 @@ const next = currentIndex > 0 ? {
       {prev && <a href={prev.href} class="prev">← {prev.label}</a>}
       {next && <a href={next.href} class="next">{next.label} →</a>}
     </nav>
+    <div class="subscribe-section">
+      <p class="subscribe-text">Follow along the phenomena link</p>
+      <div class="social-links">
+        <a href="https://phenomenalink.substack.com/" target="_blank" rel="noopener noreferrer" title="Email Updates: Subscribe via Substack">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 511.471" class="social-icon">
+            <path d="M0 0h448v62.804H0V0zm0 229.083h448v282.388L223.954 385.808 0 511.471V229.083zm0-114.542h448v62.804H0v-62.804z"/>
+          </svg>
+        </a>
+        <a href="/rss.xml" target="_blank" rel="noopener noreferrer" title="RSS Feed: Subscribe via RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 24 24" class="social-icon">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"/>
+          </svg>
+        </a>
+        <a href="https://bsky.app/profile/phenomenal.ink" target="_blank" rel="noopener noreferrer" title="Bluesky Updates: Follow @phenomenal.ink">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17.5" viewBox="0 0 600 530" class="social-icon">
+            <path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
+          </svg>
+        </a>
+      </div>
+      <p class="subscribe-text">And the phenomenal ink follows.</p>
+    </div>
     <div class="footer-text">
       <p class="copyright">© 2024 wordweaver.eh@gmail.com</p>
       <p class="license">Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
@@ -76,6 +97,49 @@ const next = currentIndex > 0 ? {
     opacity: 0.8 !important;
   }
 
+  .subscribe-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 2rem !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding-bottom: 2rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .social-links {
+    display: flex !important;
+    gap: 1.5rem !important;
+    align-items: center !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  .social-links a {
+    display: flex !important;
+    align-items: center !important;
+    color: var(--accent-color) !important;
+    text-decoration: none !important;
+    opacity: 0.8 !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .social-links a:hover {
+    opacity: 1 !important;
+  }
+
+  .social-icon {
+    fill: var(--accent-color) !important;
+  }
+
+  .subscribe-text {
+    margin: 0 !important;
+    font-size: 0.9rem !important;
+    color: var(--sl-color-text) !important;
+    opacity: 0.8 !important;
+    font-style: italic !important;
+  }
+
   .footer-text {
     text-align: left !important;
     line-height: 1.6 !important;
@@ -87,6 +151,7 @@ const next = currentIndex > 0 ? {
     margin: 0 !important;
     font-style: italic !important;
     font-size: 0.8rem !important;
+    opacity: 0.7 !important;
   }
 
   .license {

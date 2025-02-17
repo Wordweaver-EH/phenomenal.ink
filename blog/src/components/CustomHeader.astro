@@ -14,6 +14,21 @@ import SimpleThemeToggle from './SimpleThemeToggle.astro';
   <div class="sl-flex right-items">
     <Search {...Astro.props} />
     <SimpleThemeToggle {...Astro.props} />
+    <a href="https://phenomenalink.substack.com/" class="substack-link" title="Email Updates: Subscribe via Substack" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 448 511.471" class="social-icon">
+        <path d="M0 0h448v62.804H0V0zm0 229.083h448v282.388L223.954 385.808 0 511.471V229.083zm0-114.542h448v62.804H0v-62.804z"/>
+      </svg>
+    </a>
+    <a href="/rss.xml" class="social-link" title="RSS Feed: Subscribe via RSS" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17.5" viewBox="0 0 24 24" class="social-icon">
+        <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"/>
+      </svg>
+    </a>
+    <a href="https://bsky.app/profile/phenomenal.ink" class="social-link" title="Bluesky Updates: Follow @phenomenal.ink" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17.5" viewBox="0 0 600 530" class="social-icon">
+        <path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
+      </svg>
+    </a>
   </div>
 </div>
 
@@ -75,6 +90,30 @@ import SimpleThemeToggle from './SimpleThemeToggle.astro';
     gap: 1rem;
     align-items: center;
     justify-content: flex-end;
+  }
+
+  .substack-link,
+  .social-link {
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    padding-top: 0.3rem;
+  }
+
+  .substack-link:hover,
+  .social-link:hover {
+    opacity: 1;
+  }
+
+  .social-icon {
+    fill: var(--accent-color);
+    position: relative;
+    top: -1px;
+  }
+
+  :global(.dark) .social-icon {
+    fill: var(--accent-color);
   }
 
   /* Ensure search input matches theme */
