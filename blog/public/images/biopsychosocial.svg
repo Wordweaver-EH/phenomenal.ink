@@ -11,7 +11,7 @@
             }
         }
         .text { 
-            font-family: 'Times New Roman', serif; 
+            font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
             font-size: 16px;
             fill: var(--text-color);
         }

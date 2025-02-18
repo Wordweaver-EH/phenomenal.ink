@@ -38,6 +38,9 @@ export default defineConfig({
             dc: true,
             content: true
           }
+        },
+        tags: {
+          path: 'tags'
         }
       })],
       title: 'Phenomenal Blog',

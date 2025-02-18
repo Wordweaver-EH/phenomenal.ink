@@ -14,8 +14,8 @@ const sortedPosts = posts.sort((a, b) => {
   return dateB.valueOf() - dateA.valueOf();
 });
 
-// Get unique tags
-const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))];
+// Get current page tags
+const currentTags = props.entry?.data?.tags || [];
 
 // Get current page info
 const currentPage = props.entry;
@@ -52,14 +52,26 @@ const currentPage = props.entry;
       ))}
     </ul>
 
-    <h2>Tags</h2>
-    <ul class="tags">
-      {allTags.map(tag => (
-        <li>
-          <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
-        </li>
-      ))}
-    </ul>
+    {/* TODO: Tag pages are currently not working with starlight-blog plugin
+       Need to properly configure tag page generation in astro.config.mjs
+       Current issues:
+       1. Tag links lead to 404s
+       2. starlight-blog plugin configuration for tags needs investigation
+       3. May need to manually create tag pages or wait for plugin update
+       Reference: https://github.com/HiDeoo/starlight-blog
+    */}
+    {/* {currentTags.length > 0 && (
+      <>
+        <h2>Tags</h2>
+        <ul class="tags">
+          {currentTags.map(tag => (
+            <li>
+              <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )} */}
   </div>
 </nav>
 
