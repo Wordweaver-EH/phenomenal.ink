@@ -411,7 +411,7 @@ div[data-pagefind-ui="search-box"] {
 }
 
 /* Extra small screen adjustments */
-@media (max-width: 424px) {
+@media (max-width: 530px) {
   .rest-title {
     display: none !important;
   }
