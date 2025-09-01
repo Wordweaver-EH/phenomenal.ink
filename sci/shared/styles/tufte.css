@@ -1,0 +1,144 @@
+/* Base Tufte CSS */
+:root {
+  --text-color: #111;
+  --background-color: #fffff8;
+  --accent-color: #a00000;
+  --side-note-color: #666;
+  --link-color: #a00000;
+}
+
+html {
+  font-size: 15px;
+  background-color: var(--background-color);
+}
+
+body {
+  width: 87.5%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12.5%;
+  font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  max-width: 1400px;
+  counter-reset: sidenote-counter;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 2.1rem;
+  margin-bottom: 1.4rem;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 1.7rem;
+}
+
+p {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  padding-right: 0;
+  vertical-align: baseline;
+}
+
+/* Links */
+a:link, a:visited {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Code */
+code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  background: #f8f8f8;
+  border-radius: 4px;
+}
+
+/* Blockquotes */
+blockquote {
+  font-style: italic;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding-left: 2rem;
+  border-left: 3px solid var(--accent-color);
+}
+
+/* Lists */
+ul, ol {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+}
+
+th, td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    width: 95%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.5rem; }
+  p { font-size: 1.2rem; }
+}
+
+/* Print styles */
+@media print {
+  body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+} 

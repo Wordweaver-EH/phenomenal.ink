@@ -1,0 +1,182 @@
+---
+import { getCollection } from 'astro:content';
+import type { Props } from '@astrojs/starlight/props';
+
+const { hasSidebar, ...props } = Astro.props;
+
+const posts = await getCollection('docs', ({ id }) => {
+  return !id.includes('/') && id !== 'index.mdx' && id.endsWith('.mdx');
+});
+
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = a.data.date ? new Date(a.data.date) : new Date(0);
+  const dateB = b.data.date ? new Date(b.data.date) : new Date(0);
+  return dateB.valueOf() - dateA.valueOf();
+});
+
+// Get current page tags
+const currentTags = props.entry?.data?.tags || [];
+
+// Get current page info
+const currentPage = props.entry;
+---
+
+<nav aria-label="Primary">
+  <div class="sidebar-content">
+    <div id="toc-section">
+      {currentPage?.data?.description && (
+        <p class="page-description">{currentPage.data.description}</p>
+      )}
+      {props.headings && props.headings.length > 0 && (
+        <>
+          <h2>Table of Contents</h2>
+          <ul class="toc-list">
+            {props.headings.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`} class={`toc-level-${heading.depth}`}>
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+
+    <h2>Recent Posts</h2>
+    <ul>
+      {sortedPosts.map(post => (
+        <li>
+          <a href={`/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+
+    {/* TODO: Tag pages are currently not working with starlight-blog plugin
+       Need to properly configure tag page generation in astro.config.mjs
+       Current issues:
+       1. Tag links lead to 404s
+       2. starlight-blog plugin configuration for tags needs investigation
+       3. May need to manually create tag pages or wait for plugin update
+       Reference: https://github.com/HiDeoo/starlight-blog
+    */}
+    {/* {currentTags.length > 0 && (
+      <>
+        <h2>Tags</h2>
+        <ul class="tags">
+          {currentTags.map(tag => (
+            <li>
+              <a href={`/tags/${tag.toLowerCase()}`}>{tag}</a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )} */}
+  </div>
+</nav>
+
+<script>
+  // Update description underline based on scroll
+  function updateProgressBar() {
+    const description = document.querySelector('.page-description');
+    if (!description) return;
+
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (window.scrollY / scrollHeight) * 100;
+    description.style.setProperty('--scroll-progress', `${scrolled}%`);
+  }
+
+  // Add scroll listener
+  window.addEventListener('scroll', updateProgressBar, { passive: true });
+  
+  // Initial update
+  updateProgressBar();
+</script>
+
+<style>
+  .sidebar-content {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  #toc-section {
+    padding-top: 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--accent-color);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tags a {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--highlight-color);
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  .toc-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .toc-list li {
+    position: relative;
+    padding-left: 1.5em;
+  }
+
+  .toc-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--text-color);
+    opacity: 0.6;
+  }
+
+  .toc-level-2 {
+    font-size: 0.9rem;
+  }
+
+  .toc-level-3 {
+    padding-left: 2rem;
+    font-size: 0.85rem;
+  }
+
+  .page-description {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    opacity: 1;
+    margin: -1.5rem 0 2rem 0;
+    font-style: italic;
+  }
+</style> 

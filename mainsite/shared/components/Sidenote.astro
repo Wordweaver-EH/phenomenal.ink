@@ -1,0 +1,13 @@
+import '../styles/sidenote.css';
+import SidenoteReact from './SidenoteReact';
+
+interface Props {
+  number: number;
+  id?: string;
+}
+
+const { number, id } = Astro.props;
+
+<SidenoteReact number={number} id={id} client:load>
+  <slot />
+</SidenoteReact> 

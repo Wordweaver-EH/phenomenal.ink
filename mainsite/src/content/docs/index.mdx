@@ -1,0 +1,37 @@
+---
+title: Weaver's Blog
+description: Essays on Experience and other articles of art, science and acts of opinion.
+template: splash
+hero:
+  tagline: Essays on Experience and other articles of art, science and acts of opinion.
+  actions: []
+---
+
+import { getCollection } from 'astro:content';
+
+{/* Get all blog posts that are not the index page */}
+export async function getBlogPosts() {
+  const posts = await getCollection('docs', ({ id }) => {
+    return !id.includes('/') && id !== 'index.mdx' && id.endsWith('.mdx');
+  });
+  return posts.sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date) : new Date(0);
+    const dateB = b.data.date ? new Date(b.data.date) : new Date(0);
+    return dateB.valueOf() - dateA.valueOf();
+  });
+}
+
+{/* Display blog posts */}
+<div style={{ marginTop: '-6rem' }}>
+  {(await getBlogPosts()).map(post => (
+    <article>
+      <h2><a href={`/${post.slug}`}>{post.data.title}</a></h2>
+      <p>{post.data.description}</p>
+      <div>
+        {post.data.tags?.map(tag => (
+          <span>{tag}</span>
+        ))}
+      </div>
+    </article>
+  ))}
+</div>

@@ -1,0 +1,71 @@
+---
+const menuIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>`;
+---
+
+<button
+  id="simple-menu-toggle"
+  aria-label="Toggle menu"
+  class="theme-toggle"
+  title="Toggle menu"
+>
+  <Fragment set:html={menuIcon} />
+</button>
+
+<script>
+  const button = document.getElementById('simple-menu-toggle');
+  const starlightButton = document.querySelector('starlight-menu-button button');
+
+  button?.addEventListener('click', () => {
+    starlightButton?.click();
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    color: var(--accent-color);
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .theme-toggle:hover {
+    opacity: 0.8;
+  }
+
+  .theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media (min-width: 50rem) {
+    .theme-toggle {
+      display: none;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .theme-toggle {
+      padding: 0.35rem;
+    }
+    .theme-toggle svg {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .theme-toggle {
+      padding: 0.3rem;
+    }
+    .theme-toggle svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+</style> 

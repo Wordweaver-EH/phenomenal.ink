@@ -1,0 +1,89 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+  width?: string | number;
+  height?: string | number;
+  poster?: string;
+  controls?: boolean;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  type?: 'youtube' | 'vimeo' | 'local';
+}
+
+const {
+  src,
+  title = '',
+  width = '100%',
+  height = 'auto',
+  poster = '',
+  controls = true,
+  autoplay = false,
+  loop = false,
+  muted = false,
+  type = 'local'
+} = Astro.props;
+
+// Extract video ID from YouTube or Vimeo URLs
+function getVideoId(url: string, type: string): string {
+  if (type === 'youtube') {
+    // Handle both youtube.com/watch?v=ID and youtu.be/ID formats
+    const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/;
+    const match = url.match(regex);
+    return match ? match[1] : url;
+  } else if (type === 'vimeo') {
+    // Handle vimeo.com/ID format
+    const regex = /vimeo\.com\/(\d+)/;
+    const match = url.match(regex);
+    return match ? match[1] : url;
+  }
+  return url;
+}
+
+const videoId = type !== 'local' ? getVideoId(src, type) : '';
+---
+
+{type === 'local' ? (
+  <video 
+    src={src} 
+    width={width} 
+    height={height} 
+    poster={poster}
+    controls={controls} 
+    autoplay={autoplay}
+    loop={loop}
+    muted={muted}
+    title={title}
+  >
+    <slot />
+    Your browser does not support the video tag.
+  </video>
+) : type === 'youtube' ? (
+  <iframe
+    width={width}
+    height={height === 'auto' ? '315' : height}
+    src={`https://www.youtube.com/embed/${videoId}`}
+    title={title || "YouTube video player"}
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+) : (
+  <iframe
+    width={width}
+    height={height === 'auto' ? '315' : height}
+    src={`https://player.vimeo.com/video/${videoId}`}
+    title={title || "Vimeo video player"}
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+)}
+
+<style>
+  video, iframe {
+    max-width: 100%;
+    border-radius: 0.25rem;
+  }
+</style> 
