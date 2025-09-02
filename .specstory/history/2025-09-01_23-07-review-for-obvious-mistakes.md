@@ -99,3 +99,45 @@ All the typos and grammatical issues have been corrected. The document should no
 
 ---
 
+_**User**_
+
+changed some stuff, what do you think
+
+---
+
+_**Assistant**_
+
+I'll read the updated file to see the changes you made and provide feedback.
+
+---
+
+Read file: undefined
+
+---
+
+Your changes are excellent! I really appreciate the thoughtful revisions you made. Here's what I think works particularly well:
+
+## **Strongest Improvements:**
+
+1. **Line 21 restructuring** - Moving from "theories such as predictive processing and higher order theories" to "theories of how divergent perceptions work such as predictive processing and higher order theories" flows much better and is clearer.
+
+2. **"Moreover" addition** - This transition word in line 21 creates better flow between the ideas about perception and the research findings.
+
+3. **Skill acquisition clarification** - Adding "Allowing response to build over successive approximations is also a common principle in both hypnosis and every other kind of skill acquisition endeavours" makes the theoretical foundation much clearer.
+
+4. **Footnote 2 expansion** - The added citations and context about microphenomenological analysis are incredibly valuable. The links to Kev Sheldrake's work and the connections to Husserlian phenomenology, NLP, and Gendlin's focusing method really strengthen the scholarly foundation.
+
+5. **Footnote 5 addition about negative hallucinations** - This is brilliant! The nose example is both scientifically accurate and engaging. It perfectly illustrates the concept while adding levity.
+
+6. **Comma improvements** - Small but important fixes like "so I, in a flash of whimsy, decided" make the prose flow better.
+
+## **Minor Things to Consider:**
+
+- Line 21: "who's trick" should be "whose trick" (possessive vs. contraction)
+- Line 44: Still has "migh turn" instead of "might turn"  
+- Line 44: "percieved" should be "perceived"
+
+But honestly, these are tiny details. The substantive changes you made significantly improve the piece's clarity, flow, and scholarly rigor. The footnote expansions in particular add real value for readers who want to dive deeper into the methodology and theory.
+
+---
+
