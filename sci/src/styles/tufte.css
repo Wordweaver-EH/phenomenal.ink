@@ -40,6 +40,35 @@
   --code-bg: #252525;
 }
 
+/* KATEX FIXES */
+/* Hide MathML fallback to prevent double rendering */
+.katex-mathml {
+  display: none !important;
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+/* REMOVED vertical-align override as it breaks KaTeX's internal positioning */
+
+/* Ensure inline display for KaTeX elements */
+.katex .mord,
+.katex .mrel,
+.katex .mop,
+.katex .mbin,
+.katex .mopen,
+.katex .mclose,
+.katex .minner {
+  display: inline-block !important;
+  /* KaTeX uses inline-block or inline */
+}
+
+
+
 /* Starlight layout overrides */
 :root {
   --sl-content-width: 100%;

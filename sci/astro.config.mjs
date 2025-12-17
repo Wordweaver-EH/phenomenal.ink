@@ -14,11 +14,7 @@ import rehypeKatex from 'rehype-katex';
 export default defineConfig({
   integrations: [
     react(),
-    astroExpressiveCode(),
-    mdx({
-      smartypants: true,
-      gfm: true,
-    }),
+    react(),
     starlight({
       plugins: [starlightBlog({
         rss: {
