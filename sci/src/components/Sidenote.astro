@@ -2,17 +2,26 @@
 import '../styles/sidenote.css';
 
 interface Props {
-  number: number;
+  number?: number;
   id?: string;
 }
 
 const { number, id } = Astro.props;
+const isMarginNote = number === undefined || number === null;
 ---
 
-<span class="sidenote-number" data-number={number}>{number}</span>
-<span class="sidenote" data-number={number} id={id}>
-  <slot />
-</span>
+{isMarginNote ? (
+  <span class="margin-note" id={id}>
+    <slot />
+  </span>
+) : (
+  <>
+    <span class="sidenote-number" data-number={number}>{number}</span>
+    <span class="sidenote" data-number={number} id={id}>
+      <slot />
+    </span>
+  </>
+)}
 
 <script>
   // Handle sidenote interactions

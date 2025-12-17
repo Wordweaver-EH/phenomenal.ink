@@ -1,0 +1,130 @@
+/* Tufte-style Figure CSS */
+
+/* Initialize figure counter on body */
+body {
+    counter-reset: figure-counter;
+}
+
+/* Base figure styles */
+.tufte-figure {
+    display: block;
+    position: relative;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.tufte-figure .figure-content {
+    display: block;
+}
+
+.tufte-figure .figure-content img,
+.tufte-figure .figure-content video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Caption in margin (default) */
+.tufte-figure.caption-margin figcaption.caption-margin {
+    float: right;
+    clear: right;
+    margin-right: -350px;
+    width: 300px;
+    margin-top: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--side-note-color);
+    text-align: left;
+}
+
+/* Caption below figure */
+.tufte-figure.caption-below figcaption.caption-below {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--side-note-color);
+    text-align: center;
+}
+
+/* Full-width figure */
+.tufte-figure.full-width {
+    max-width: calc(100% + 350px);
+    clear: both;
+}
+
+.tufte-figure.full-width .figure-content img,
+.tufte-figure.full-width .figure-content video {
+    width: 100%;
+}
+
+/* Figure number styling */
+.figure-number {
+    color: var(--accent-color);
+}
+
+/* Margin figure (lives entirely in margin) */
+.margin-figure {
+    float: right;
+    clear: right;
+    margin-right: -350px;
+    width: 300px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--side-note-color);
+}
+
+.margin-figure img,
+.margin-figure video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.margin-figure-caption {
+    display: block;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--side-note-color);
+    font-style: italic;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 1279px) {
+
+    /* Reset margin positioning */
+    .tufte-figure.caption-margin figcaption.caption-margin {
+        float: none;
+        margin-right: 0;
+        width: 100%;
+        margin-top: 0.75rem;
+        text-align: center;
+    }
+
+    .tufte-figure.full-width {
+        max-width: 100%;
+    }
+
+    .margin-figure {
+        float: none;
+        margin-right: 0;
+        width: 100%;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background-color: var(--highlight-color);
+        border-radius: 0.5rem;
+    }
+
+    .margin-figure-caption {
+        text-align: center;
+    }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .margin-figure {
+    background-color: var(--highlight-dark);
+}

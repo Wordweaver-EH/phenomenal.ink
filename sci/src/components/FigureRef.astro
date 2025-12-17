@@ -1,0 +1,55 @@
+---
+/**
+ * FigureRef component - cross-reference link to a figure.
+ * 
+ * Props:
+ * - id: Target figure ID
+ * 
+ * Renders as "Figure X" with a link that scrolls to the figure.
+ * The number is populated via JavaScript to match the target's counter value.
+ */
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<a href={`#${id}`} class="figure-ref" data-figure-id={id}>Figure</a>
+
+<script>
+  // Populate figure reference numbers on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const figures = document.querySelectorAll('figure.tufte-figure');
+    const figureNumbers: { [key: string]: number } = {};
+    
+    // Build a map of figure IDs to their numbers
+    figures.forEach((fig, index) => {
+      const figId = fig.getAttribute('id');
+      if (figId) {
+        figureNumbers[figId] = index + 1;
+      }
+    });
+    
+    // Update all figure references
+    document.querySelectorAll('.figure-ref').forEach(ref => {
+      const targetId = ref.getAttribute('data-figure-id');
+      if (targetId && figureNumbers[targetId]) {
+        ref.textContent = `Figure ${figureNumbers[targetId]}`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .figure-ref {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .figure-ref:hover {
+    text-decoration: underline;
+  }
+</style>

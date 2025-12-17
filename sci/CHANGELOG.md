@@ -1,0 +1,41 @@
+# Changelog
+
+All notable changes to the `sci.phenomenal.ink` project will be documented in this file.
+
+## [Unreleased] - 2025-12-17
+
+### Added
+- Created `CHANGELOG.md` to track project history.
+- **Figure Components**:
+    - Implemented `<Figure>` component with margin caption support, `fullWidth`, and `captionBelow` options.
+    - Implemented `<MarginFigure>` component for small figures in the margin.
+    - Implemented `<FigureRef>` component for cross-referencing figures.
+    - Added `figure.css` with Tufte-style layouts and mobile responsiveness.
+- **KaTeX Math Support**:
+    - Integrated `remark-math` and `rehype-katex` for LaTeX math rendering.
+    - Added KaTeX CSS to site head for equation styling.
+- **Demo Content**:
+    - Created `figures-and-math.mdx` showcasing all new features.
+
+## [0.1.0] - 2025-12-16
+
+### Added
+- **Project Initialization**:
+    - Initialized new `sci` workspace within the monorepo structure.
+    - Set up Astro configuration with Starlight and React integrations.
+    - Configured dependencies similar to the main blog.
+- **Sidenote Component**:
+    - Implemented `<Sidenote />` component for Tufte-style margin notes.
+    - Added CSS styling (`sidenote.css`) for responsive margin notes (collapsing to inline on smaller screens).
+- **Documentation**:
+    - Created initial `index.mdx` and `physics-of-phosphenes.mdx` content.
+
+### Fixed
+- **Styling**:
+    - Resolved CSS conflicts regarding sidenote positioning and margins.
+    - Tuned font sizes and colors for sidenotes to ensure readability and visual hierarchy.
+    - Fixed responsive behavior for mobile devices where sidenotes were not displaying correctly.
+
+### Changed
+- **Configuration**:
+    - Updated `astro.config.mjs` to include custom integrations and remark/rehype plugins.

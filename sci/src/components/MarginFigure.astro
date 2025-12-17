@@ -1,0 +1,24 @@
+---
+/**
+ * MarginFigure component - small figure that lives entirely in the margin.
+ * 
+ * Props:
+ * - id: ID for cross-referencing
+ * - caption: Caption below the image (also in margin)
+ */
+import '../styles/figure.css';
+
+interface Props {
+  id?: string;
+  caption?: string;
+}
+
+const { id, caption } = Astro.props;
+---
+
+<span class="margin-figure" id={id}>
+  <slot />
+  {caption && (
+    <span class="margin-figure-caption">{caption}</span>
+  )}
+</span>

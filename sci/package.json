@@ -12,24 +12,32 @@
   "dependencies": {
     "@astrojs/mdx": "^3.1.9",
     "@astrojs/react": "^3.6.3",
-    "@astrojs/starlight": "^0.19.0",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/starlight": "^0.29.2",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
-    "astro": "^4.0.0",
+    "@vercel/analytics": "^1.4.1",
+    "astro": "^4.16.16",
     "astro-expressive-code": "^0.32.4",
+    "markdown-it": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rehype-external-links": "^3.0.0",
+    "rehype-katex": "^7.0.1",
     "rehype-react": "^8.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "remark-wiki-link": "^2.0.1",
+    "sanitize-html": "^2.14.0",
     "starlight-blog": "^0.5.1",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.53.5",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.3.0"
   }
 }

@@ -1,0 +1,51 @@
+---
+/**
+ * Figure component with Tufte-style margin caption support.
+ * 
+ * Props:
+ * - id: Required ID for cross-referencing
+ * - caption: Caption text
+ * - fullWidth: Expands figure beyond text column (default: false)
+ * - captionBelow: Places caption below image instead of margin (default: false)
+ */
+import '../styles/figure.css';
+
+interface Props {
+  id: string;
+  caption?: string;
+  fullWidth?: boolean;
+  captionBelow?: boolean;
+}
+
+const { id, caption, fullWidth = false, captionBelow = false } = Astro.props;
+
+const figureClass = [
+  'tufte-figure',
+  fullWidth ? 'full-width' : '',
+  captionBelow ? 'caption-below' : 'caption-margin'
+].filter(Boolean).join(' ');
+---
+
+<figure id={id} class={figureClass}>
+  <div class="figure-content">
+    <slot />
+  </div>
+  {caption && (
+    <figcaption class={captionBelow ? 'caption-below' : 'caption-margin'}>
+      <span class="figure-number"></span>
+      {caption}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  /* Figure numbering via CSS counters */
+  figure.tufte-figure {
+    counter-increment: figure-counter;
+  }
+  
+  .figure-number::before {
+    content: "Figure " counter(figure-counter) ". ";
+    font-weight: 600;
+  }
+</style>

@@ -1,31 +1,37 @@
 ---
 title: Phenomenal Science
-description: E-Explication - Scientific analysis, data interpretation, and research synthesis
+description: Scientific analysis and interpretation of the world around us.
 template: splash
 hero:
-  tagline: Scientific analysis, data interpretation, and research synthesis
-  actions:
-    - text: View Reports
-      link: /reports/
-      icon: document
-    - text: Explore Wiki
-      link: /wiki/
-      icon: external
-      variant: minimal
+  tagline: Scientific analysis and interpretation of the world around us.
+  actions: []
 ---
 
-## About This Site
+import { getCollection } from 'astro:content';
 
-This is the **E-Explication** section of phenomenal.ink - focused on scientific analysis and interpretation.
+{/* Get all blog posts that are not the index page */}
+export async function getBlogPosts() {
+  const posts = await getCollection('docs', ({ id }) => {
+    return !id.includes('/') && id !== 'index.mdx' && id.endsWith('.mdx');
+  });
+  return posts.sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date) : new Date(0);
+    const dateB = b.data.date ? new Date(b.data.date) : new Date(0);
+    return dateB.valueOf() - dateA.valueOf();
+  });
+}
 
-### Reports
-
-Data reanalysis, paper interpretations, and research synthesis. These are structured analytical pieces that reexamine published research through new lenses.
-
-### Wiki
-
-Reference material, definitions, and interconnected scientific concepts. A growing knowledge base of scientific terminology and ideas.
-
----
-
-*Part of the Three E's: E-Essay, E-Explication, and E-Experiments*
+{/* Display blog posts */}
+<div style={{ marginTop: '-6rem' }}>
+  {(await getBlogPosts()).map(post => (
+    <article>
+      <h2><a href={`/${post.slug}`}>{post.data.title}</a></h2>
+      <p>{post.data.description}</p>
+      <div>
+        {post.data.tags?.map(tag => (
+          <span>{tag}</span>
+        ))}
+      </div>
+    </article>
+  ))}
+</div>

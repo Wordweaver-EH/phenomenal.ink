@@ -32,23 +32,6 @@
   position: relative;
 }
 
-/* Ensure p tags inside sidenotes/margin notes inherit correct styling */
-.sidenote p,
-.margin-note p {
-  font-size: inherit;
-  color: inherit;
-  line-height: inherit;
-  margin: 0;
-}
-
-.sidenote::before {
-  content: attr(data-number);
-  color: var(--accent-color);
-  font-size: 0.9rem;
-  vertical-align: super;
-  margin-right: 0.25rem;
-}
-
 .sidenote.highlighted,
 .margin-note.highlighted {
   color: var(--accent-color);
@@ -57,12 +40,28 @@
   border-radius: 2px;
 }
 
-/* Mobile styles */
-@media screen and (max-width: 1279px) {
-  .sidenote-number {
-    font-size: 0.8rem;
-    vertical-align: super;
+/* Laptop styles */
+@media screen and (max-width: 1280px) {
+
+  .sidenote,
+  .margin-note {
+    margin-right: -250px;
+    width: 200px;
   }
+}
+
+/* Tablet styles */
+@media screen and (max-width: 1024px) {
+
+  .sidenote,
+  .margin-note {
+    margin-right: -200px;
+    width: 180px;
+  }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 760px) {
 
   .sidenote,
   .margin-note {
@@ -131,7 +130,7 @@
 }
 
 /* Only show toggle in mobile view */
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 760px) {
   .sidenote-toggle {
     display: flex;
   }

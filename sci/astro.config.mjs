@@ -5,8 +5,11 @@ import starlight from '@astrojs/starlight';
 import astroExpressiveCode from 'astro-expressive-code';
 import starlightBlog from 'starlight-blog';
 import wikiLinkPlugin from 'remark-wiki-link';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import remarkSidenotes from './src/plugins/remark-sidenotes.js';
 import rehypeExternalLinks from 'rehype-external-links';
+import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
   integrations: [
@@ -16,6 +19,8 @@ export default defineConfig({
       smartypants: true,
       gfm: true,
       remarkPlugins: [
+        remarkMath,
+        remarkGfm,
         remarkSidenotes,
         [wikiLinkPlugin, {
           pageResolver: name => [name.replace(/\s+/g, '-').toLowerCase()],
@@ -24,6 +29,7 @@ export default defineConfig({
         }]
       ],
       rehypePlugins: [
+        rehypeKatex,
         [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
       ],
     }),

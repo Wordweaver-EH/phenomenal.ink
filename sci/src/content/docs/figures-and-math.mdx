@@ -1,0 +1,82 @@
+---
+title: Figures and Math Demo
+description: Demonstration of Tufte-style figures and KaTeX math rendering.
+---
+
+import Figure from '../../components/Figure.astro';
+import MarginFigure from '../../components/MarginFigure.astro';
+import FigureRef from '../../components/FigureRef.astro';
+
+This page demonstrates the new figure and math typesetting features for scientific articles.
+
+## Math Equations
+
+### Inline Math
+
+Einstein's famous equation $E = mc^2$ relates energy and mass. The Euler identity $e^{i\pi} + 1 = 0$ is often called the most beautiful equation in mathematics.
+
+### Block Equations
+
+The Gaussian integral:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+Maxwell's equations in differential form:
+
+$$
+\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
+$$
+
+$$
+\nabla \times \mathbf{B} - \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} = \mu_0 \mathbf{J}
+$$
+
+## Figures
+
+### Figure with Margin Caption (Default)
+
+<Figure id="main-result" caption="A sample visualization. The caption appears in the margin on desktop and below the image on mobile.">
+  <img src="https://placehold.co/600x400/e8d5b7/a00000?text=Main+Figure" alt="Sample main figure" />
+</Figure>
+
+As shown in <FigureRef id="main-result" />, margin captions keep the visual uninterrupted.
+
+### Full-Width Figure
+
+<Figure id="wide-chart" caption="Full-width figures span the entire content area, including the margin space." fullWidth>
+  <img src="https://placehold.co/1000x400/e8d5b7/a00000?text=Full+Width+Figure" alt="Wide chart" />
+</Figure>
+
+The full-width layout in <FigureRef id="wide-chart" /> is ideal for detailed charts or photographs.
+
+### Figure with Caption Below
+
+<Figure id="apparatus" caption="Experimental apparatus photograph with caption below." captionBelow>
+  <img src="https://placehold.co/500x350/e8d5b7/a00000?text=Apparatus" alt="Experimental apparatus" />
+</Figure>
+
+Traditional caption placement as in <FigureRef id="apparatus" /> works well for less formal content.
+
+### Margin Figure
+
+<MarginFigure id="circuit" caption="A small diagram that lives entirely in the margin.">
+  <img src="https://placehold.co/250x200/e8d5b7/a00000?text=Diagram" alt="Small diagram" />
+</MarginFigure>
+
+Margin figures are useful for supplementary visuals, small diagrams, or annotations that support the main text without interrupting the reading flow. They share the margin space with sidenotes and margin captions.
+
+## Combined Example
+
+Consider the wave equation:
+
+$$
+\frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u
+$$
+
+<MarginFigure id="wave-viz" caption="Wave propagation visualization.">
+  <img src="https://placehold.co/250x180/e8d5b7/a00000?text=Wave" alt="Wave" />
+</MarginFigure>
+
+This partial differential equation describes how waves propagate through a medium. The constant $c$ represents the wave speed, and $u$ is the displacement field.
