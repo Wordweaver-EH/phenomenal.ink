@@ -9,22 +9,24 @@ body {
 .tufte-figure {
     display: block;
     position: relative;
-    margin: 2rem 0;
+    margin: 2rem auto;
     padding: 0;
 }
 
+/* Center images within figures */
 .tufte-figure .figure-content {
     display: block;
+    text-align: center;
 }
 
 .tufte-figure .figure-content img,
 .tufte-figure .figure-content video {
-    display: block;
+    display: inline-block;
     max-width: 100%;
     height: auto;
 }
 
-/* Caption in margin (default) */
+/* Caption in margin (default) - placed BEFORE content in HTML */
 .tufte-figure.caption-margin figcaption.caption-margin {
     float: right;
     clear: right;
@@ -37,7 +39,7 @@ body {
     text-align: left;
 }
 
-/* Caption below figure */
+/* Caption below figure - left aligned for full-width, centered otherwise */
 .tufte-figure.caption-below figcaption.caption-below {
     display: block;
     margin-top: 0.75rem;
@@ -47,15 +49,39 @@ body {
     text-align: center;
 }
 
-/* Full-width figure */
+.tufte-figure.full-width.caption-below figcaption.caption-below {
+    text-align: left;
+}
+
+/* Full-width figure - extends into margin area */
 .tufte-figure.full-width {
-    max-width: calc(100% + 350px);
+    width: calc(100% + 350px) !important;
+    max-width: calc(100% + 350px) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     clear: both;
+    overflow: visible;
+}
+
+.tufte-figure.full-width .figure-content {
+    text-align: left;
+    width: 100%;
+}
+
+/* Make lightbox trigger fill the container for full-width */
+.tufte-figure.full-width .figure-content .lightbox-trigger {
+    display: block;
+    width: 100%;
 }
 
 .tufte-figure.full-width .figure-content img,
 .tufte-figure.full-width .figure-content video {
-    width: 100%;
+    display: block;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto;
 }
 
 /* Figure number styling */
@@ -96,35 +122,59 @@ body {
 /* Mobile responsive */
 @media screen and (max-width: 1279px) {
 
-    /* Reset margin positioning */
+    /* Center figures on mobile */
+    .tufte-figure {
+        margin: 2rem auto;
+    }
+
+    /* Caption BELOW figure on mobile (use flexbox to reorder) */
+    .tufte-figure.caption-margin {
+        display: flex;
+        flex-direction: column;
+    }
+
     .tufte-figure.caption-margin figcaption.caption-margin {
         float: none;
         margin-right: 0;
         width: 100%;
         margin-top: 0.75rem;
         text-align: center;
+        order: 2;
+        /* Move caption after content */
     }
 
+    .tufte-figure.caption-margin .figure-content {
+        order: 1;
+        /* Content first */
+    }
+
+    /* Full-width resets */
     .tufte-figure.full-width {
+        width: 100%;
         max-width: 100%;
+        margin-right: 0;
     }
 
+    /* Margin figures on mobile - simple styling without colored background */
     .margin-figure {
         float: none;
         margin-right: 0;
         width: 100%;
-        margin: 1.5rem 0;
-        padding: 1rem;
-        background-color: var(--highlight-color);
-        border-radius: 0.5rem;
+        margin: 1.5rem auto;
+        padding: 0;
+        text-align: center;
+    }
+
+    .margin-figure img,
+    .margin-figure video {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .margin-figure-caption {
         text-align: center;
+        margin-top: 0.5rem;
     }
 }
 
-/* Dark mode adjustments */
-[data-theme="dark"] .margin-figure {
-    background-color: var(--highlight-dark);
-}
+/* No special dark mode styling needed for margin figures */

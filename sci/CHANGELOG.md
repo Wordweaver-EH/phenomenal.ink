@@ -11,16 +11,27 @@ All notable changes to the `sci.phenomenal.ink` project will be documented in th
     - Implemented `<MarginFigure>` component for small figures in the margin.
     - Implemented `<FigureRef>` component for cross-referencing figures.
     - Added `figure.css` with Tufte-style layouts and mobile responsiveness.
+    - Built-in lightbox for all figures with `noLightbox` opt-out.
 - **KaTeX Math Support**:
     - Integrated `remark-math` and `rehype-katex` for LaTeX math rendering.
     - Added KaTeX CSS to site head for equation styling.
 - **Table Styling**:
     - Added `table.css` with Tufte-style minimal lines, hover highlighting, and responsive scrolling.
 - **Image Lightbox**:
-    - Implemented `<Lightbox>` component for click-to-expand images with modal overlay.
+    - Integrated lightbox into Figure component with caption display in overlay.
     - Added smooth zoom animation and keyboard/click dismiss.
 - **Demo Content**:
     - Created `figures-and-math.mdx` showcasing all new features.
+
+### Fixed
+- **Figure Styling**:
+    - Centered regular figures within text column for better alignment with justified text.
+    - Full-width figures now properly extend into margin area with image filling container.
+    - Full-width captions are left-aligned; regular captions are centered.
+    - Margin captions now align with top of figure.
+    - Mobile: captions appear below figures, not above.
+    - Dark mode: removed colored background from margin figures.
+    - Added `overflow: visible` to containers for proper full-width extension.
 
 ## [0.1.0] - 2025-12-16
 

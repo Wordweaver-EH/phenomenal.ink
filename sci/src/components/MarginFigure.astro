@@ -5,20 +5,120 @@
  * Props:
  * - id: ID for cross-referencing
  * - caption: Caption below the image (also in margin)
+ * - noLightbox: Disable click-to-expand lightbox (default: false)
  */
 import '../styles/figure.css';
+import '../styles/lightbox.css';
 
 interface Props {
   id?: string;
   caption?: string;
+  noLightbox?: boolean;
 }
 
-const { id, caption } = Astro.props;
+const { id, caption, noLightbox = false } = Astro.props;
+const figureId = id || `margin-fig-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<span class="margin-figure" id={id}>
-  <slot />
+<span class="margin-figure" id={figureId} data-figure-id={figureId}>
+  {!noLightbox ? (
+    <span class="lightbox-trigger margin-lightbox-trigger" role="button" tabindex="0" aria-label={caption ? `Expand: ${caption}` : 'Expand image'}>
+      <slot />
+      <span class="lightbox-hint margin-hint">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <polyline points="9 21 3 21 3 15"></polyline>
+          <line x1="21" y1="3" x2="14" y2="10"></line>
+          <line x1="3" y1="21" x2="10" y2="14"></line>
+        </svg>
+      </span>
+    </span>
+  ) : (
+    <slot />
+  )}
   {caption && (
     <span class="margin-figure-caption">{caption}</span>
   )}
 </span>
+
+{!noLightbox && (
+  <div class="lightbox-overlay" aria-hidden="true" data-for={figureId}>
+    <button class="lightbox-close" aria-label="Close lightbox">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="lightbox-content">
+      <!-- Image will be populated here -->
+    </div>
+    {caption && (
+      <div class="lightbox-caption">{caption}</div>
+    )}
+  </div>
+)}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const marginFigures = document.querySelectorAll('.margin-figure');
+    
+    marginFigures.forEach(figure => {
+      const trigger = figure.querySelector('.margin-lightbox-trigger');
+      const figureId = figure.getAttribute('data-figure-id');
+      const overlay = document.querySelector(`.lightbox-overlay[data-for="${figureId}"]`) as HTMLElement;
+      const content = overlay?.querySelector('.lightbox-content');
+      const closeBtn = overlay?.querySelector('.lightbox-close');
+      const img = trigger?.querySelector('img');
+      
+      if (!trigger || !overlay || !content || !img) return;
+      
+      // Open lightbox
+      const openLightbox = () => {
+        const clonedImg = img.cloneNode(true) as HTMLImageElement;
+        clonedImg.style.maxWidth = '90vw';
+        clonedImg.style.maxHeight = '75vh';
+        clonedImg.style.objectFit = 'contain';
+        content.innerHTML = '';
+        content.appendChild(clonedImg);
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+      
+      // Close lightbox
+      const closeLightbox = () => {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+      
+      // Event listeners
+      trigger.addEventListener('click', openLightbox);
+      trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox();
+        }
+      });
+      
+      closeBtn?.addEventListener('click', closeLightbox);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeLightbox();
+      });
+      
+      // Escape key closes
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Smaller hint icon for margin figures */
+  .margin-hint {
+    bottom: 4px;
+    right: 4px;
+    padding: 4px;
+  }
+</style>

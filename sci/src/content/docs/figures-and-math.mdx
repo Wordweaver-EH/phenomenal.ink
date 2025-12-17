@@ -97,18 +97,17 @@ Tables feature subtle hover highlighting and responsive horizontal scrolling on 
 
 ## Image Lightbox
 
-import Lightbox from '../../components/Lightbox.astro';
+All figures now have a built-in lightbox. Click any figure image to expand it in an overlay with the caption displayed below.
 
-Click on images wrapped in `<Lightbox>` to expand them in an overlay:
+Try clicking on any of the figures above! When expanded, you can:
+- Press **Escape** to close
+- Click outside the image to dismiss
+- Use keyboard navigation
 
-<Figure id="zoomable" caption="Click to expand this image in a lightbox overlay.">
-  <Lightbox alt="Expandable sample image">
-    <img src="https://placehold.co/600x400/e8d5b7/a00000?text=Click+to+Expand" alt="Zoomable image" />
-  </Lightbox>
+To disable the lightbox on a specific figure, use `noLightbox`:
+
+```mdx
+<Figure id="icon" caption="No expand" noLightbox>
+  <img src="..." />
 </Figure>
-
-The lightbox provides:
-- Smooth zoom animation
-- Keyboard navigation (Escape to close)
-- Click outside to dismiss
-- Accessible focus management
+```

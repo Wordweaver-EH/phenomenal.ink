@@ -7,36 +7,83 @@
  * - caption: Caption text
  * - fullWidth: Expands figure beyond text column (default: false)
  * - captionBelow: Places caption below image instead of margin (default: false)
+ * - noLightbox: Disable click-to-expand lightbox (default: false)
  */
 import '../styles/figure.css';
+import '../styles/lightbox.css';
 
 interface Props {
   id: string;
   caption?: string;
   fullWidth?: boolean;
   captionBelow?: boolean;
+  noLightbox?: boolean;
 }
 
-const { id, caption, fullWidth = false, captionBelow = false } = Astro.props;
+const { id, caption, fullWidth = false, captionBelow = false, noLightbox = false } = Astro.props;
+
+// Full-width figures always use caption below (no room in margin)
+const useCaptionBelow = captionBelow || fullWidth;
 
 const figureClass = [
   'tufte-figure',
   fullWidth ? 'full-width' : '',
-  captionBelow ? 'caption-below' : 'caption-margin'
+  useCaptionBelow ? 'caption-below' : 'caption-margin',
+  !noLightbox ? 'has-lightbox' : ''
 ].filter(Boolean).join(' ');
 ---
 
-<figure id={id} class={figureClass}>
+<figure id={id} class={figureClass} data-caption={caption} data-figure-id={id}>
+  {caption && !useCaptionBelow && (
+    <figcaption class="caption-margin">
+      <span class="figure-number"></span>
+      {caption}
+    </figcaption>
+  )}
   <div class="figure-content">
-    <slot />
+    {!noLightbox ? (
+      <span class="lightbox-trigger" role="button" tabindex="0" aria-label={caption ? `Expand: ${caption}` : 'Expand image'}>
+        <slot />
+        <span class="lightbox-hint">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+        </span>
+      </span>
+    ) : (
+      <slot />
+    )}
   </div>
-  {caption && (
-    <figcaption class={captionBelow ? 'caption-below' : 'caption-margin'}>
+  {caption && useCaptionBelow && (
+    <figcaption class="caption-below">
       <span class="figure-number"></span>
       {caption}
     </figcaption>
   )}
 </figure>
+
+{!noLightbox && (
+  <div class="lightbox-overlay" aria-hidden="true" data-for={id}>
+    <button class="lightbox-close" aria-label="Close lightbox">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="lightbox-content">
+      <!-- Image and caption will be populated here -->
+    </div>
+    {caption && (
+      <div class="lightbox-caption">
+        <span class="figure-number"></span>
+        {caption}
+      </div>
+    )}
+  </div>
+)}
 
 <style>
   /* Figure numbering via CSS counters */
@@ -49,3 +96,59 @@ const figureClass = [
     font-weight: 600;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const figures = document.querySelectorAll('figure.tufte-figure.has-lightbox');
+    
+    figures.forEach(figure => {
+      const trigger = figure.querySelector('.lightbox-trigger');
+      const figureId = figure.getAttribute('data-figure-id');
+      const overlay = document.querySelector(`.lightbox-overlay[data-for="${figureId}"]`) as HTMLElement;
+      const content = overlay?.querySelector('.lightbox-content');
+      const closeBtn = overlay?.querySelector('.lightbox-close');
+      const img = trigger?.querySelector('img');
+      
+      if (!trigger || !overlay || !content || !img) return;
+      
+      // Open lightbox
+      const openLightbox = () => {
+        const clonedImg = img.cloneNode(true) as HTMLImageElement;
+        clonedImg.style.maxWidth = '90vw';
+        clonedImg.style.maxHeight = '80vh';
+        clonedImg.style.objectFit = 'contain';
+        content.innerHTML = '';
+        content.appendChild(clonedImg);
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+      
+      // Close lightbox
+      const closeLightbox = () => {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+      
+      // Event listeners
+      trigger.addEventListener('click', openLightbox);
+      trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox();
+        }
+      });
+      
+      closeBtn?.addEventListener('click', closeLightbox);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeLightbox();
+      });
+      
+      // Escape key closes
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  });
+</script>
