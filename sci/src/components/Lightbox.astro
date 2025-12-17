@@ -1,0 +1,95 @@
+---
+/**
+ * Lightbox component for image zoom/expand functionality.
+ * 
+ * Wrap any image to make it clickable and expandable in a modal overlay.
+ * 
+ * Props:
+ * - alt: Alt text for the image (for accessibility)
+ */
+import '../styles/lightbox.css';
+
+interface Props {
+  alt?: string;
+}
+
+const { alt } = Astro.props;
+---
+
+<span class="lightbox-trigger" role="button" tabindex="0" aria-label={alt ? `Expand image: ${alt}` : 'Expand image'}>
+  <slot />
+  <span class="lightbox-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 3 21 3 21 9"></polyline>
+      <polyline points="9 21 3 21 3 15"></polyline>
+      <line x1="21" y1="3" x2="14" y2="10"></line>
+      <line x1="3" y1="21" x2="10" y2="14"></line>
+    </svg>
+  </span>
+</span>
+
+<div class="lightbox-overlay" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close lightbox">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <div class="lightbox-content">
+    <!-- Image will be cloned here -->
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+    
+    triggers.forEach(trigger => {
+      const overlay = trigger.nextElementSibling as HTMLElement;
+      const content = overlay?.querySelector('.lightbox-content');
+      const closeBtn = overlay?.querySelector('.lightbox-close');
+      const img = trigger.querySelector('img');
+      
+      if (!overlay || !content || !img) return;
+      
+      // Open lightbox
+      const openLightbox = () => {
+        const clonedImg = img.cloneNode(true) as HTMLImageElement;
+        clonedImg.style.maxWidth = '90vw';
+        clonedImg.style.maxHeight = '90vh';
+        clonedImg.style.objectFit = 'contain';
+        content.innerHTML = '';
+        content.appendChild(clonedImg);
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+      
+      // Close lightbox
+      const closeLightbox = () => {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+      
+      // Event listeners
+      trigger.addEventListener('click', openLightbox);
+      trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox();
+        }
+      });
+      
+      closeBtn?.addEventListener('click', closeLightbox);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeLightbox();
+      });
+      
+      // Escape key closes
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  });
+</script>

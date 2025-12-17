@@ -80,3 +80,35 @@ $$
 </MarginFigure>
 
 This partial differential equation describes how waves propagate through a medium. The constant $c$ represents the wave speed, and $u$ is the displacement field.
+
+## Tables
+
+Tufte-style tables use minimal lines for a clean, academic look.
+
+| Quantity | Symbol | SI Unit | Dimension |
+|----------|--------|---------|-----------|
+| Energy | $E$ | Joule (J) | $\text{kg} \cdot \text{m}^2 / \text{s}^2$ |
+| Force | $F$ | Newton (N) | $\text{kg} \cdot \text{m} / \text{s}^2$ |
+| Power | $P$ | Watt (W) | $\text{kg} \cdot \text{m}^2 / \text{s}^3$ |
+| Momentum | $p$ | $\text{kg} \cdot \text{m/s}$ | $\text{kg} \cdot \text{m} / \text{s}$ |
+| Angular Momentum | $L$ | $\text{kg} \cdot \text{m}^2/\text{s}$ | $\text{kg} \cdot \text{m}^2 / \text{s}$ |
+
+Tables feature subtle hover highlighting and responsive horizontal scrolling on mobile.
+
+## Image Lightbox
+
+import Lightbox from '../../components/Lightbox.astro';
+
+Click on images wrapped in `<Lightbox>` to expand them in an overlay:
+
+<Figure id="zoomable" caption="Click to expand this image in a lightbox overlay.">
+  <Lightbox alt="Expandable sample image">
+    <img src="https://placehold.co/600x400/e8d5b7/a00000?text=Click+to+Expand" alt="Zoomable image" />
+  </Lightbox>
+</Figure>
+
+The lightbox provides:
+- Smooth zoom animation
+- Keyboard navigation (Escape to close)
+- Click outside to dismiss
+- Accessible focus management

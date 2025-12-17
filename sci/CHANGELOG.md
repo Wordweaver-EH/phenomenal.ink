@@ -14,6 +14,11 @@ All notable changes to the `sci.phenomenal.ink` project will be documented in th
 - **KaTeX Math Support**:
     - Integrated `remark-math` and `rehype-katex` for LaTeX math rendering.
     - Added KaTeX CSS to site head for equation styling.
+- **Table Styling**:
+    - Added `table.css` with Tufte-style minimal lines, hover highlighting, and responsive scrolling.
+- **Image Lightbox**:
+    - Implemented `<Lightbox>` component for click-to-expand images with modal overlay.
+    - Added smooth zoom animation and keyboard/click dismiss.
 - **Demo Content**:
     - Created `figures-and-math.mdx` showcasing all new features.
 

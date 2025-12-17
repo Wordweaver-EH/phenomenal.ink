@@ -1,0 +1,84 @@
+/* Tufte-style Table CSS */
+
+/* Base table styling - minimal lines, clean design */
+.sl-markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.sl-markdown-content thead {
+    border-bottom: 2px solid var(--text-color);
+}
+
+.sl-markdown-content th {
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem 1rem 0.75rem 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+}
+
+.sl-markdown-content td {
+    padding: 0.6rem 1rem 0.6rem 0;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* Remove border from last row */
+.sl-markdown-content tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Subtle row hover effect */
+.sl-markdown-content tbody tr:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Numeric columns - right align */
+.sl-markdown-content td.numeric,
+.sl-markdown-content th.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Caption styling */
+.sl-markdown-content table caption {
+    caption-side: bottom;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--side-note-color);
+    text-align: left;
+    font-style: italic;
+}
+
+/* Responsive: horizontal scroll on small screens */
+@media screen and (max-width: 600px) {
+    .sl-markdown-content table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sl-markdown-content th,
+    .sl-markdown-content td {
+        white-space: nowrap;
+        padding: 0.5rem 0.75rem 0.5rem 0;
+    }
+}
+
+/* Full-width table variant */
+.table-full-width {
+    width: calc(100% + 350px) !important;
+    max-width: none !important;
+}
+
+@media screen and (max-width: 1279px) {
+    .table-full-width {
+        width: 100% !important;
+    }
+}
