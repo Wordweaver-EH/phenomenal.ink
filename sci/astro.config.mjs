@@ -18,20 +18,6 @@ export default defineConfig({
     mdx({
       smartypants: true,
       gfm: true,
-      remarkPlugins: [
-        remarkMath,
-        remarkGfm,
-        remarkSidenotes,
-        [wikiLinkPlugin, {
-          pageResolver: name => [name.replace(/\s+/g, '-').toLowerCase()],
-          hrefTemplate: permalink => `/${permalink}`,
-          aliasDivider: '|'
-        }]
-      ],
-      rehypePlugins: [
-        rehypeKatex,
-        [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
-      ],
     }),
     starlight({
       plugins: [starlightBlog({
@@ -92,6 +78,20 @@ export default defineConfig({
   base: '/',
   output: 'static',
   markdown: {
+    remarkPlugins: [
+      remarkMath,
+      remarkGfm,
+      remarkSidenotes,
+      [wikiLinkPlugin, {
+        pageResolver: name => [name.replace(/\s+/g, '-').toLowerCase()],
+        hrefTemplate: permalink => `/${permalink}`,
+        aliasDivider: '|'
+      }]
+    ],
+    rehypePlugins: [
+      rehypeKatex,
+      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
+    ],
     shikiConfig: {
       theme: 'github-light',
       wrap: true
