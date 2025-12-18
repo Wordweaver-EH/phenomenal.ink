@@ -1,6 +1,6 @@
 ---
 title: Figures and Math Demo
-description: Demonstration of Tufte-style figures and KaTeX math rendering.
+description: Demonstration of simple figure typesetting.
 ---
 
 import Figure from '../../components/Figure.astro';
@@ -11,26 +11,58 @@ This page demonstrates the new figure and math typesetting features for scientif
 
 ## Math Equations
 
-### Inline Math
+**Inline mode**
 
-Einstein's famous equation $E = mc^2$ relates energy and mass. The Euler identity $e^{i\pi} + 1 = 0$ is often called the most beautiful equation in mathematics.
+This is an inline equation: $e = mc^2$
 
-### Block Equations
+$$8a_2 + 3b^2 = x^2$$ this is another inline equation
 
-The Gaussian integral:
-
-$$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
-$$
-
-Maxwell's equations in differential form:
+**Displayed mode**
 
 $$
-\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
+a^2 + b^2 = c^2
 $$
 
 $$
-\nabla \times \mathbf{B} - \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} = \mu_0 \mathbf{J}
+\sum_{i=1}^n X_i
+$$
+
+Matrix looks nice too!
+
+$$
+x + \begin{bmatrix} 3 & 2 \\ 1 & 0 \end{bmatrix} = \begin{bmatrix} 6 & 3 \\ 7 & -1 \end{bmatrix}
+$$
+
+**Numbered equations example**
+
+You can also use `\begin{equation} ... \end{equation}` in case you prefer numbered equations:
+
+$$
+\begin{equation} \begin{pmatrix}
+a & b \cr
+c & d
+\end{pmatrix}
++
+\begin{pmatrix}
+e & f \cr
+g & h
+\end{pmatrix}
+\end{equation}
+$$
+
+$$
+\begin{equation} \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} = \begin{bmatrix} 14 \\ 32 \\ 50 \end{bmatrix} \end{equation}
+$$
+
+$$
+\begin{equation}
+\begin{bmatrix}
+1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
+\end{bmatrix} \cdot \begin{bmatrix}
+1 \\ 2 \\ 3 \end{bmatrix} =
+\begin{bmatrix} 14 \\ 32 \\ 50
+\end{bmatrix}
+\end{equation}
 $$
 
 ## Figures
@@ -67,31 +99,17 @@ Traditional caption placement as in <FigureRef id="apparatus" /> works well for 
 
 Margin figures are useful for supplementary visuals, small diagrams, or annotations that support the main text without interrupting the reading flow. They share the margin space with sidenotes and margin captions.
 
-## Combined Example
-
-Consider the wave equation:
-
-$$
-\frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u
-$$
-
-<MarginFigure id="wave-viz" caption="Wave propagation visualization.">
-  <img src="https://placehold.co/250x180/e8d5b7/a00000?text=Wave" alt="Wave" />
-</MarginFigure>
-
-This partial differential equation describes how waves propagate through a medium. The constant $c$ represents the wave speed, and $u$ is the displacement field.
-
 ## Tables
 
 Tufte-style tables use minimal lines for a clean, academic look.
 
-| Quantity | Symbol | SI Unit | Dimension |
-|----------|--------|---------|-----------|
-| Energy | $E$ | Joule (J) | $\text{kg} \cdot \text{m}^2 / \text{s}^2$ |
-| Force | $F$ | Newton (N) | $\text{kg} \cdot \text{m} / \text{s}^2$ |
-| Power | $P$ | Watt (W) | $\text{kg} \cdot \text{m}^2 / \text{s}^3$ |
-| Momentum | $p$ | $\text{kg} \cdot \text{m/s}$ | $\text{kg} \cdot \text{m} / \text{s}$ |
-| Angular Momentum | $L$ | $\text{kg} \cdot \text{m}^2/\text{s}$ | $\text{kg} \cdot \text{m}^2 / \text{s}$ |
+| Quantity | Symbol | SI Unit |
+|----------|--------|---------|
+| Energy | E | Joule (J) |
+| Force | F | Newton (N) |
+| Power | P | Watt (W) |
+| Momentum | p | kg m/s |
+| Angular Momentum | L | kg m²/s |
 
 Tables feature subtle hover highlighting and responsive horizontal scrolling on mobile.
 

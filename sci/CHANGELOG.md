@@ -32,6 +32,14 @@ All notable changes to the `sci.phenomenal.ink` project will be documented in th
     - Mobile: captions appear below figures, not above.
     - Dark mode: removed colored background from margin figures.
     - Added `overflow: visible` to containers for proper full-width extension.
+- **Sidebar**:
+    - Restored custom `Sidebar` component (`src/components/CustomSidebar.astro`) to fix content isolation and prevent blog posts from appearing in the documentation sidebar.
+- **Math Configuration**:
+    - Adapted Next.js-style configuration:
+        - Added KaTeX CSS via CDN in `astro.config.mjs` head.
+        - Configured `remark-math` and `rehype-katex` plugins.
+    - Fixed `MDXError` (Acorn parsing) by ensuring proper plugin ordering and configuration.
+    - Verified rendering of inline, block, matrix, and numbered equations.
 
 ## [0.1.0] - 2025-12-16
 

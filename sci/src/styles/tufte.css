@@ -40,34 +40,6 @@
   --code-bg: #252525;
 }
 
-/* KATEX FIXES */
-/* Hide MathML fallback to prevent double rendering */
-.katex-mathml {
-  display: none !important;
-  position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0;
-  border: 0;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-}
-
-/* REMOVED vertical-align override as it breaks KaTeX's internal positioning */
-
-/* Ensure inline display for KaTeX elements */
-.katex .mord,
-.katex .mrel,
-.katex .mop,
-.katex .mbin,
-.katex .mopen,
-.katex .mclose,
-.katex .minner {
-  display: inline-block !important;
-  /* KaTeX uses inline-block or inline */
-}
-
-
 
 /* Starlight layout overrides */
 :root {
@@ -497,13 +469,13 @@ article p {
 }
 
 article span {
-  display: inline-block !important;
-  padding: 0.2rem 0.5rem !important;
-  margin-right: 0.5rem !important;
-  background-color: var(--highlight-color) !important;
-  border-radius: 0.25rem !important;
-  font-size: 0.9rem !important;
-  color: var(--text-color) !important;
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+  background-color: var(--highlight-color);
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
 }
 
 /* Center all images in markdown content */

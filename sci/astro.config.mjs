@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import mdx from '@astrojs/mdx';
 import starlight from '@astrojs/starlight';
-import astroExpressiveCode from 'astro-expressive-code';
 import starlightBlog from 'starlight-blog';
 import wikiLinkPlugin from 'remark-wiki-link';
 import remarkGfm from 'remark-gfm';
@@ -13,7 +11,6 @@ import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
   integrations: [
-    react(),
     react(),
     starlight({
       plugins: [starlightBlog({
@@ -39,6 +36,14 @@ export default defineConfig({
       },
       favicon: '/favicon.svg',
       head: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'stylesheet',
+            href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',
+            crossorigin: 'anonymous',
+          },
+        },
         {
           tag: 'link',
           attrs: {
