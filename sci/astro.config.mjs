@@ -71,7 +71,8 @@ export default defineConfig({
       customCss: [
         './src/styles/tufte.css',
         './src/styles/sidenote.css',
-        './src/styles/table.css'
+        './src/styles/table.css',
+        './src/styles/print.css'
       ]
     })
   ],
