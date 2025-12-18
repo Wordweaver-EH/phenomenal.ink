@@ -1,0 +1,118 @@
+---
+title: "The Tufte Formatting Guide"
+description: "A comprehensive demonstration of the visual features and components available in the Phenomenal Science theme."
+date: 2024-03-20
+tags: ["guide", "formatting", "latex", "figures"]
+---
+
+import Figure from '../../components/Figure.astro';
+import MarginFigure from '../../components/MarginFigure.astro';
+import Sidenote from '../../components/Sidenote.astro';
+import Video from '../../components/Video.astro';
+
+## Typography & Layout
+
+This theme is heavily inspired by Edward Tufte's document design principles. The main text column is narrower to improve readability, while the wide right margin is reserved for sidenotes, margin figures, and captions.
+
+### Sidenotes
+
+Sidenotes are a key feature of Tufte's design. They allow you to provide auxiliary information without breaking the flow of the main text.
+
+You can create a numbered sidenote using standard Markdown footnote syntax. For example, here is a reference to a source [^1]. The note will appear in the right margin, aligned with the reference number in the text.
+
+[^1]: This is a numbered sidenote generated from a standard Markdown footnote. It's perfect for citations or numbered commentary.
+
+For unnumbered margin notes, use the `<Sidenote>` component:
+
+<Sidenote>
+  This is an unnumbered margin note. Use it for glosses, quick asides, or definitions that don't require a reference number.
+</Sidenote>
+
+On mobile screens, sidenotes are hidden by default and identified by a highlight color in the text; tapping the number or highlighted area reveals the note inline.
+
+## Mathematics
+
+We support beautiful math rendering using KaTeX.
+
+### Inline Math
+Inline math can be written by wrapping LaTeX equations in single dollar signs: $e^{i\pi} + 1 = 0$.
+
+### Block Math
+Block math is written using double dollar signs:
+
+$$
+\oint_{\partial \Sigma} \mathbf{E} \cdot d\mathbf{l} = -\frac{d}{dt} \iint_{\Sigma} \mathbf{B} \cdot d\mathbf{S}
+$$
+
+You can also use complex environments like `aligned`:
+
+$$
+\begin{aligned}
+  \phi(x,y) &= \phi_x c_n(x,y) \\
+  \psi(x,y) &= \psi_y c_n(x,y)
+\end{aligned}
+$$
+
+## Figures
+
+Figures in this theme are designed to be flexible and elegant. All figures support a "lightbox" feature—click any image to view it full-screen.
+
+### Standard Figure (Margin Caption)
+The default figure places the image in the main column and the caption in the side margin. This keeps the vertical flow uninterrupted.
+
+<Figure id="fig-standard" caption="A standard figure with the caption placed in the margin. This allows for long, descriptive captions that don't clutter the main text flow.">
+  ![Abstract geometric shapes](/images/abstract-shapes.png)
+</Figure>
+
+### Margin Figure
+Small figures can be placed entirely in the margin using the `<MarginFigure>` component. These are great for small diagrams, portraits, or sparklines.
+
+<MarginFigure caption="A small margin figure.">
+  ![Small icon or diagram](/images/small-diagram.png)
+</MarginFigure>
+
+### Full-Width Figure
+For large, detailed images, use the `fullWidth` prop. These figures span the entire width of the page (content + margin).
+
+<Figure id="fig-wide" fullWidth caption="A full-width figure that spans across the margin. Ideal for wide maps, panoramic photos, or large data visualizations.">
+  ![Wide panoramic view](/images/panorama.png)
+</Figure>
+
+### Caption Below
+If you prefer the caption to appear below the image (standard academic style) or if the caption is very short, use the `captionBelow` prop.
+
+<Figure id="fig-below" captionBelow caption="Figure with caption below the image, scaled to 60% width." width="60%">
+  ![Another diagram](/images/diagram.png)
+</Figure>
+
+## Tables
+
+Tables are styled to be clean and readable, avoiding excessive grid lines.
+
+| Physical Constant | Symbol | Value |
+| :--- | :---: | :--- |
+| Speed of Light | $c$ | $2.998 \times 10^8$ m/s |
+| Planck Constant | $h$ | $6.626 \times 10^{-34}$ J⋅s |
+| Gravitational Constant | $G$ | $6.674 \times 10^{-11}$ m$^3$⋅kg$^{-1}$⋅s$^{-2}$ |
+
+## Code Blocks
+
+Syntax highlighting is provided by Shiki.
+
+```typescript
+interface Universe {
+  entropy: number;
+  constants: Map<string, number>;
+  evolve(dt: number): void;
+}
+
+function bang(): Universe {
+  return new Universe({ entropy: 0 });
+}
+```
+
+## Video
+
+You can embed local videos or streams from YouTube/Vimeo using the `<Video>` component.
+
+<Video src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="youtube" title="Example Video" width="80%" />

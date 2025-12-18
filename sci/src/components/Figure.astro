@@ -18,9 +18,10 @@ interface Props {
   fullWidth?: boolean;
   captionBelow?: boolean;
   noLightbox?: boolean;
+  width?: string;
 }
 
-const { id, caption, fullWidth = false, captionBelow = false, noLightbox = false } = Astro.props;
+const { id, caption, fullWidth = false, captionBelow = false, noLightbox = false, width } = Astro.props;
 
 // Full-width figures always use caption below (no room in margin)
 const useCaptionBelow = captionBelow || fullWidth;
@@ -40,7 +41,7 @@ const figureClass = [
       {caption}
     </figcaption>
   )}
-  <div class="figure-content">
+  <div class="figure-content" style={width ? `width: ${width}; max-width: 100%; margin: 0 auto;` : ''}>
     {!noLightbox ? (
       <span class="lightbox-trigger" role="button" tabindex="0" aria-label={caption ? `Expand: ${caption}` : 'Expand image'}>
         <slot />

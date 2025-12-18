@@ -32,8 +32,8 @@ const currentPage = props.entry;
           <h2>Table of Contents</h2>
           <ul class="toc-list">
             {props.headings.map((heading) => (
-              <li>
-                <a href={`#${heading.slug}`} class={`toc-level-${heading.depth}`}>
+              <li class={`toc-level-${heading.depth}`}>
+                <a href={`#${heading.slug}`}>
                   {heading.text}
                 </a>
               </li>
@@ -167,7 +167,7 @@ const currentPage = props.entry;
   }
 
   .toc-level-3 {
-    padding-left: 2rem;
+    margin-left: 1.5rem;
     font-size: 0.85rem;
   }
 
