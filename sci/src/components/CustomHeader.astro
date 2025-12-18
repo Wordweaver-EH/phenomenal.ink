@@ -4,6 +4,7 @@ import Search from '@astrojs/starlight/components/Search.astro';
 import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
 import SimpleThemeToggle from './SimpleThemeToggle.astro';
 import SimpleMenuToggle from './SimpleMenuToggle.astro';
+import SidebarToggle from './SidebarToggle.astro';
 ---
 
 <div class="nested-header sl-flex">
@@ -37,6 +38,8 @@ import SimpleMenuToggle from './SimpleMenuToggle.astro';
     </div>
   </div>
 </div>
+
+<SidebarToggle />
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Updock&display=swap');

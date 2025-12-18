@@ -1,0 +1,130 @@
+---
+/**
+ * SidebarToggle - A subtle button to collapse/expand the left sidebar.
+ * 
+ * Features:
+ * - Fixed position on left edge, vertically centered
+ * - Chevron icon that flips direction based on state
+ * - Persists collapsed state in localStorage
+ * - Only visible on desktop (>50rem)
+ */
+---
+
+<button 
+  id="sidebar-toggle" 
+  class="sidebar-toggle" 
+  aria-label="Toggle sidebar"
+  aria-expanded="true"
+>
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="16" 
+    height="16" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+    class="chevron-icon"
+  >
+    <polyline points="15 18 9 12 15 6"></polyline>
+  </svg>
+</button>
+
+<script>
+  const STORAGE_KEY = 'sidebar-collapsed';
+
+  function initSidebarToggle() {
+    const toggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('starlight__sidebar');
+    
+    if (!toggle || !sidebar) return;
+
+    // Restore state from localStorage
+    const isCollapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+    if (isCollapsed) {
+      sidebar.classList.add('collapsed');
+      toggle.classList.add('collapsed');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', () => {
+      const willCollapse = !sidebar.classList.contains('collapsed');
+      
+      sidebar.classList.toggle('collapsed');
+      toggle.classList.toggle('collapsed');
+      toggle.setAttribute('aria-expanded', willCollapse ? 'false' : 'true');
+      
+      localStorage.setItem(STORAGE_KEY, willCollapse.toString());
+    });
+  }
+
+  // Run on initial load
+  initSidebarToggle();
+
+  // Re-run on Astro page transitions
+  document.addEventListener('astro:page-load', initSidebarToggle);
+</script>
+
+<style>
+  .sidebar-toggle {
+    position: fixed;
+    left: var(--sl-sidebar-width, 16rem);
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 100;
+    
+    /* Appearance */
+    width: 20px;
+    height: 56px;
+    padding: 0;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    box-shadow: 1px 0 4px rgba(0, 0, 0, 0.1);
+    
+    /* Subtle by default */
+    opacity: 0.2;
+    transition: opacity 0.25s ease, left 0.3s ease, transform 0.3s ease, background 0.2s ease;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-toggle:hover {
+    opacity: 0.7;
+  }
+
+  .sidebar-toggle:focus-visible {
+    opacity: 0.9;
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  /* Chevron rotation */
+  .chevron-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-toggle.collapsed .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Position when collapsed */
+  .sidebar-toggle.collapsed {
+    left: 0;
+    transform: translateY(-50%) translateX(0);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Hide on mobile */
+  @media (max-width: 50rem) {
+    .sidebar-toggle {
+      display: none;
+    }
+  }
+</style>

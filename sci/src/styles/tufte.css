@@ -335,6 +335,14 @@ pre {
 
 #starlight__sidebar {
   padding-top: 1rem !important;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Collapsed sidebar state */
+#starlight__sidebar.collapsed {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Container adjustments */
