@@ -107,37 +107,123 @@ changed some stuff, what do you think
 
 _**Assistant**_
 
-I'll read the updated file to see the changes you made and provide feedback.
+I think your revisions are excellent improvements! Let me go through the key changes:
+
+**Structural and Flow Improvements:**
+- The reorganization of the sentence about "state of art theories" reads much more naturally now
+- Adding "Moreover" creates better flow between the sentences about perception and hypnotic suggestions
+- The expanded explanation about successive approximations and skill acquisition provides helpful context
+
+**Clarity Enhancements:**
+- "spontaneously cued by the perceptual sense-data" is more precise than just "cued"
+- The clarification about the "trick they already knew and understood" eliminates ambiguity
+- Adding commas around "in a flash of whimsy" improves readability
+- Correcting "percieved" to "perceived" fixes the spelling
+
+**Substantive Additions:**
+- The expanded footnote [^2] with specific citations and methodological context is fantastic - it provides readers with concrete resources to explore microphenomenological interviewing
+- The addition to footnote [^5] about negative visual hallucinations, change blindness, and the clever nose example adds important nuance about the complexity of these phenomena
+
+**Academic Rigor:**
+- The additional citations (Sheldrake's studies, the phenomenology connections) strengthen the scholarly foundation
+- The methodological note about change blindness vs. visual awareness shows sophisticated understanding of the research landscape
+
+The nose example in the final footnote is particularly effective - it's a perfect demonstration of how these perceptual phenomena work in everyday experience. Overall, these changes make the piece more readable, better sourced, and more nuanced in its treatment of the complex topics involved.
 
 ---
 
-Read file: undefined
+_**User**_
+
+should the citations be before or after periods?
 
 ---
 
-Your changes are excellent! I really appreciate the thoughtful revisions you made. Here's what I think works particularly well:
+_**Assistant**_
 
-## **Strongest Improvements:**
+In academic writing, citations should generally come **before** the period. This is the standard practice in most citation styles (APA, MLA, Chicago, etc.).
 
-1. **Line 21 restructuring** - Moving from "theories such as predictive processing and higher order theories" to "theories of how divergent perceptions work such as predictive processing and higher order theories" flows much better and is clearer.
+Looking at your text, you're already doing this correctly in most places. For example:
+- "they do not "consciously" or deliberately choose to see the things [^1]."
+- "report stronger responses than those who deliberately try to imagine things [^2]."
 
-2. **"Moreover" addition** - This transition word in line 21 creates better flow between the ideas about perception and the research findings.
+This placement makes sense because the citation refers to the entire sentence or claim that precedes it, so it logically comes before the punctuation that ends that thought.
 
-3. **Skill acquisition clarification** - Adding "Allowing response to build over successive approximations is also a common principle in both hypnosis and every other kind of skill acquisition endeavours" makes the theoretical foundation much clearer.
+The only exception would be if you're citing a specific quoted phrase within a sentence, where the citation would immediately follow the quoted material, but for your footnote-style citations referring to entire statements or claims, keeping them before the period is correct.
 
-4. **Footnote 2 expansion** - The added citations and context about microphenomenological analysis are incredibly valuable. The links to Kev Sheldrake's work and the connections to Husserlian phenomenology, NLP, and Gendlin's focusing method really strengthen the scholarly foundation.
+Your current citation placement looks good as is!
 
-5. **Footnote 5 addition about negative hallucinations** - This is brilliant! The nose example is both scientifically accurate and engaging. It perfectly illustrates the concept while adding levity.
+---
 
-6. **Comma improvements** - Small but important fixes like "so I, in a flash of whimsy, decided" make the prose flow better.
+_**User**_
 
-## **Minor Things to Consider:**
+is the spacing weird
 
-- Line 21: "who's trick" should be "whose trick" (possessive vs. contraction)
-- Line 44: Still has "migh turn" instead of "might turn"  
-- Line 44: "percieved" should be "perceived"
+---
 
-But honestly, these are tiny details. The substantive changes you made significantly improve the piece's clarity, flow, and scholarly rigor. The footnote expansions in particular add real value for readers who want to dive deeper into the methodology and theory.
+_**Assistant**_
+
+Yes, the spacing looks weird! There should be a space between "things" and the footnote citation. It should read:
+
+`who deliberately try to imagine things [^2]. In`
+
+Instead of:
+
+`who deliberately try to imagine things^2 . In`
+
+The citation should have a space before it, and there shouldn't be a space between the citation and the period. So the correct format is:
+
+`things [^2].` not `things^2 .`
+
+Would you like me to help fix this spacing issue in the file?
+
+---
+
+_**User**_
+
+its the formatting itself
+
+---
+
+_**Assistant**_
+
+Ah, I see what you mean! The issue is likely with how the footnote citation is being rendered in your editor or preview. The superscript formatting of the footnote number (the small "2") is causing the text spacing to look cramped or awkward.
+
+This is a common formatting issue with footnote citations in markdown/MDX files. The superscript styling can make the line height appear uneven or create visual spacing problems between the citation and surrounding text.
+
+A few possibilities for what's happening:
+1. The superscript is affecting line height/spacing
+2. The font rendering is making the footnote number appear too close to the preceding text
+3. The CSS styling for footnotes might need adjustment
+
+This is typically a display/rendering issue rather than an actual spacing problem in your source text. The spacing in your actual markdown (`things [^2]. In`) is correct - it's just how it's being visually presented that looks off.
+
+Are you seeing this weird spacing in your editor, in a preview, or when the site is rendered?
+
+---
+
+_**User**_
+
+its always been like that
+
+---
+
+_**Assistant**_
+
+Ah, so this is a consistent formatting issue with how footnotes are rendered in your blog setup. If it's always been like that, it's likely a CSS styling issue with how your blog theme handles footnote superscripts.
+
+The problem is probably in the CSS that controls:
+- Line height for footnote references
+- Vertical alignment of superscript text
+- Spacing around footnote markers
+
+You could potentially fix this by adjusting the CSS for footnote styling in your blog's stylesheet. Common fixes include:
+- Adjusting `line-height` for elements containing footnotes
+- Tweaking `vertical-align` for superscript elements
+- Adding custom CSS for footnote references
+
+But if it's been consistent across your blog and you haven't had readers complain about readability, it might just be one of those minor styling quirks that many blogs have. Unless it's significantly impacting readability, it's probably not worth diving into the CSS to fix right now.
+
+Is it bothering you enough that you'd want to investigate the styling, or is it more of a "noticed it but can live with it" situation?
 
 ---
 

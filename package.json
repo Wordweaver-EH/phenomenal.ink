@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/mdx": "^3.1.9",
     "@astrojs/react": "^3.6.3",
-    "@astrojs/starlight": "^0.15.0",
+    "@astrojs/starlight": "^0.29.2",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "astro": "^4.0.0",
     "astro-expressive-code": "^0.32.4",
