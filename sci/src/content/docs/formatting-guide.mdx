@@ -120,3 +120,28 @@ function bang(): Universe {
 You can embed local videos or streams from YouTube/Vimeo using the `<Video>` component.
 
 <Video src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="youtube" title="Example Video" width="80%" />
+
+## Print & PDF
+
+Each article has a high-quality PDF version available, designed using Tufte-style typography for print. The PDF versions are generated at build time using a headless browser, ensuring they match the web styling exactly.
+
+### Accessing the PDF
+
+You can access the PDF version of any article in two ways:
+1. **Header Icon**: Click the PDF icon in the top navigation bar
+2. **Footer Link**: A "View PDF Version" link appears at the bottom of each article
+
+The PDFs include:
+- The custom "Weaver's Journal" header with serif typography
+- Properly formatted sidenotes and margin figures
+- Zebra-striped tables for readability
+- High-contrast black text optimized for printing
+
+<Sidenote>
+The PDF generation uses Puppeteer to render pages with print media styles, ensuring consistent output across all browsers.
+</Sidenote>
+
+### Print Directly
+
+You can also print any page directly from your browser using `Ctrl+P` (or `Cmd+P` on Mac). The print stylesheet will activate automatically, applying the same elegant Tufte formatting.
+

@@ -29,6 +29,12 @@ const next = currentIndex > 0 ? {
   href: `/${sortedPosts[currentIndex - 1].slug}`,
   label: sortedPosts[currentIndex - 1].data.title
 } : null;
+// Get PDF URL for content pages
+const { pathname } = Astro.url;
+let pdfSlug = pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+if (pdfSlug === '') pdfSlug = 'home';
+const pdfUrl = `/pdfs/${pdfSlug}.pdf`;
+const isContentPage = pdfSlug !== 'home' && pdfSlug !== 'blog' && !pdfSlug.startsWith('blog-');
 ---
 
 <footer class="tufte-footer">
@@ -37,6 +43,18 @@ const next = currentIndex > 0 ? {
       {prev && <a href={prev.href} class="prev">← {prev.label}</a>}
       {next && <a href={next.href} class="next">{next.label} →</a>}
     </nav>
+    {isContentPage && (
+      <div class="pdf-link-section">
+        <a href={pdfUrl} target="_blank" class="pdf-link" title="View PDF Version">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <text x="7" y="17" font-size="6" font-weight="bold" fill="currentColor" stroke="none">PDF</text>
+          </svg>
+          View PDF Version
+        </a>
+      </div>
+    )}
     <div class="subscribe-section">
       <p class="subscribe-text">Follow along the phenomena link</p>
       <div class="social-links">
@@ -79,6 +97,32 @@ const next = currentIndex > 0 ? {
     padding-left: 1rem;
     border-top: 1px solid var(--border-color);
     padding-top: 2rem;
+  }
+
+  .pdf-link-section {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .pdf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-color) !important;
+    text-decoration: none !important;
+    font-style: italic;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .pdf-link:hover {
+    opacity: 1;
+  }
+
+  .pdf-link svg {
+    stroke: var(--accent-color);
   }
 
   .prev-next {
