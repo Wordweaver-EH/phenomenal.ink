@@ -223,9 +223,24 @@ body {
   font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
   background-color: var(--background-color);
   color: var(--text-color);
-  counter-reset: sidenote-counter;
+  counter-reset: sidenote-counter figure-counter;
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.6;
+}
+
+/* Figure counter - needs to be global, not scoped */
+.tufte-figure,
+.margin-figure {
+  counter-increment: figure-counter;
+}
+
+.figure-number {
+  color: var(--accent-color);
+}
+
+.figure-number::before {
+  content: "Figure " counter(figure-counter) ". ";
+  font-weight: 600;
 }
 
 /* Typography scale */
