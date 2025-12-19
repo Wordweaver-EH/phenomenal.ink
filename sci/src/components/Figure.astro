@@ -112,6 +112,16 @@ const figureClass = [
         clonedImg.style.objectFit = 'contain';
         content.innerHTML = '';
         content.appendChild(clonedImg);
+        
+        // Copy figure number from original caption to lightbox caption
+        const originalFigNum = figure.querySelector('figcaption .figure-number');
+        const lightboxFigNum = overlay.querySelector('.lightbox-caption .figure-number') as HTMLElement;
+        if (originalFigNum && lightboxFigNum) {
+          const computedContent = window.getComputedStyle(originalFigNum, '::before').content;
+          // CSS content returns quoted string, so we strip quotes
+          lightboxFigNum.textContent = computedContent.replace(/['"]/g, '');
+        }
+        
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
       };
