@@ -8,7 +8,7 @@ import { spawn } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const distDir = resolve(__dirname, '../dist');
-const pdfDir = join(distDir, 'pdfs');
+const pdfDir = join(__dirname, '../public/pdfs'); // Output to public so they're committed
 
 // Helper to wait for server to start
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
