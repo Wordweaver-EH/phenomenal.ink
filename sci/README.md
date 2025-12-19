@@ -16,20 +16,32 @@ npm run build    # Build for production (includes PDF generation)
 ```
 sci/
 ├── public/
-│   ├── images/          # All site images (referenced as /images/...)
 │   ├── fonts/           # Custom fonts (et-book)
-│   └── pdfs/            # Pre-generated PDFs (committed to git)
+│   ├── images/          # Site images (referenced as /images/...)
+│   ├── pdfs/            # Pre-generated PDFs (committed to git)
+│   └── styles/          # Additional public stylesheets
+├── scripts/
+│   └── generate-pdfs.js # PDF generation script (Puppeteer)
+├── shared/              # Shared utilities and assets
 ├── src/
 │   ├── components/      # Astro components (Figure, Sidenote, Video, etc.)
+│   ├── config/          # Site configuration
 │   ├── content/
+│   │   ├── config.ts    # Content collection config
 │   │   └── docs/        # Article content (MDX files)
-│   │       ├── index.mdx           # Homepage
-│   │       ├── [article].mdx       # Published articles
-│   │       └── drafts/             # Draft articles (not built)
-│   └── styles/          # CSS (tufte.css, table.css)
-├── scripts/
-│   └── generate-pdfs.js # PDF generation script
-└── package.json
+│   │       ├── index.mdx            # Homepage
+│   │       ├── formatting-guide.mdx # Style reference
+│   │       └── drafts/              # Draft articles
+│   ├── layouts/         # Page layouts
+│   ├── pages/           # Additional pages (RSS, etc.)
+│   ├── plugins/         # Remark/Rehype plugins
+│   ├── styles/          # CSS (tufte.css, table.css)
+│   ├── types/           # TypeScript types
+│   └── utils/           # Utility functions
+├── astro.config.mjs     # Astro configuration
+├── package.json
+├── tsconfig.json
+└── vercel.json          # Vercel deployment config
 ```
 
 ## Writing Articles
