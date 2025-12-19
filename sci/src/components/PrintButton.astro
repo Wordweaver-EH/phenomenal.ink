@@ -1,86 +1,42 @@
 ---
-/**
- * PrintButton - A button to trigger browser print dialog for PDF download.
- * Styled to match the theme and positioned subtly.
- */
+const { pathname } = Astro.url;
+
+// Logic to match the script's slug generation
+// Remove trailing slash, then replace slashes with hyphens
+// e.g. /docs/intro/ -> docs-intro
+// e.g. / -> home
+let slug = pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+if (slug === '') slug = 'home';
+
+const pdfUrl = `/pdfs/${slug}.pdf`;
 ---
 
-<button 
-  id="print-button" 
-  class="print-button" 
-  aria-label="Print or save as PDF"
-  title="Print / Save as PDF"
->
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="16" 
-    height="16" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    stroke-width="2" 
-    stroke-linecap="round" 
-    stroke-linejoin="round"
-  >
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-    <polyline points="7 10 12 15 17 10"></polyline>
-    <line x1="12" y1="15" x2="12" y2="3"></line>
+<a href={pdfUrl} class="print-button" download target="_blank" title="Download PDF Version">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-down">
+    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+    <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+    <path d="M12 18v-6"/>
+    <path d="M9 15l3 3 3-3"/>
   </svg>
-  <span class="print-label">PDF</span>
-</button>
-
-<script>
-  function initPrintButton() {
-    const btn = document.getElementById('print-button');
-    if (!btn) return;
-    
-    btn.addEventListener('click', () => {
-      window.print();
-    });
-  }
-
-  initPrintButton();
-  document.addEventListener('astro:page-load', initPrintButton);
-</script>
+</a>
 
 <style>
   .print-button {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 0.7rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    background: var(--background-color);
+    justify-content: center;
     color: var(--text-color);
-    font-size: 0.8rem;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.2s ease, background 0.2s ease;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    padding-top: 0.3rem;
   }
 
   .print-button:hover {
     opacity: 1;
-    background: var(--highlight-color);
+    color: var(--accent-color);
   }
 
-  .print-button:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-  }
-
-  .print-label {
-    font-weight: 500;
-  }
-
-  /* Hide on mobile */
-  @media (max-width: 50rem) {
-    .print-button {
-      display: none;
-    }
-  }
-
-  /* Hide when printing */
+  /* Hide in print */
   @media print {
     .print-button {
       display: none !important;

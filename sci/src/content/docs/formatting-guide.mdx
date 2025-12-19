@@ -1,6 +1,6 @@
 ---
-title: "The Tufte Formatting Guide"
-description: "A comprehensive demonstration of the visual features and components available in the Phenomenal Science theme."
+title: "The Formatting Guide"
+description: "A Demonstration of Style."
 date: 2024-03-20
 tags: ["guide", "formatting", "latex", "figures"]
 ---
@@ -57,19 +57,29 @@ $$
 
 Figures in this theme are designed to be flexible and elegant. All figures support a "lightbox" feature—click any image to view it full-screen.
 
+### Margin Figure
+Small figures can be placed entirely in the margin using the `<MarginFigure>` component. These are great for small diagrams, portraits, or sparklines.
+<MarginFigure caption="A small margin figure.">
+  ![Small icon or diagram](/images/small-diagram.png)
+</MarginFigure>
+
+### Caption Below
+If you prefer the caption to appear below the image (standard academic style) or if the caption is very short, use the `captionBelow` prop.
+
+<Figure id="fig-below" width='40%' captionBelow caption="Figure with caption below the image, scaled to 40% width.">
+  ![Another diagram](/images/diagram.png)
+</Figure>
+
+
+
+
+
 ### Standard Figure (Margin Caption)
 The default figure places the image in the main column and the caption in the side margin. This keeps the vertical flow uninterrupted.
 
 <Figure id="fig-standard" caption="A standard figure with the caption placed in the margin. This allows for long, descriptive captions that don't clutter the main text flow.">
   ![Abstract geometric shapes](/images/abstract-shapes.png)
 </Figure>
-
-### Margin Figure
-Small figures can be placed entirely in the margin using the `<MarginFigure>` component. These are great for small diagrams, portraits, or sparklines.
-
-<MarginFigure caption="A small margin figure.">
-  ![Small icon or diagram](/images/small-diagram.png)
-</MarginFigure>
 
 ### Full-Width Figure
 For large, detailed images, use the `fullWidth` prop. These figures span the entire width of the page (content + margin).
@@ -78,12 +88,6 @@ For large, detailed images, use the `fullWidth` prop. These figures span the ent
   ![Wide panoramic view](/images/panorama.png)
 </Figure>
 
-### Caption Below
-If you prefer the caption to appear below the image (standard academic style) or if the caption is very short, use the `captionBelow` prop.
-
-<Figure id="fig-below" captionBelow caption="Figure with caption below the image, scaled to 60% width." width="60%">
-  ![Another diagram](/images/diagram.png)
-</Figure>
 
 ## Tables
 

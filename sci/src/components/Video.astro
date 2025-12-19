@@ -81,6 +81,12 @@ const videoId = type !== 'local' ? getVideoId(src, type) : '';
   ></iframe>
 )}
 
+<div class="video-print-fallback">
+  {poster && <img src={poster} alt={`Frame from video: ${title}`} />}
+  <p><strong>Video:</strong> {title || 'Untitled Video'}</p>
+  <p class="video-url">{src.startsWith('http') ? src : `Included video: ${src}`}</p>
+</div>
+
 <style>
   video, iframe {
     max-width: 100%;

@@ -37,7 +37,10 @@ const figureId = id || `margin-fig-${Math.random().toString(36).substr(2, 9)}`;
     <slot />
   )}
   {caption && (
-    <span class="margin-figure-caption">{caption}</span>
+    <span class="margin-figure-caption">
+      <span class="figure-number"></span>
+      {caption}
+    </span>
   )}
 </span>
 

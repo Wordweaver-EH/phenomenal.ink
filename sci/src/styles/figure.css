@@ -6,6 +6,11 @@ body {
 }
 
 /* Base figure styles */
+.tufte-figure,
+.margin-figure {
+    counter-increment: figure-counter;
+}
+
 .tufte-figure {
     display: block;
     position: relative;
@@ -87,6 +92,11 @@ body {
 /* Figure number styling */
 .figure-number {
     color: var(--accent-color);
+}
+
+.figure-number::before {
+    content: "Figure " counter(figure-counter) ". ";
+    font-weight: 600;
 }
 
 /* Margin figure (lives entirely in margin) */

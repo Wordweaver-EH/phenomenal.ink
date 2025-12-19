@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import type { Props } from '@astrojs/starlight/props';
-import PrintButton from './PrintButton.astro';
 
 const { hasSidebar, ...props } = Astro.props;
 
@@ -73,8 +72,6 @@ const currentPage = props.entry;
         </ul>
       </>
     )} */}
-    
-    <PrintButton />
   </div>
 </nav>
 

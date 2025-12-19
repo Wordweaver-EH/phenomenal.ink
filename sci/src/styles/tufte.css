@@ -560,3 +560,465 @@ article span {
   background-color: var(--accent-color) !important;
   transition: width 0.1s ease !important;
 }
+
+/* ========================================
+   PRINT STYLESHEET
+   Two-column layout: main text + margin notes
+   ======================================== */
+@media print {
+
+  /* Page setup - standard margins, content handles its own layout */
+  @page {
+    size: A4;
+    margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+  }
+
+  /* Reset colors for print */
+  :root {
+    --background-color: #fff !important;
+    --text-color: #000 !important;
+    --accent-color: #000 !important;
+    --side-note-color: #000 !important;
+  }
+
+  /* Hide all UI chrome */
+  /* Ensure header container is static so it doesn't repeat on every page */
+  header,
+  .header {
+    position: static !important;
+    display: block !important;
+    height: auto !important;
+    width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* Hide standard header content but keep container visible if needed (use specific classes to hide) */
+  .nested-header,
+  #starlight__sidebar,
+  .sidebar-toggle,
+  .sidebar-pane,
+  footer,
+  .right-sidebar,
+  .pagination,
+  .simple-theme-toggle,
+  .simple-menu-toggle,
+  nav[aria-label="Primary"],
+  .social-links,
+  .search,
+  [data-pagefind-ui],
+  .lightbox-trigger::after,
+  .lightbox-hint,
+  .margin-hint,
+  .skip-link,
+  a[href="#_top"],
+  a[href="#content"],
+  video,
+  iframe {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+  }
+
+  /* Base reset */
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Container reset */
+  .sl-container,
+  .main-frame,
+  .content-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Main content - 65% width to leave room for margin notes */
+  .sl-markdown-content {
+    width: 65% !important;
+    max-width: 65% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  /* Typography for print */
+  h1 {
+    font-size: 20pt !important;
+    color: #000 !important;
+    margin-top: 0 !important;
+    margin-bottom: 10pt !important;
+    page-break-after: avoid !important;
+    width: 154% !important;
+    /* Span full width including margin area */
+  }
+
+  h2 {
+    font-size: 14pt !important;
+    margin-top: 14pt !important;
+    margin-bottom: 6pt !important;
+    color: #000 !important;
+    page-break-after: avoid !important;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 12pt !important;
+    margin-top: 10pt !important;
+    margin-bottom: 4pt !important;
+    color: #000 !important;
+    page-break-after: avoid !important;
+  }
+
+  p {
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+    margin: 0 0 6pt 0 !important;
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+
+  /* Links */
+  a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+
+  a::after {
+    display: none !important;
+  }
+
+  /* Sidenote numbers */
+  .sidenote-number {
+    display: inline !important;
+    font-size: 0.75em !important;
+    vertical-align: super !important;
+    color: #000 !important;
+  }
+
+  /* Sidenotes and margin notes - float into the right margin area */
+  .sidenote,
+  .marginnote,
+  .margin-note {
+    display: block !important;
+    float: right !important;
+    clear: right !important;
+    position: relative !important;
+    width: 50% !important;
+    margin-right: -54% !important;
+    margin-top: 0.25em !important;
+    margin-bottom: 0.5em !important;
+    margin-left: 1em !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 8pt !important;
+    line-height: 1.3 !important;
+    color: #444 !important;
+    text-align: left !important;
+  }
+
+  /* Restore numbering for sidenotes, but not marginnotes */
+  .sidenote::before {
+    content: counter(sidenote-counter) " " !important;
+    font-family: var(--font-body) !important;
+    font-size: 1em !important;
+    vertical-align: baseline !important;
+    position: static !important;
+  }
+
+  .marginnote::before {
+    content: none !important;
+  }
+
+  /* Figures - standard figures use main column width */
+  .tufte-figure,
+  figure {
+    display: block !important;
+    float: none !important;
+    clear: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 12pt 0 !important;
+    padding-top: 4px !important;
+    overflow: visible !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Figure content stays in main column - allow width to be overridden by inline style */
+  .figure-content {
+    display: block !important;
+    float: none !important;
+    max-width: 100% !important;
+  }
+
+  /* Full-width figures span both columns */
+  .tufte-figure.full-width {
+    width: 154% !important;
+    max-width: 154% !important;
+  }
+
+  /* Compel page break */
+  .page-break {
+    page-break-before: always !important;
+    display: block !important;
+    height: 0 !important;
+    margin: 0 !important;
+  }
+
+  .tufte-figure img,
+  figure img,
+  .sl-markdown-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Captions in margin */
+  figcaption.caption-margin {
+    float: right !important;
+    clear: right !important;
+    width: 50% !important;
+    margin-right: -54% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.5em !important;
+    font-size: 8pt !important;
+    font-style: italic !important;
+    color: #444 !important;
+    text-align: left !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  /* Captions below */
+  figcaption.caption-below {
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    margin: 4pt 0 0 0 !important;
+    text-align: center !important;
+    font-size: 8pt !important;
+    font-style: italic !important;
+    color: #000 !important;
+  }
+
+  /* Margin figures */
+  .margin-figure {
+    display: block !important;
+    float: right !important;
+    clear: right !important;
+    width: 50% !important;
+    margin-right: -54% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  .margin-figure img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Tables */
+  /* Tables - Tufte "booktabs" style */
+  table {
+    width: auto !important;
+    display: inline-block !important;
+    border-collapse: collapse !important;
+    margin: 10pt 0 !important;
+    page-break-inside: avoid !important;
+    border-top: 1pt solid #000 !important;
+    border-bottom: 1pt solid #000 !important;
+  }
+
+  th,
+  td {
+    border: none !important;
+    padding: 6pt 4pt !important;
+    font-size: 9pt !important;
+    text-align: left !important;
+    vertical-align: top !important;
+  }
+
+  th {
+    border-bottom: 1pt solid #000 !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+  }
+
+  tr:last-child td {
+    border-bottom: none !important;
+  }
+
+  /* Code blocks */
+  /* Code blocks - AGGRESSIVE reset for page breaking */
+  pre,
+  .expressive-code,
+  .expressive-code .frame,
+  .expressive-code pre,
+  .ec-code,
+  figure.frame {
+    display: block !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: visible !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Visual styles for code container */
+  pre,
+  .expressive-code {
+    background: #f8f8f8 !important;
+    border: 1pt solid #000 !important;
+    border-radius: 4px !important;
+    padding: 6pt !important;
+    width: 100% !important;
+    /* Ensure it doesn't overflow right */
+    box-sizing: border-box !important;
+  }
+
+  /* Remove double border for nested pre */
+  .expressive-code pre {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  /* Ensure lines themselves don't block breaking */
+  .expressive-code .ec-line,
+  .ec-line {
+    display: block !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  code {
+    font-size: 8pt !important;
+    background: #f8f8f8 !important;
+  }
+
+  /* Show video fallback in print */
+  .video-print-fallback {
+    display: block !important;
+    border: 1pt solid #000 !important;
+    padding: 10pt !important;
+    margin: 10pt 0 !important;
+    page-break-inside: avoid !important;
+  }
+
+  .video-print-fallback img {
+    max-width: 100% !important;
+    height: auto !important;
+    border: 1pt solid #eee !important;
+  }
+
+  .video-print-fallback p {
+    margin: 4pt 0 !important;
+    font-size: 9pt !important;
+  }
+
+  .video-print-fallback .video-url {
+    font-family: monospace !important;
+    font-size: 8pt !important;
+    color: #666 !important;
+    word-break: break-all !important;
+  }
+}
+
+/* Hide fallback on screen */
+/* Hide fallback and print header on screen */
+.video-print-fallback,
+.print-journal-header {
+  display: none;
+}
+
+/* Math and Page Breaks for Print */
+@media print {
+
+  /* Math */
+  .katex {
+    font-size: 1em !important;
+  }
+
+  /* Journal Header for Print */
+  .print-journal-header {
+    display: block !important;
+    text-align: center;
+    border-bottom: 2pt solid #000;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1cm !important;
+    /* Prevent clipping at top of page */
+    padding-top: 0.5cm !important;
+    width: 154% !important;
+    /* Span full width including margin area */
+  }
+
+  .print-journal-header .fancy-p {
+    font-family: 'Updock', cursive !important;
+    font-size: 1.2em !important;
+    margin-right: 0.05rem !important;
+    font-style: normal !important;
+  }
+
+  .journal-title {
+    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif !important;
+    font-size: 16pt !important;
+    font-weight: bold !important;
+    font-style: normal !important;
+    margin-bottom: 4pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .journal-subtitle {
+    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif !important;
+    font-size: 10pt !important;
+    font-style: normal !important;
+    color: #000 !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Zebra striping for print tables */
+  tr:nth-child(even) td {
+    background-color: #f3f3f3 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Page breaks */
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid !important;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre,
+  figure,
+  .video-print-fallback {
+    page-break-inside: avoid !important;
+  }
+}

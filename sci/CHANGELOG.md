@@ -6,6 +6,31 @@ All notable changes to the `sci.phenomenal.ink` project will be documented in th
 
 ### Added
 - Created `CHANGELOG.md` to track project history.
+- **Print Stylesheet & PDF Generation**:
+    - Implemented comprehensive `@media print` styles in `tufte.css` for high-quality PDF export.
+    - **Layout**: Asymmetric page layout with wide right margin for true sidenote positioning.
+    - **UI**: Automatically hides header, sidebar, and navigation in print mode.
+    - **Figures**: Optimized print layout for standard and full-width figures; prevented image clipping at page breaks.
+    - **Tables**: Styled tables with Tufte/academic "booktabs" look in print (no vertical borders, heavy horizontal rules). optimized widths and border weights.
+    - **Code Blocks**: Enabled page breaking for long code blocks; fixed border visibility and removed double borders; ensured inline code remains inline.
+    - **Typography**: Adjusted font sizes and margins for print readability.
+    - **Video**: Added print-only fallback showing poster, title, and URL instead of hidden interactive player.
+    - **Header**: Replaced standard header with "Weaver's Journal" academic header in print (serif typography, Updock 'P', non-repeating).
+    - **Print UI Clean-up**: Hidden lightbox expand icons and "skip to content" links in print output.
+    - **Tables**: Added zebra striping to tables (subtle red in dark mode, gray in print).
+    - **Print Contrast**: Increased contrast for print output (pure black headings, borders, and side notes).
+- **Content**:
+    - Updated site title and metadata to "Weaver's Journal of Phenomenal Science".
+    - Removed legacy `figures-and-math.mdx` file.
+- **Documentation**:
+    - Created `formatting-guide.mdx` as a comprehensive reference for all styling features.
+- **Sidebar & Navigation**:
+    - Implemented `SidebarToggle` component to collapse/expand the sidebar.
+    - Fixed sidebar TOC indentation for better hierarchy visibility.
+- **Figure Improvements**:
+    - **Unified Numbering**: Moved counter logic to `figure.css` so `MarginFigure` and `Figure` share continuous numbering.
+    - **Layout Fixes**: Fixed float clearing issues where standard figures would drop below margin content.
+    - **Margin Figures**: Added numbering to margin figure captions.
 - **Figure Components**:
     - Implemented `<Figure>` component with margin caption support, `fullWidth`, and `captionBelow` options.
     - Implemented `<MarginFigure>` component for small figures in the margin.

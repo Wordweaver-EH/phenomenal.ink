@@ -87,15 +87,7 @@ const figureClass = [
 )}
 
 <style>
-  /* Figure numbering via CSS counters */
-  figure.tufte-figure {
-    counter-increment: figure-counter;
-  }
-  
-  .figure-number::before {
-    content: "Figure " counter(figure-counter) ". ";
-    font-weight: 600;
-  }
+  /* Styles moved to figure.css for sharing with MarginFigure */
 </style>
 
 <script>
