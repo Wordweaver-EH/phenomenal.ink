@@ -26,6 +26,11 @@ const { id, caption, fullWidth = false, captionBelow = false, noLightbox = false
 // Full-width figures always use caption below (no room in margin)
 const useCaptionBelow = captionBelow || fullWidth;
 
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt({ html: true });
+const parsedCaption = caption ? md.renderInline(caption) : '';
+
 const figureClass = [
   'tufte-figure',
   fullWidth ? 'full-width' : '',
@@ -38,7 +43,7 @@ const figureClass = [
   {caption && !useCaptionBelow && (
     <figcaption class="caption-margin">
       <span class="figure-number"></span>
-      {caption}
+      <Fragment set:html={parsedCaption} />
     </figcaption>
   )}
   <div class="figure-content" style={width ? `width: ${width}; max-width: 100%; margin: 0 auto;` : ''}>
@@ -61,7 +66,7 @@ const figureClass = [
   {caption && useCaptionBelow && (
     <figcaption class="caption-below">
       <span class="figure-number"></span>
-      {caption}
+      <Fragment set:html={parsedCaption} />
     </figcaption>
   )}
   {!noLightbox && (
@@ -78,7 +83,7 @@ const figureClass = [
       {caption && (
         <div class="lightbox-caption">
           <span class="figure-number"></span>
-          {caption}
+          <Fragment set:html={parsedCaption} />
         </div>
       )}
     </div>

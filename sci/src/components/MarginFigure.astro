@@ -18,6 +18,10 @@ interface Props {
 
 const { id, caption, noLightbox = false } = Astro.props;
 const figureId = id || `margin-fig-${Math.random().toString(36).substr(2, 9)}`;
+
+import MarkdownIt from 'markdown-it';
+const md = new MarkdownIt({ html: true });
+const parsedCaption = caption ? md.renderInline(caption) : '';
 ---
 
 <aside class="margin-figure" id={figureId} data-figure-id={figureId}>
@@ -39,7 +43,7 @@ const figureId = id || `margin-fig-${Math.random().toString(36).substr(2, 9)}`;
   {caption && (
     <span class="margin-figure-caption">
       <span class="figure-number"></span>
-      {caption}
+      <Fragment set:html={parsedCaption} />
     </span>
   )}
 
@@ -57,7 +61,7 @@ const figureId = id || `margin-fig-${Math.random().toString(36).substr(2, 9)}`;
       {caption && (
         <div class="lightbox-caption">
           <span class="figure-number"></span>
-          {caption}
+          <Fragment set:html={parsedCaption} />
         </div>
       )}
     </div>
