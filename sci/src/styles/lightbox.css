@@ -131,11 +131,8 @@
     animation: lightbox-zoom-in 0.3s ease 0.1s both;
 }
 
-.lightbox-caption .figure-number::before {
-    content: "Figure ";
-    font-weight: 600;
-    color: #ff6b6b;
-}
+/* Figure number is handled by global .figure-number styles in tufte.css */
+
 
 /* Mobile adjustments */
 @media screen and (max-width: 600px) {

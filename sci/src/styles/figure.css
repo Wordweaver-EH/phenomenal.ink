@@ -1,14 +1,9 @@
 /* Tufte-style Figure CSS */
 
 /* Counter styles moved to tufte.css for global scope */
-/* body { counter-reset: figure-counter; } */
 
-/* Base figure styles */
-/* counter-increment moved to tufte.css */
-.tufte-figure,
-.margin-figure {
-    /* counter-increment: figure-counter; - now in tufte.css */
-}
+
+
 
 .tufte-figure {
     display: block;
@@ -89,14 +84,7 @@
 }
 
 /* Figure number styling - MOVED TO tufte.css for global scope */
-/* .figure-number {
-    color: var(--accent-color);
-}
 
-.figure-number::before {
-    content: "Figure " counter(figure-counter) ". ";
-    font-weight: 600;
-} */
 
 /* Margin figure (lives entirely in margin) */
 .margin-figure {

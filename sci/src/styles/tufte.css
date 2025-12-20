@@ -234,13 +234,15 @@ body {
   counter-increment: figure-counter;
 }
 
+/* Unified Figure Numbering */
 .figure-number {
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--accent-color);
 }
 
 .figure-number::before {
   content: "Figure " counter(figure-counter) ". ";
-  font-weight: 600;
 }
 
 /* Typography scale */

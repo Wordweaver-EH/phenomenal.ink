@@ -64,27 +64,26 @@ const figureClass = [
       {caption}
     </figcaption>
   )}
-</figure>
-
-{!noLightbox && (
-  <div class="lightbox-overlay" aria-hidden="true" data-for={id}>
-    <button class="lightbox-close" aria-label="Close lightbox">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-    <div class="lightbox-content">
-      <!-- Image and caption will be populated here -->
-    </div>
-    {caption && (
-      <div class="lightbox-caption">
-        <span class="figure-number"></span>
-        {caption}
+  {!noLightbox && (
+    <div class="lightbox-overlay" aria-hidden="true" data-for={id}>
+      <button class="lightbox-close" aria-label="Close lightbox">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="lightbox-content">
+        <!-- Image and caption will be populated here -->
       </div>
-    )}
-  </div>
-)}
+      {caption && (
+        <div class="lightbox-caption">
+          <span class="figure-number"></span>
+          {caption}
+        </div>
+      )}
+    </div>
+  )}
+</figure>
 
 <style>
   /* Styles moved to figure.css for sharing with MarginFigure */
@@ -113,14 +112,7 @@ const figureClass = [
         content.innerHTML = '';
         content.appendChild(clonedImg);
         
-        // Copy figure number from original caption to lightbox caption
-        const originalFigNum = figure.querySelector('figcaption .figure-number');
-        const lightboxFigNum = overlay.querySelector('.lightbox-caption .figure-number') as HTMLElement;
-        if (originalFigNum && lightboxFigNum) {
-          const computedContent = window.getComputedStyle(originalFigNum, '::before').content;
-          // CSS content returns quoted string, so we strip quotes
-          lightboxFigNum.textContent = computedContent.replace(/['"]/g, '');
-        }
+
         
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
