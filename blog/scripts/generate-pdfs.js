@@ -84,6 +84,38 @@ async function main() {
 
             await page.goto(url, { waitUntil: 'networkidle0' });
 
+            // Rewriting links to point to production instead of localhost
+            // This ensures meaningful links in the generated PDF
+            await page.evaluate((port, slug) => {
+                const anchors = document.querySelectorAll('a');
+                const localhostPrefix = `http://localhost:${port}`;
+                const productionPrefix = 'https://blog.phenomenal.ink';
+
+                anchors.forEach(a => {
+                    if (a.href.startsWith(localhostPrefix)) {
+                        // Current href might be http://localhost:8085/current-slug/target-slug
+                        // We want https://blog.phenomenal.ink/target-slug
+
+                        let url = new URL(a.href);
+                        let path = url.pathname; // /current-slug/target-slug
+
+                        // If path starts with /slug/, strip it to get /target-slug
+                        // But strictly, we should only do this if it's really a relative link issue.
+                        // "Standard" astro behavior for these docs is flattened at root if configured that way.
+                        // Let's look at the segments.
+
+                        const segments = path.split('/').filter(p => p.length > 0);
+
+                        // If we have 2 segments and the first one is our current page slug, likely it's a relative link gone wrong
+                        if (segments.length === 2 && segments[0] === slug) {
+                            path = '/' + segments[1];
+                        }
+
+                        a.href = productionPrefix + path;
+                    }
+                });
+            }, port, slug);
+
             // Inject CSS to ensure print styles are forced if needed, 
             // but media="print" should handle it automatically via page.pdf()
 
