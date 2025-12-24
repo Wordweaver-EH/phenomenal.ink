@@ -5,6 +5,7 @@ import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
 import SimpleThemeToggle from './SimpleThemeToggle.astro';
 import SimpleMenuToggle from './SimpleMenuToggle.astro';
 import SidebarToggle from './SidebarToggle.astro';
+import PrintButton from './PrintButton.astro';
 ---
 
 <div class="print-journal-header">
@@ -21,6 +22,7 @@ import SidebarToggle from './SidebarToggle.astro';
   <div class="sl-flex right-items">
     <Search {...Astro.props} />
     <div class="social-links">
+      <PrintButton />
       <a href="https://phenomenalink.substack.com/" class="substack-link" title="Email Updates: Subscribe via Substack" target="_blank" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 448 511.471" class="social-icon">
           <path d="M0 0h448v62.804H0V0zm0 229.083h448v282.388L223.954 385.808 0 511.471V229.083zm0-114.542h448v62.804H0v-62.804z"/>
