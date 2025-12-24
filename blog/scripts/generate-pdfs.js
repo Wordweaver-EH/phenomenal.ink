@@ -1,6 +1,5 @@
 
 import puppeteer from 'puppeteer';
-import chromium from '@sparticuz/chromium';
 import { fileURLToPath } from 'url';
 import { dirname, join, relative, resolve } from 'path';
 import { promises as fs } from 'fs';
@@ -43,27 +42,10 @@ async function main() {
     try {
         // 3. Launch Puppeteer
         console.log('Launching browser...');
-        let browser;
-
-        // Check if running on Vercel
-        if (process.env.VERCEL === '1') {
-            console.log('Running on Vercel, using @sparticuz/chromium');
-            // Dynamically import puppeteer-core to avoid issues if standard puppeteer is missing (though we have both)
-            const core = await import('puppeteer-core');
-            browser = await core.default.launch({
-                args: chromium.args,
-                defaultViewport: chromium.defaultViewport,
-                executablePath: await chromium.executablePath(),
-                headless: chromium.headless,
-            });
-        } else {
-            console.log('Running locally, using standard puppeteer');
-            browser = await puppeteer.launch({
-                headless: "new",
-                args: ['--no-sandbox']
-            });
-        }
-
+        const browser = await puppeteer.launch({
+            headless: "new",
+            args: ['--no-sandbox']
+        });
         const page = await browser.newPage();
 
         // 4. Find all HTML files

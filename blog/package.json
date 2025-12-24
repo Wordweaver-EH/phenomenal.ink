@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build && npm run build:pdf",
+    "build:vercel": "astro build",
     "build:pdf": "node scripts/generate-pdfs.js",
     "preview": "astro preview"
   },
@@ -33,11 +34,9 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@sparticuz/chromium": "^130.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "puppeteer": "^24.33.1",
-    "puppeteer-core": "^24.33.1",
     "typescript": "^5.3.0"
   }
 }
