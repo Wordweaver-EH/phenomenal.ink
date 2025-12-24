@@ -20,7 +20,7 @@
   --sl-color-bg-inline-code: var(--code-bg);
   --sl-color-text-inline-code: var(--text-color);
   --sl-color-bg-nav: var(--background-color);
-  
+
   /* Layout adjustments */
   --sl-content-width: 100%;
   --sl-sidebar-width: 16rem;
@@ -88,7 +88,8 @@
 }
 
 /* Sidenote positioning */
-.sidenote, .marginnote {
+.sidenote,
+.marginnote {
   float: right !important;
   clear: right !important;
   margin-right: -22rem !important;
@@ -126,8 +127,10 @@
 
 /* Sidenote mobile adjustments */
 @media screen and (max-width: 1279px) {
+
   /* Mobile sidenote handling */
-  .sidenote, .marginnote {
+  .sidenote,
+  .marginnote {
     display: none !important;
     position: relative !important;
     width: calc(100% - 2rem) !important;
@@ -156,6 +159,7 @@
 
 /* Mobile layout adjustments */
 @media screen and (max-width: 50rem) {
+
   /* Reset Starlight's sidebar spacing */
   :root {
     --sl-sidebar-width: 0 !important;
@@ -323,6 +327,14 @@ pre {
 
 #starlight__sidebar {
   padding-top: 1rem !important;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Collapsed sidebar state */
+#starlight__sidebar.collapsed {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Container adjustments */
@@ -343,7 +355,7 @@ pre {
   padding: 1rem !important;
 }
 
-.header > .sl-flex {
+.header>.sl-flex {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
@@ -404,7 +416,7 @@ div[data-pagefind-ui="search-box"] {
   .header {
     flex-wrap: nowrap !important;
   }
-  
+
   .right-group {
     gap: 0.5rem !important;
   }
@@ -415,7 +427,7 @@ div[data-pagefind-ui="search-box"] {
   .rest-title {
     display: none !important;
   }
-  
+
   .fancy-p {
     font-size: 1.7rem !important;
   }
@@ -540,4 +552,3 @@ article span {
   background-color: var(--accent-color) !important;
   transition: width 0.1s ease !important;
 }
-  
